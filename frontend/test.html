@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Compass - Career Quiz</title>
+  <link rel="stylesheet" href="test.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <header class="navbar">
+      <div class="logo-area">
+        <div class="logo-icon">🧭</div>
+        <span class="logo-text">Career Compass</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#" class="active">Career Test</a>
+        <a href="#">Roadmaps</a>
+        <a href="#">Courses</a>
+        <a href="#">Resources ▼</a>
+        <a href="#">About Us</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn">🌙</button>
+        <button class="icon-btn">🔔</button>
+        <img class="profile-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120" alt="Avatar">
+      </div>
+    </header>
+
+    <div class="main-layout">
+      
+      <aside class="sidebar">
+        <div class="menu-list">
+          <button class="menu-item">📊 Dashboard</button>
+          <button class="menu-item active">📋 Career Quiz</button>
+          <button class="menu-item">🗺️ Roadmaps</button>
+          <button class="menu-item">📚 Courses</button>
+          <button class="menu-item">🤖 AI Mentor</button>
+          <button class="menu-item">📈 Skill Analyzer</button>
+          <button class="menu-item">⚖️ Career Compare</button>
+          <button class="menu-item">📉 Progress</button>
+          <button class="menu-item">🏅 Success Stories</button>
+          <button class="menu-item">⚙️ Settings</button>
+        </div>
+
+        <div class="ai-box">
+          <h4>Need Help?</h4>
+          <p>Chat with our AI Mentor anytime!</p>
+          <button class="ai-btn">Chat Now →</button>
+        </div>
+      </aside>
+
+      <main class="content-grid">
+        
+        <div class="quiz-area">
+          
+          <div class="hero-banner">
+            <div class="hero-text">
+              <h1>Career Quiz</h1>
+              <p>Answer a few personalized questions and let our AI analyze your <span class="tech">interests</span>, <span class="skills">skills</span>, and <span class="pers">personality</span>.</p>
+            </div>
+            <div class="deco-graphic"></div>
+          </div>
+
+          <div class="stepper-card">
+            <div class="steps-container">
+              <div class="step-node active">
+                <div class="step-circle">1</div>
+                <div class="step-label">
+                  <h5>Interests</h5>
+                  <p>Your likes & passions</p>
+                </div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-node">
+                <div class="step-circle">2</div>
+                <div class="step-label">
+                  <h5>Skills</h5>
+                  <p>Your strengths</p>
+                </div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-node">
+                <div class="step-circle">3</div>
+                <div class="step-label">
+                  <h5>Personality</h5>
+                  <p>Your traits</p>
+                </div>
+              </div>
+              <div class="step-line"></div>
+              <div class="step-node">
+                <div class="step-circle">4</div>
+                <div class="step-label">
+                  <h5>Goals</h5>
+                  <p>Aspirations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question-card">
+            <div>
+              <div class="question-header">
+                <h2>Let's get started!</h2>
+                <p>Tell us what excites you the most.</p>
+              </div>
+
+              <div class="question-label">
+                What are your top areas of interest? <span>(Select up to 3)</span>
+              </div>
+
+              <div class="options-grid">
+                <div class="option-box opt-tech selected">
+                  <div class="option-icon">💻</div>
+                  <span>Technology</span>
+                </div>
+                <div class="option-box opt-biz">
+                  <div class="option-icon">💼</div>
+                  <span>Business</span>
+                </div>
+                <div class="option-box opt-arts">
+                  <div class="option-icon">🎨</div>
+                  <span>Arts & Design</span>
+                </div>
+                <div class="option-box opt-sci">
+                  <div class="option-icon">🧪</div>
+                  <span>Science</span>
+                </div>
+                <div class="option-box">
+                  <div class="option-icon">❤️</div>
+                  <span>Healthcare</span>
+                </div>
+                <div class="option-box">
+                  <div class="option-icon">🎓</div>
+                  <span>Education</span>
+                </div>
+                <div class="option-box">
+                  <div class="option-icon">📈</div>
+                  <span>Finance</span>
+                </div>
+                <div class="option-box">
+                  <div class="option-icon">•••</div>
+                  <span>Others</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <button class="next-btn">Next Question →</button>
+            </div>
+          </div>
+
+          <div class="tip-box">
+            <span>Tip:</span> There are no right or wrong answers. Be honest to get the most accurate, hyper-tailored structural roadmap analysis possible.
+          </div>
+
+        </div>
+
+        <div class="side-metrics">
+          
+          <div class="metric-card">
+            <h3>Quiz Progress</h3>
+            <div class="progress-widget">
+              <div style="position: relative; width: 80px; height: 80px;">
+                <svg class="circle-svg" viewBox="0 0 36 36">
+                  <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="circle-stroke" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                </svg>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; font-size: 1.1rem; color: white;">20%</div>
+              </div>
+              <div class="progress-info">
+                <span>Step 1 of 5</span>
+                <h4>Interests</h4>
+                <p>Est. time: 5-7 min</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <h3 style="margin-bottom: 20px;">Why This Quiz?</h3>
+            <div class="benefits-list">
+              <div class="benefit-item">
+                <div class="check-mark">✓</div>
+                <div class="benefit-text">
+                  <h4>100% Personalized</h4>
+                  <p>Get results tailored perfectly for your profile matrix elements.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="check-mark">✓</div>
+                <div class="benefit-text">
+                  <h4>AI-Powered Analysis</h4>
+                  <p>Advanced neural pattern matching pairs you with career metrics.</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="check-mark">✓</div>
+                <div class="benefit-text">
+                  <h4>Data-Driven Insights</h4>
+                  <p>Make validated actions backed by historical industry analytics.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="secure-badge">
+            <div class="secure-icon">🛡️</div>
+            <div class="secure-text">
+              <h4>Your Privacy Matters</h4>
+              <p>Your inputs are secure and 100% confidential. We never leak data.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+</body>
+</html>
