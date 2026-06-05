@@ -53,9 +53,87 @@
                 </div>
             </div>
 
-            <!-- Hero Graphics Side using exact referenced file -->
+            <!-- Hero Graphics Side with Floating UI Dashboard Elements -->
             <div class="hero-right">
-                <image src="student-illustration.png" alt="Career Compass Character & Floating Visual Elements Dashboard" class="main-hero-asset">
+                <!-- Glowing dotted paths in background -->
+                <svg class="connecting-paths" viewBox="0 0 600 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M80,300 Q 150,220 280,240 T 520,130" stroke="rgba(139, 92, 246, 0.2)" stroke-width="2" stroke-dasharray="4 4"/>
+                    <path d="M120,180 Q 250,150 380,220 T 480,320" stroke="rgba(59, 130, 246, 0.15)" stroke-width="2" stroke-dasharray="4 4"/>
+                    <circle cx="100" cy="285" r="4" fill="#8b5cf6" class="glowing-dot dot-1"/>
+                    <circle cx="320" cy="180" r="4" fill="#3b82f6" class="glowing-dot dot-2"/>
+                    <circle cx="480" cy="220" r="4" fill="#d946ef" class="glowing-dot dot-3"/>
+                </svg>
+
+                <!-- Main character 3D illustration wrapper -->
+                <div class="hero-character-wrapper">
+                    <img src="student-illustration.png" alt="Career Compass Student Character and AI Assistant" class="main-hero-asset">
+                </div>
+
+                <!-- Floating dashboard element: AI Career Match -->
+                <div class="floating-card card-career-match">
+                    <div class="card-title">AI Career Match</div>
+                    <div class="card-value-row">
+                        <span class="card-value">95%</span>
+                        <svg class="sparkline" viewBox="0 0 100 40">
+                            <path d="M5,35 Q 25,10 45,30 T 85,5" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round"></path>
+                            <path d="M5,35 Q 25,10 45,30 T 85,5 L 85,40 L 5,40 Z" fill="url(#sparkline-grad)" opacity="0.15"></path>
+                            <circle cx="85" cy="5" r="4" fill="#10b981" class="pulse-dot"></circle>
+                            <defs>
+                                <linearGradient id="sparkline-grad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#10b981"/>
+                                    <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Floating dashboard element: High Growth Careers -->
+                <div class="floating-card card-growth">
+                    <div class="card-title">High Growth Careers</div>
+                    <div class="bar-chart">
+                        <div class="bar-col">
+                            <div class="bar" style="height: 35%"></div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 48%"></div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 28%"></div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 60%"></div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 40%"></div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 70%"></div>
+                        </div>
+                        <div class="bar-col">
+                            <div class="bar" style="height: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating dashboard element: Salary Range -->
+                <div class="floating-card card-salary">
+                    <div class="card-icon">
+                        <i class="ph-fill ph-clipboard-text"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-label">Salary Range</div>
+                        <div class="card-val">₹6L - ₹25L</div>
+                    </div>
+                </div>
+
+                <!-- Floating dashboard element: Personalized Roadmap -->
+                <div class="floating-card card-roadmap">
+                    <span class="roadmap-text">Personalized Roadmap</span>
+                    <span class="roadmap-arrow">
+                        <i class="ph-bold ph-arrow-right"></i>
+                    </span>
+                </div>
             </div>
         </section>
 
