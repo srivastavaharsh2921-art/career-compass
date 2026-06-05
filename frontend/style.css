@@ -272,17 +272,281 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: visible;
+            width: 100%;
         }
 
-        /* Reference to core visual asset from the input image */
-        .main-hero-asset {
+        /* Hero Character Wrapper & Blend Mode magic */
+        .hero-character-wrapper {
+            position: relative;
             width: 100%;
             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .main-hero-asset {
+            width: 105%;
+            height: 105%;
             object-fit: contain;
             pointer-events: none;
+            filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.15));
+        }
+
+        /* Connecting Paths Behind the Cards */
+        .connecting-paths {
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
             z-index: 1;
         }
+
+        .glowing-dot {
+            animation: pulse-dot 2.5s infinite alternate;
+        }
+
+        .dot-1 { animation-delay: 0s; fill: #8b5cf6; }
+        .dot-2 { animation-delay: 0.8s; fill: #3b82f6; }
+        .dot-3 { animation-delay: 1.6s; fill: #d946ef; }
+
+        @keyframes pulse-dot {
+            0% {
+                r: 3px;
+                opacity: 0.4;
+                filter: drop-shadow(0 0 4px currentColor);
+            }
+            100% {
+                r: 6px;
+                opacity: 1;
+                filter: drop-shadow(0 0 12px currentColor);
+            }
+        }
+
+        /* Floating Cards Base Styling */
+        .floating-card {
+            position: absolute;
+            background: rgba(6, 6, 29, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 16px 20px;
+            z-index: 10;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease;
+            cursor: pointer;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            user-select: none;
+        }
+
+        .floating-card:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* AI Career Match Card */
+        .card-career-match {
+            width: 190px;
+            top: 50px;
+            left: -10px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(16, 185, 129, 0.05);
+            animation: float-slow 6s ease-in-out infinite alternate;
+        }
+
+        .card-career-match:hover {
+            box-shadow: 0 16px 45px rgba(16, 185, 129, 0.25), inset 0 0 20px rgba(16, 185, 129, 0.1);
+        }
+
+        .card-career-match .card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .card-career-match .card-value-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .card-career-match .card-value {
+            font-size: 26px;
+            font-weight: 700;
+            color: #10b981;
+            text-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .card-career-match .sparkline {
+            width: 70px;
+            height: 32px;
+            overflow: visible;
+        }
+
+        /* High Growth Careers Card */
+        .card-growth {
+            width: 190px;
+            top: 35px;
+            right: 0px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(139, 92, 246, 0.05);
+            animation: float-medium 7s ease-in-out infinite alternate;
+        }
+
+        .card-growth:hover {
+            box-shadow: 0 16px 45px rgba(139, 92, 246, 0.25), inset 0 0 20px rgba(139, 92, 246, 0.1);
+        }
+
+        .card-growth .card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .card-growth .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            height: 36px;
+            gap: 5px;
+        }
+
+        .card-growth .bar-col {
+            flex: 1;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .card-growth .bar {
+            width: 100%;
+            background: linear-gradient(0deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 2px 2px 0 0;
+            box-shadow: 0 0 6px rgba(139, 92, 246, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .card-growth:hover .bar {
+            transform: scaleY(1.1);
+            filter: brightness(1.2);
+        }
+
+        /* Salary Range Card */
+        .card-salary {
+            width: 210px;
+            bottom: 140px;
+            right: -20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(16, 185, 129, 0.05);
+            animation: float-fast 5s ease-in-out infinite alternate;
+        }
+
+        .card-salary:hover {
+            box-shadow: 0 16px 45px rgba(16, 185, 129, 0.2), inset 0 0 20px rgba(16, 185, 129, 0.1);
+        }
+
+        .card-salary .card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #10b981;
+            font-size: 20px;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+        }
+
+        .card-salary .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            text-align: left;
+        }
+
+        .card-salary .card-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .card-salary .card-val {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Personalized Roadmap Card */
+        .card-roadmap {
+            bottom: 170px;
+            left: -30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 0 12px rgba(217, 70, 239, 0.05);
+            animation: float-slow 8s ease-in-out infinite alternate-reverse;
+        }
+
+        .card-roadmap:hover {
+            box-shadow: 0 16px 45px rgba(217, 70, 239, 0.2), inset 0 0 20px rgba(217, 70, 239, 0.1);
+        }
+
+        .card-roadmap .roadmap-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .card-roadmap .roadmap-arrow {
+            color: #d946ef;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card-roadmap:hover .roadmap-arrow {
+            transform: translateX(4px);
+        }
+
+        /* Keyframe Floating Animations */
+        @keyframes float-slow {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-16px); }
+        }
+
+        @keyframes float-medium {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(-12px) translateX(6px); }
+        }
+
+        @keyframes float-fast {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(-8px) translateX(-5px); }
+        }
+
+        .pulse-dot {
+            animation: pulse-dot-opacity 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-dot-opacity {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
 
         /* Features Section Header */
         .section-title {
@@ -405,20 +669,41 @@
                 grid-template-columns: repeat(4, 1fr);
             }
             .hero h1 { font-size: 48px; }
+            .card-roadmap { left: -10px; }
+            .card-salary { right: -10px; }
+            .card-career-match { left: 0px; }
+            .card-growth { right: 0px; }
         }
 
         @media (max-width: 900px) {
             .hero {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 40px;
             }
             .hero-left {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
+            .hero-right {
+                max-width: 500px;
+                margin: 0 auto;
+                height: 480px;
+            }
             .hero-desc { margin-left: auto; margin-right: auto; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .value-bar { grid-template-columns: repeat(2, 1fr); gap: 24px; }
             .value-item { border-right: none; }
+        }
+
+        @media (max-width: 550px) {
+            .hero-right {
+                transform: scale(0.78);
+                transform-origin: center center;
+                height: 400px;
+                margin: -20px auto;
+            }
+            .features-grid { grid-template-columns: 1fr; }
+            .value-bar { grid-template-columns: 1fr; gap: 16px; }
         }
