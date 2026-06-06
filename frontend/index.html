@@ -7,6 +7,8 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
 <body>
@@ -207,10 +209,86 @@
                 <div class="value-info">
                     <h4>Your Success Partner</h4>
                     <p>We are with you at every step of your journey</p>
+                    </div>
+            </div>
+        </section>
+
+        <section id="login" class="login-section">
+          <div class="login-card">
+            <div class="login-header">
+              <h1>Login</h1>
+              <p>Login to continue your career journey</p>
+            </div>
+
+            <form class="login-form">
+              <div class="input-group">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                  <i class="fa-regular fa-envelope input-icon"></i>
+                  <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                  <i class="fa-solid fa-lock input-icon"></i>
+                  <input type="password" id="password" placeholder="Enter your password" required>
+                  <i class="fa-regular fa-eye-slash toggle-password"></i>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <label class="checkbox-container">
+                  <input type="checkbox" checked>
+                  <span class="checkmark"></span>
+                  Remember me
+                </label>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                Login <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </form>
+
+            <div class="divider">
+              <span>or continue with</span>
+            </div>
+
+            <div class="social-logins">
+              <button class="btn-social">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_Logo.svg" alt="Google Logo" class="social-icon">
+                Continue with Google
+              </button>
+              <button class="btn-social">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo" class="social-icon">
+                Continue with LinkedIn
+              </button>
+            </div>
+
+            <div class="login-footer">
+              Don't have an account? <a href="#">Sign Up</a>
                 </div>
             </div>
         </section>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const passwordInput = document.querySelector('#password');
+        const togglePassword = document.querySelector('.toggle-password');
+
+        if (passwordInput && togglePassword) {
+          togglePassword.addEventListener('click', () => {
+            const isVisible = passwordInput.type === 'text';
+            passwordInput.type = isVisible ? 'password' : 'text';
+            togglePassword.classList.toggle('fa-eye', !isVisible);
+            togglePassword.classList.toggle('fa-eye-slash', isVisible);
+          });
+        }
+      });
+    </script>
 
 </body>
 </html>
