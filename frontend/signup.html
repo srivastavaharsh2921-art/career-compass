@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Career Compass</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container" style="padding: 60px 40px; max-width: 720px;">
+    <a href="index.html" style="display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; margin-bottom: 40px; font-weight: 700;">
+      <i class="fa-solid fa-arrow-left"></i> Back to home
+    </a>
+    <section class="login-section" style="margin-bottom: 0;">
+      <div class="login-card">
+        <div class="login-header">
+          <h1>Create Account</h1>
+          <p>Sign up to start your career journey with Career Compass</p>
+        </div>
+        <form class="login-form" id="signup-form">
+          <div class="input-group">
+            <label for="name">Full name</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input type="text" id="name" placeholder="Your full name" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-envelope input-icon"></i>
+              <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="password" placeholder="Create a password" required>
+              <i class="fa-regular fa-eye-slash toggle-password" data-target="#password"></i>
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="confirm">Confirm Password</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input type="password" id="confirm" placeholder="Repeat your password" required>
+              <i class="fa-regular fa-eye-slash toggle-password" data-target="#confirm"></i>
+            </div>
+          </div>
+          <div class="form-actions">
+            <label class="checkbox-container">
+              <input type="checkbox" id="terms" required>
+              <span class="checkmark"></span>
+              I agree to the Terms
+            </label>
+            <a href="login.html" class="forgot-password">Already have an account?</a>
+          </div>
+          <button type="submit" class="btn-submit">
+            Create account <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </form>
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
+        <div class="social-logins">
+          <button class="btn-social">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_Logo.svg" alt="Google Logo" class="social-icon">
+            Continue with Google
+          </button>
+          <button class="btn-social">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo" class="social-icon">
+            Continue with LinkedIn
+          </button>
+        </div>
+        <div class="login-footer">
+          Already registered? <a href="login.html">Log in</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Toggle password visibility for inputs with .toggle-password
+      document.querySelectorAll('.toggle-password').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const target = document.querySelector(btn.dataset.target);
+          if (!target) return;
+          const isText = target.type === 'text';
+          target.type = isText ? 'password' : 'text';
+          btn.classList.toggle('fa-eye', !isText);
+          btn.classList.toggle('fa-eye-slash', isText);
+        });
+      });
+
+      // Simple client-side validation for matching passwords
+      const form = document.querySelector('#signup-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          const p = document.querySelector('#password');
+          const c = document.querySelector('#confirm');
+          if (p && c && p.value !== c.value) {
+            e.preventDefault();
+            alert('Passwords do not match');
+            c.focus();
+            return false;
+          }
+          // For now, prevent actual submission and show a message
+          e.preventDefault();
+          alert('Account created (mock) — implement backend to persist user');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
