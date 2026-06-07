@@ -498,6 +498,42 @@
     .opt-finance .option-icon { color: #2dd4bf; background: rgba(45, 212, 191, 0.1); }
     .opt-others .option-icon { color: #9ca3af; background: rgba(156, 163, 171, 0.1); }
 
+    .other-input-container {
+      display: none;
+      grid-column: 1 / -1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .other-input-container.visible {
+      display: block;
+    }
+
+    .other-input-container label {
+      display: block;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .other-input-container input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .other-input-container input::placeholder {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
     .option-title {
       font-size: 14px;
       font-weight: 500;

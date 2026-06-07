@@ -174,6 +174,11 @@
             </div>
           </div>
 
+          <div class="other-input-container" aria-hidden="true">
+            <label for="other-interest">Tell us your area of interest</label>
+            <input id="other-interest" type="text" placeholder="Type your interest here" />
+          </div>
+
           <button class="next-btn">
             Next Question <i data-lucide="arrow-right" size="18"></i>
           </button>
@@ -255,10 +260,33 @@
     // Initialize standard Lucide SVG icons smoothly 
     lucide.createIcons();
 
-    // Minor functional interactivity for demo: Box Selection toggling
-    document.querySelectorAll('.option-box').forEach(box => {
+    const maxSelections = 3;
+    const optionBoxes = Array.from(document.querySelectorAll('.option-box'));
+    const otherInputContainer = document.querySelector('.other-input-container');
+    const otherInput = document.getElementById('other-interest');
+
+    optionBoxes.forEach(box => {
       box.addEventListener('click', () => {
+        const isSelected = box.classList.contains('selected');
+        const selectedCount = optionBoxes.filter(item => item.classList.contains('selected')).length;
+
+        if (!isSelected && selectedCount >= maxSelections) {
+          return;
+        }
+
         box.classList.toggle('selected');
+
+        if (box.classList.contains('opt-others')) {
+          if (box.classList.contains('selected')) {
+            otherInputContainer.classList.add('visible');
+            otherInput.focus();
+            otherInputContainer.setAttribute('aria-hidden', 'false');
+          } else {
+            otherInputContainer.classList.remove('visible');
+            otherInput.value = '';
+            otherInputContainer.setAttribute('aria-hidden', 'true');
+          }
+        }
       });
     });
   </script>
