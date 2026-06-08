@@ -1,0 +1,832 @@
+/* ==========================================================================
+   1. CORE UI VARIABLES (DARK NEON THEMING)
+   ========================================================================= */
+:root {
+    --bg-main: #060814;
+    --bg-surface: #0b0f24;
+    --bg-surface-hover: #121838;
+    
+    /* Neon Branding Accents */
+    --neon-blue: #3b82f6;
+    --neon-purple: #7c3aed;
+    --neon-indigo: #6366f1;
+    --neon-mint: #10b981;
+    --neon-cyan: #06b6d4;
+    --accent-orange: #f59e0b;
+    --accent-pink: #ec4899;
+    
+    /* Typography colors */
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-glow: #1e293b;
+    
+    /* Layout Constants */
+    --max-width: 1200px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-glow: 0 0 25px rgba(124, 58, 237, 0.25);
+}
+
+/* ==========================================================================
+   2. GLOBAL INITIALIZATION & TYPOGRAPHY
+   ========================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+section {
+    padding: 100px 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.section-title.centered {
+    text-align: center;
+}
+
+.section-title.text-left {
+    text-align: left;
+}
+
+p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 20px;
+}
+
+/* Color Helpers */
+.text-blue { color: var(--neon-blue); }
+.text-green { color: var(--neon-mint); }
+.text-orange { color: var(--accent-orange); }
+.text-purple { color: var(--neon-purple); }
+
+/* ==========================================================================
+   3. BUTTONS & UI UTILITIES
+   ========================================================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary-blue {
+    background-color: var(--neon-blue);
+    color: var(--text-primary);
+}
+
+.btn-primary-blue:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-purple {
+    background: linear-gradient(135deg, var(--neon-indigo) 0%, var(--neon-purple) 100%);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn-purple:hover {
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
+.btn-white {
+    background-color: var(--text-primary);
+    color: var(--bg-main);
+}
+
+.btn-white:hover {
+    background-color: var(--text-secondary);
+    transform: translateY(-2px);
+}
+
+.btn-outline-white {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--border-glow);
+}
+
+.btn-outline-white:hover {
+    background-color: var(--bg-surface-hover);
+    border-color: var(--text-secondary);
+    transform: translateY(-2px);
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: rgba(124, 58, 237, 0.15);
+    color: #a78bfa;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border-radius: 50px;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   4. NAVIGATION BAR
+   ========================================================================= */
+.navbar {
+    background-color: rgba(6, 8, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 20px 0;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.logo span {
+    color: var(--neon-indigo);
+}
+
+.logo-icon {
+    font-size: 1.75rem;
+    color: var(--neon-indigo);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+.nav-links a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.6);
+}
+
+/* ==========================================================================
+   5. HERO BANNER
+   ========================================================================= */
+.hero-section {
+    background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 50%),
+                radial-gradient(circle at bottom left, rgba(124, 58, 237, 0.05), transparent 50%);
+    padding: 120px 0;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 64px;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+
+.hero-content .highlight {
+    background: linear-gradient(135deg, #a78bfa 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    max-width: 580px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+}
+
+.mock-illustration {
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floatIllustration 6s ease-in-out infinite;
+}
+
+.giant-compass {
+    font-size: 160px;
+    color: var(--neon-purple);
+    filter: drop-shadow(0 0 30px rgba(124, 58, 237, 0.6));
+}
+
+@keyframes floatIllustration {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* ==========================================================================
+   6. OUR STORY / MISSION / VISION
+   ========================================================================= */
+.story-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+}
+.story-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+}
+
+.story-image-placeholder {
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-glow);
+    box-shadow: var(--shadow-card);
+}
+
+.giant-globe {
+    font-size: 130px;
+    color: var(--neon-indigo);
+    opacity: 0.15;
+    filter: drop-shadow(0 0 20px var(--neon-indigo));
+}
+
+.vision-mission-cards {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 48px;
+}
+
+.side-card {
+    display: flex;
+    gap: 24px;
+    padding: 40px;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-glow);
+    transition: var(--transition);
+}
+
+.side-card:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-4px);
+}
+
+.icon-box {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.75rem;
+}
+
+.icon-box.purple-bg {
+    background-color: rgba(124, 58, 237, 0.1);
+    color: #a78bfa;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.side-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+/* ==========================================================================
+   7. CARD OFFERS GRID
+   ========================================================================= */
+.offers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 50px;
+}
+
+.offer-card {
+    background-color: var(--bg-surface);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-glow);
+    transition: var(--transition);
+}
+
+.offer-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 30px -10px rgba(0,0,0,0.8);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.offer-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+/* Customized Theme Accent Micro-states */
+.blue-theme { background: rgba(59, 130, 246, 0.1); color: var(--neon-blue); }
+.green-theme { background: rgba(16, 185, 129, 0.1); color: var(--neon-mint); }
+.orange-theme { background: rgba(245, 158, 11, 0.1); color: var(--accent-orange); }
+.purple-theme { background: rgba(124, 58, 237, 0.1); color: var(--neon-purple); }
+.pink-theme { background: rgba(236, 72, 153, 0.1); color: var(--accent-pink); }
+.blue-light-theme { background: rgba(6, 182, 212, 0.1); color: var(--neon-cyan); }
+.cyan-theme { background: rgba(6, 182, 212, 0.15); color: var(--neon-cyan); }
+.orange-light-theme { background: rgba(245, 158, 11, 0.15); color: var(--accent-orange); }
+
+.offer-card h3 {
+    font-size: 1.2rem;
+}
+
+.offer-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   8. TRUST CHANNELS & LIVE STATS
+   ========================================================================= */
+.trust-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.trust-left h2 {
+    font-size: 2.75rem;
+    margin-bottom: 32px;
+}
+
+.trust-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.trust-list li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.trust-list li i {
+    color: var(--neon-mint);
+    font-size: 1.35rem;
+}
+
+.stats-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.stat-box {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-lg);
+    padding: 36px 24px;
+    text-align: center;
+}
+
+.stat-icon {
+    font-size: 2.25rem;
+    margin-bottom: 16px;
+}
+
+.stat-box h3 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+}
+
+.stat-box p {
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   9. VALUES / TEAM FRAME
+   ========================================================================= */
+.values-grid, .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+}
+
+.value-card, .team-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-lg);
+    padding: 40px 28px;
+    text-align: center;
+}
+
+.value-icon {
+    font-size: 2.75rem;
+    margin-bottom: 24px;
+}
+
+.value-card h3, .team-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+}
+
+/* Team Component Details */
+.avatar-placeholder {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background-color: var(--bg-input);
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--text-secondary);
+    border: 2px solid var(--border-glow);
+}
+.team-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  margin-bottom: 16px;
+}
+    .team-photo {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  margin-bottom: 16px;
+}
+.team-card .role {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--neon-blue);
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.team-card p {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+.social-icons a {
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+}
+
+.social-icons a:hover {
+    color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   10. ACTION INTERMEDIARY PLACARDS (CTA PLATES)
+   ========================================================================= */
+.future-card-banner {
+    background: linear-gradient(135deg, #4c1d95 0%, #0f172a 100%);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 1.4fr 0.6fr;
+    align-items: center;
+    gap: 48px;
+    box-shadow: var(--shadow-glow);
+}
+
+.future-left h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.future-left p {
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    margin-bottom: 0;
+}
+
+.future-right {
+    display: flex;
+    justify-content: center;
+}
+
+.giant-icon {
+    font-size: 140px;
+    color: var(--neon-purple);
+    opacity: 0.4;
+    filter: drop-shadow(0 0 20px var(--neon-purple));
+}
+
+/* Bottom Full CTA Panel strip */
+.cta-banner {
+    background: linear-gradient(90deg, #1e3a8a 0%, #0f172a 100%);
+    border-top: 1px solid var(--border-glow);
+    border-bottom: 1px solid var(--border-glow);
+    padding: 80px 0;
+}
+
+.cta-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 48px;
+}
+
+.cta-flex h2 {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+}
+
+.cta-flex p {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   11. FOOTER PIPELINES
+   ========================================================================= */
+.footer {
+    background-color: #03040b;
+    border-top: 1px solid var(--border-glow);
+    padding: 80px 0 40px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.8fr 0.8fr 1.1fr;
+    gap: 64px;
+    border-bottom: 1px solid var(--border-glow);
+    padding-bottom: 60px;
+}
+
+.footer-brand .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-primary);
+    font-weight: 800;
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+}
+
+.footer-brand p {
+    margin-bottom: 28px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 16px;
+}
+
+.footer-socials a {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.footer-socials a:hover {
+    color: var(--text-primary);
+    border-color: var(--neon-blue);
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+.footer h4 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+}
+
+.footer-links, .footer-contact {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 14px;
+}
+
+.footer-links a:hover {
+    color: var(--text-primary);
+    padding-left: 4px;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.footer-contact li i {
+    color: var(--neon-blue);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.scroll-up {
+    width: 44px;
+    height: 44px;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+.scroll-up:hover {
+    border-color: var(--neon-indigo);
+    background-color: rgba(99, 102, 241, 0.1);
+}
+
+/* ==========================================================================
+   12. MEDIA INTERPOLATIONS (RESPONSIVENESS)
+   ========================================================================= */
+@media (max-width: 1100px) {
+    .offers-grid, .values-grid, .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 48px;
+    }
+}
+
+@media (max-width: 768px) {
+    section { padding: 70px 0; }
+    
+    .nav-links, .navbar .btn { display: none; } /* Adaptive toggle breakpoint fallback */
+    
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .hero-content h1 { font-size: 2.75rem; }
+    .hero-content p { margin: 0 auto 32px; }
+    .hero-actions { justify-content: center; }
+    .hero-image { order: -1; }
+    
+    .story-grid { grid-template-columns: 1fr; gap: 48px; }
+    .vision-mission-cards { grid-template-columns: 1fr; }
+    
+    .trust-section { grid-template-columns: 1fr; gap: 48px; }
+    
+    .future-card-banner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 44px 24px;
+    }
+    .future-right { display: none; }
+    
+    .cta-flex {
+        flex-direction: column;
+        text-align: center;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 { font-size: 2.2rem; }
+    .offers-grid, .values-grid, .team-grid, .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .trust-list { grid-template-columns: 1fr; }
+    .stats-right { grid-template-columns: 1fr; }
+    .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .cta-buttons .btn { width: 100%; justify-content: center; }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
