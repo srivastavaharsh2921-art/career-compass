@@ -71,24 +71,16 @@ body {
   color: white;
 }
 
-/* .logo-text {
+.logo-text {
   font-weight: 700;
   font-size: 1.1rem;
   letter-spacing: 0.5px;
   background: linear-gradient(to right, #fff, #94a3b8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-} */
-.gradient-text {
-   font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.5px;
-  background: linear-gradient(to right, #f11, #94a3b8);
   background-clip: text;
   -webkit-background-clip: text;
-  color: transparent;
   -webkit-text-fill-color: transparent;
 }
+
 .nav-links {
   display: flex;
   gap: 32px;

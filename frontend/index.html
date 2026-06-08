@@ -7,6 +7,8 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
     <link rel="stylesheet" href="style.css">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
 
 </head>
 <body>
@@ -21,15 +23,21 @@
             <nav>
                 <a href="#" class="active">Home</a>
                 <a href="test.html">Career Test</a>
+<<<<<<< HEAD
                 <a href="roadmaps.html">Roadmaps</a>
                 <a href="courses.html">Courses</a>
                 <a href="resources.html">Resources <i class="ph ph-caret-down"></i></a>
                 <a href="about.html">About Us</a>
+=======
+                <a href="#">Roadmaps</a>
+                <a href="#">Courses</a>
+                <a href="#">Resources <i class="ph ph-caret-down"></i></a>
+                <a href="#">About Us</a>
+>>>>>>> 78c35f4022458fd54d473193b6acdb229cdfafa6
             </nav>
             <div class="nav-actions">
-                <button class="theme-toggle"><i class="ph-bold ph-moon"></i></button>
-                <button class="btn-login">Login</button>
-                <button class="btn-signup">Sign Up</button>
+                <a class="btn-login" href="login.html">Login</a>
+                <a class="btn-signup" href="signup.html">Sign Up</a>
             </div>
         </header>
 
@@ -212,5 +220,20 @@
         </section>
     </div>
 
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const passwordInput = document.querySelector('#password');
+        const togglePassword = document.querySelector('.toggle-password');
+
+        if (passwordInput && togglePassword) {
+          togglePassword.addEventListener('click', () => {
+            const isVisible = passwordInput.type === 'text';
+            passwordInput.type = isVisible ? 'password' : 'text';
+            togglePassword.classList.toggle('fa-eye', !isVisible);
+            togglePassword.classList.toggle('fa-eye-slash', isVisible);
+          });
+        }
+      });
+    </script>
 </body>
 </html>
