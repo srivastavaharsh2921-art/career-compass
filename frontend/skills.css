@@ -1,4 +1,7 @@
 /* Skills Round Icon Colors and Background Glows */
+img:hover{
+    cursor:url(cursor.png),auto;
+}
 
 .opt-coding .option-icon {
   color: #3b82f6;
