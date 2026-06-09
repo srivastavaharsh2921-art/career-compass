@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Career Compass - About Us</title>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <!-- External CSS -->
     <link rel="stylesheet" href="about-us.css">
 </head>
+
 <body>
 
     <!-- HEADER / NAVIGATION -->
     <header class="navbar">
         <div class="container nav-container">
             <div class="logo">
-                   <a href="#" class="logo">
-                <i class="ph-bold ph-compass logo-icon"></i>
-                Career<span>Compass</span>
-            </a>
+                <a href="index.html">
+                    <i class="ph-bold ph-compass logo-icon"></i>
+                    Career<span>Compass</span>
+                </a>
             </div>
             <nav class="nav-links">
-                <a href="index.html" class="active">Home</a>
+                <a href="index.html">Home</a>
                 <a href="test.html">Career Test</a>
                 <a href="career-roadmaps.html">Roadmaps</a>
                 <a href="courses.html">Courses</a>
                 <a href="resources.html">Resources <i class="ph ph-caret-down"></i></a>
-                <a href="about-us.html">About Us</a>
+                <a href="about-us.html" class="active">About Us</a>
             </nav>
-            <button class="btn btn-primary-blue">Get Started</button>
+            <div class="nav-actions">
+                <a class="btn-login" href="login.html">Login</a>
+                <a class="btn-signup" href="signup.html">Sign Up</a>
+            </div>
         </div>
     </header>
 
@@ -40,9 +48,13 @@
             <div class="hero-content">
                 <span class="badge">ABOUT US</span>
                 <h1>Guiding Every Student <br>Toward The Right <br><span class="highlight">Career Path</span></h1>
-                <p>Career Compass is an intelligent career guidance platform designed to help students and young professionals discover their strengths, explore career opportunities, and build a clear roadmap toward their future goals.</p>
+                <p>Career Compass is an intelligent career guidance platform designed to help students and young
+                    professionals discover their strengths, explore career opportunities, and build a clear roadmap
+                    toward their future goals.</p>
                 <div class="hero-actions">
-                    <button class="btn btn-purple"><a href="test.html">Take Career Assessment <i class="fa-solid fa-arrow-right"></i></a></button>
+                    <a href="test.html" class="btn btn-purple">
+                        Take Career Assessment <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                     <button class="btn btn-outline-white">Explore Careers</button>
                 </div>
             </div>
@@ -60,27 +72,34 @@
         <div class="story-grid">
             <div class="story-image-placeholder">
                 <!-- Graphic with students on books placeholder -->
-             <img src="aboutus.png" alt="Career Compass Story" class="story-image">
+                <img src="aboutus.png" alt="Career Compass Story" class="story-image">
             </div>
             <div class="story-content">
                 <h2 class="section-title text-left">Our Story</h2>
-                <p>Choosing the right career can be overwhelming in today's rapidly evolving world. Many students struggle to identify their strengths, understand career opportunities, and plan their future effectively.</p>
-                <p>Career Compass was created to bridge this gap by providing personalized career guidance, skill recommendations, career roadmaps, and industry insights—all in one platform.</p>
-                <p>Our mission is to empower every student with the knowledge and confidence needed to make informed career decisions.</p>
+                <p>Choosing the right career can be overwhelming in today's rapidly evolving world. Many students
+                    struggle to identify their strengths, understand career opportunities, and plan their future
+                    effectively.</p>
+                <p>Career Compass was created to bridge this gap by providing personalized career guidance, skill
+                    recommendations, career roadmaps, and industry insights—all in one platform.</p>
+                <p>Our mission is to empower every student with the knowledge and confidence needed to make informed
+                    career decisions.</p>
             </div>
             <div class="vision-mission-cards">
                 <div class="side-card">
                     <div class="icon-box purple-bg"><i class="fa-solid fa-eye"></i></div>
                     <div>
                         <h3>Our Vision</h3>
-                        <p>To become the most trusted career guidance platform that helps students worldwide discover their true potential and achieve meaningful careers.</p>
+                        <p>To become the most trusted career guidance platform that helps students worldwide discover
+                            their true potential and achieve meaningful careers.</p>
                     </div>
                 </div>
                 <div class="side-card">
                     <div class="icon-box purple-bg"><i class="fa-solid fa-bullseye"></i></div>
                     <div>
                         <h3>Our Mission</h3>
-                        <p>To provide personalized career assessments, industry insights, learning pathways, and actionable career roadmaps that help students navigate their professional journey with confidence.</p>
+                        <p>To provide personalized career assessments, industry insights, learning pathways, and
+                            actionable career roadmaps that help students navigate their professional journey with
+                            confidence.</p>
                     </div>
                 </div>
             </div>
@@ -223,91 +242,93 @@
     </section>
 
     <!-- TEAM SECTION -->
-<section class="team-section container">
-    <h2 class="section-title centered">Meet the Team</h2>
+    <section class="team-section container">
+        <h2 class="section-title centered">Meet the Team</h2>
 
-    <div class="team-grid">
+        <div class="team-grid">
 
-        <!-- Member 1 -->
-        <div class="team-card">
-            <img src="founder.jpeg" alt="Harsh Srivastava" class="team-photo">
+            <!-- Member 1 -->
+            <div class="team-card">
+                <img src="founder.jpeg" alt="Harsh Srivastava" class="team-photo">
 
-            <h3>Harsh Srivastava</h3>
-            <span class="role">Founder & Backend Developer</span>
+                <h3>Harsh Srivastava</h3>
+                <span class="role">Founder & Backend Developer</span>
 
-            <p>
-                Passionate about helping students discover meaningful
-                career opportunities through technology.
-            </p>
+                <p>
+                    Passionate about helping students discover meaningful
+                    career opportunities through technology.
+                </p>
 
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+                </div>
             </div>
-        </div>
 
-        <!-- Member 2 -->
-        <div class="team-card">
-            <img src="anchal.jpeg" alt="Anchal Srivastava" class="team-photo">
+            <!-- Member 2 -->
+            <div class="team-card">
+                <img src="anchal.jpeg" alt="Anchal Srivastava" class="team-photo">
 
-            <h3>Anchal Srivastava</h3>
-            <span class="role">UI/UX Designer</span>
+                <h3>Anchal Srivastava</h3>
+                <span class="role">UI/UX Designer</span>
 
-            <p>
-                Designs intuitive and engaging experiences that make
-                career guidance easy and enjoyable.
-            </p>
+                <p>
+                    Designs intuitive and engaging experiences that make
+                    career guidance easy and enjoyable.
+                </p>
 
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-dribbble"></i></a>
+                </div>
             </div>
-        </div>
 
-        <!-- Member 3 -->
-        <div class="team-card">
-            <img src="co founder.jpeg" alt="Ashwin Sinha" class="team-photo">
+            <!-- Member 3 -->
+            <div class="team-card">
+                <img src="co founder.jpeg" alt="Ashwin Sinha" class="team-photo">
 
-            <h3>Ashwin Sinha</h3>
-            <span class="role">Co-Founder & Frontend Developer</span>
+                <h3>Ashwin Sinha</h3>
+                <span class="role">Co-Founder & Frontend Developer</span>
 
-            <p>
-                Builds robust and reliable systems to deliver accurate
-                career insights to students.
-            </p>
+                <p>
+                    Builds robust and reliable systems to deliver accurate
+                    career insights to students.
+                </p>
 
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                </div>
             </div>
-        </div>
 
-        <!-- Member 4 -->
-        <div class="team-card">
-            <img src="marketing.jpeg" alt="Utkarsh Srivastava" class="team-photo">
+            <!-- Member 4 -->
+            <div class="team-card">
+                <img src="marketing.jpeg" alt="Utkarsh Srivastava" class="team-photo">
 
-            <h3>Utkarsh Srivastava</h3>
-            <span class="role">Content Strategist</span>
+                <h3>Utkarsh Srivastava</h3>
+                <span class="role">Content Strategist</span>
 
-            <p>
-                Creates valuable content and resources to help students
-                make informed decisions.
-            </p>
+                <p>
+                    Creates valuable content and resources to help students
+                    make informed decisions.
+                </p>
 
-            <div class="social-icons">
-                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#"><i class="fa-brands fa-medium"></i></a>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-medium"></i></a>
+                </div>
             </div>
-        </div>
 
-    </div>
-</section>
+        </div>
+    </section>
     <!-- CREATING A BETTER FUTURE -->
     <section class="future-section container">
         <div class="future-card-banner">
             <div class="future-left">
                 <h2>Creating a Better Future</h2>
-                <p>At Career Compass, we believe every student deserves access to quality career guidance. By combining technology, industry knowledge, and personalized recommendations, we help students make confident decisions about their future.</p>
+                <p>At Career Compass, we believe every student deserves access to quality career guidance. By combining
+                    technology, industry knowledge, and personalized recommendations, we help students make confident
+                    decisions about their future.</p>
             </div>
             <div class="future-right">
                 <i class="fa-solid fa-user-astronaut giant-icon"></i>
@@ -339,21 +360,22 @@
                 </div>
                 <p>Guiding students toward the right career knowledge and opportunities.</p>
                 <div class="footer-socials">
-                    <a href="https://www.instagram.com/career_compass4u?igsh=Z21wcjNyMWRmcGpy"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/career_compass4u?igsh=Z21wcjNyMWRmcGpy"><i
+                            class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
             <div>
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
-                   <li> <a href="index.html" class="active">Home</a></li>
-                <li><a href="test.html">Career Test</a></li>
-                <li><a href="career-roadmaps.html">Roadmaps</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="resources.html">Resources <i class="ph ph-caret-down"></i></a></li>
-                <li><a href="about-us.html">About Us</a></li>
+                    <li> <a href="index.html" class="active">Home</a></li>
+                    <li><a href="test.html">Career Test</a></li>
+                    <li><a href="career-roadmaps.html">Roadmaps</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="resources.html">Resources <i class="ph ph-caret-down"></i></a></li>
+                    <li><a href="about-us.html">About Us</a></li>
                 </ul>
             </div>
-        
+
             <div>
                 <h4>Contact Us</h4>
                 <ul class="footer-contact">
@@ -370,4 +392,5 @@
     </footer>
 
 </body>
+
 </html>

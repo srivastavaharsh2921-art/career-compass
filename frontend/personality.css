@@ -1,0 +1,41 @@
+/* Personality Round Icon Colors and Background Glows */
+
+.opt-analytical .option-icon {
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+}
+
+.opt-social .option-icon {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.opt-creative .option-icon {
+  color: #ec4899;
+  background: rgba(236, 72, 153, 0.1);
+}
+
+.opt-structured .option-icon {
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.opt-visionary .option-icon {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.opt-empathetic .option-icon {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.opt-practical .option-icon {
+  color: #06b6d4;
+  background: rgba(6, 182, 212, 0.1);
+}
+
+.opt-others .option-icon {
+  color: #9ca3af;
+  background: rgba(156, 163, 171, 0.1);
+}
