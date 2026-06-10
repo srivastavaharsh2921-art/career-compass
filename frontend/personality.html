@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Compass - Personality Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="test.css">
+  <link rel="stylesheet" href="personality.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div>
+      <div class="logo-container">
+        <i data-lucide="compass" class="logo-icon"></i>
+        <span>Career Compass</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#" class="nav-item">
+          <i data-lucide="layout-dashboard"></i> Dashboard
+        </a>
+        <a href="#" class="nav-item active">
+          <i data-lucide="brain-circuit"></i> Career Quiz
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="map"></i> Roadmaps
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="graduation-cap"></i> Courses
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="bot"></i> AI Mentor
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="bar-chart-3"></i> Skill Analyzer
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="git-compare"></i> Career Compare
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="line-chart"></i> Progress
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="settings"></i> Settings
+        </a>
+      </nav>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-avatar">
+        <i data-lucide="bot" style="color: #2563eb;"></i>
+      </div>
+      <h4>Need Help?</h4>
+      <p>Chat with our AI Mentor anytime!</p>
+      <button class="chat-btn">
+        Chat Now <i data-lucide="arrow-right" size="16"></i>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main-wrapper">
+    
+    <header class="top-bar">
+      <div class="top-nav">
+        <a href="index.html" class="top-link">Home</a>
+        <a href="#" class="top-link active">Career Test</a>
+        <a href="#" class="top-link">Roadmaps</a>
+        <a href="#" class="top-link">Courses</a>
+        <a href="#" class="top-link">Resources</a>
+        <a href="about-us.html" class="top-link">About Us</a>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn">
+          <i data-lucide="bell"></i>
+        </button>
+        <img src="" alt="Profile" class="profile-img">
+      </div>
+    </header>
+
+    <div class="content-grid">
+      
+      <div class="left-column">
+        
+        <div class="hero-card">
+          <div class="hero-info">
+            <h1>Career Quiz</h1>
+            <p>Answer a few personalized questions and let our AI analyze your <span>interests, skills, and personality.</span></p>
+          </div>
+          <div class="hero-visual">
+            <div class="brain-glow"></div>
+            <i data-lucide="clipboard-list" style="position:absolute; width:50px; height:50px; color:#a78bfa; opacity:0.8;"></i>
+            <i data-lucide="brain" style="position:absolute; width:60px; height:60px; color:#6366f1; right:10px; top:20px;"></i>
+          </div>
+        </div>
+
+        <div class="timeline-header">
+          <div>
+            <p class="timeline-meta">Question Flow</p>
+            <h2 class="timeline-title">Follow the quiz journey</h2>
+          </div>
+        </div>
+
+        <div class="steps-timeline">
+          <div class="step completed" style="cursor: pointer;" onclick="window.location.href='test.html'">
+            <div class="step-node"><i data-lucide="check" size="18"></i></div>
+            <div class="step-label">Interests</div>
+            <div class="step-desc">Your likes & passions</div>
+          </div>
+          <div class="step completed" style="cursor: pointer;" onclick="window.location.href='skills.html'">
+            <div class="step-node"><i data-lucide="check" size="18"></i></div>
+            <div class="step-label">Skills</div>
+            <div class="step-desc">Your strengths & abilities</div>
+          </div>
+          <div class="step active">
+            <div class="step-node"><i data-lucide="smile" size="18"></i></div>
+            <div class="step-label">Personality</div>
+            <div class="step-desc">Your traits & preferences</div>
+          </div>
+          <div class="step">
+            <div class="step-node"><i data-lucide="target" size="18"></i></div>
+            <div class="step-label">Goals</div>
+            <div class="step-desc">Your future aspirations</div>
+          </div>
+          <div class="step">
+            <div class="step-node"><i data-lucide="trophy" size="18"></i></div>
+            <div class="step-label">Results</div>
+            <div class="step-desc">Personalized insights</div>
+          </div>
+        </div>
+
+        <div class="quiz-card">
+          <h2>Personality & Traits</h2>
+          <p class="subtitle">Tell us about how you like to think and work.</p>
+          
+          <div class="question-title">
+            What best describes your personality? <span>(Select up to 3)</span>
+          </div>
+
+          <div class="options-grid">
+            <div class="option-box opt-analytical selected">
+              <div class="option-icon"><i data-lucide="brain"></i></div>
+              <div class="option-title">Analytical & Quiet</div>
+            </div>
+            <div class="option-box opt-social">
+              <div class="option-icon"><i data-lucide="users"></i></div>
+              <div class="option-title">Social & Expressive</div>
+            </div>
+            <div class="option-box opt-creative">
+              <div class="option-icon"><i data-lucide="palette"></i></div>
+              <div class="option-title">Creative & Artistic</div>
+            </div>
+            <div class="option-box opt-structured">
+              <div class="option-icon"><i data-lucide="list-todo"></i></div>
+              <div class="option-title">Structured & Organized</div>
+            </div>
+            <div class="option-box opt-visionary">
+              <div class="option-icon"><i data-lucide="rocket"></i></div>
+              <div class="option-title">Innovative & Visionary</div>
+            </div>
+            <div class="option-box opt-empathetic">
+              <div class="option-icon"><i data-lucide="heart"></i></div>
+              <div class="option-title">Empathetic & Caring</div>
+            </div>
+            <div class="option-box opt-practical">
+              <div class="option-icon"><i data-lucide="compass"></i></div>
+              <div class="option-title">Practical & Hands-on</div>
+            </div>
+            <div class="option-box opt-others">
+              <div class="option-icon"><i data-lucide="more-horizontal"></i></div>
+              <div class="option-title">Others</div>
+            </div>
+          </div>
+
+          <div class="other-input-container" aria-hidden="true">
+            <label for="other-personality">Tell us your other personality trait</label>
+            <input id="other-personality" type="text" placeholder="Type your trait here" />
+          </div>
+
+          <button class="next-btn">
+            Next Question <i data-lucide="arrow-right" size="18"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <div class="right-column">
+        
+        <div class="side-card">
+          <h3>Quiz Progress</h3>
+          <div class="progress-container">
+            <div class="progress-circle">
+              <svg>
+                <circle class="bg" cx="40" cy="40" r="35"></circle>
+                <circle class="bar" cx="40" cy="40" r="35" style="stroke-dashoffset: 88;"></circle>
+              </svg>
+              <div class="progress-text">60%</div>
+            </div>
+            <div class="progress-info">
+              <div class="step-count">Step 3 of 5</div>
+              <div class="step-name">Personality</div>
+              <div class="time-est">Estimated time: 3-5 min</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3>Why This Quiz?</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <i data-lucide="check-circle-2" class="info-icon" size="18"></i>
+              <div class="info-text">
+                <h5>100% Personalized</h5>
+                <p>Get results tailored just for you</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i data-lucide="check-circle-2" class="info-icon" size="18"></i>
+              <div class="info-text">
+                <h5>AI-Powered Analysis</h5>
+                <p>Advanced AI matches your profile with the best careers</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i data-lucide="check-circle-2" class="info-icon" size="18"></i>
+              <div class="info-text">
+                <h5>Data-Driven Insights</h5>
+                <p>Make informed decisions about your future</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card privacy-box">
+          <div class="privacy-shield">
+            <i data-lucide="shield-check" size="20"></i>
+          </div>
+          <div class="info-text">
+            <h5>Your Privacy Matters</h5>
+            <p style="margin-bottom: 8px;">Your answers are secure and 100% confidential.</p>
+            <p>We never share your data with anyone.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="tip-banner">
+      <div class="tip-content">
+        <i data-lucide="lightbulb" class="tip-icon" size="18"></i>
+        <span><strong>Tip:</strong> Choose options that describe how you actually behave, not how you wish you did!</span>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Initialize standard Lucide SVG icons smoothly 
+    lucide.createIcons();
+
+    const maxSelections = 3;
+    const optionBoxes = Array.from(document.querySelectorAll('.option-box'));
+    const otherInputContainer = document.querySelector('.other-input-container');
+    const otherInput = document.getElementById('other-personality');
+
+    optionBoxes.forEach(box => {
+      box.addEventListener('click', () => {
+        const isSelected = box.classList.contains('selected');
+        const selectedCount = optionBoxes.filter(item => item.classList.contains('selected')).length;
+
+        if (!isSelected && selectedCount >= maxSelections) {
+          return;
+        }
+
+        box.classList.toggle('selected');
+
+        if (box.classList.contains('opt-others')) {
+          if (box.classList.contains('selected')) {
+            otherInputContainer.classList.add('visible');
+            otherInput.focus();
+            otherInputContainer.setAttribute('aria-hidden', 'false');
+          } else {
+            otherInputContainer.classList.remove('visible');
+            otherInput.value = '';
+            otherInputContainer.setAttribute('aria-hidden', 'true');
+          }
+        }
+      });
+    });
+
+    const nextBtn = document.querySelector('.next-btn');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const selectedCount = optionBoxes.filter(item => item.classList.contains('selected')).length;
+        if (selectedCount === 0) {
+          alert('Please select at least one personality trait to proceed.');
+          return;
+        }
+        // Redirect to the next step, which would be goals.html
+        window.location.href = 'goals.html';
+      });
+    }
+  </script>
+</body>
+</html>
