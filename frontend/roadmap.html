@@ -1,0 +1,122 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass - Roadmap Generator</title>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="roadmap.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container nav-container">
+
+            <div class="logo">
+                <a href="index.html">
+                    <i class="ph-bold ph-compass logo-icon"></i>
+                    Career<span>Compass</span>
+                </a>
+            </div>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="test.html">Career Test</a>
+                <a href="roadmap.html" class="active">Roadmaps</a>
+                <a href="courses.html">Courses</a>
+                <a href="resources.html">Resources</a>
+                <a href="about-us.html">About Us</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="btn-login" href="login.html">Login</a>
+                <a class="btn-signup" href="signup.html">Sign Up</a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="roadmap-hero">
+
+        <div class="container">
+
+            <span class="badge">
+                AI ROADMAP GENERATOR
+            </span>
+
+            <h1>
+                Build Your
+                <br>
+                <span class="gradient-text">
+                    Career Roadmap
+                </span>
+            </h1>
+
+            <p>
+                Enter any skill, technology, or career path and Career Compass
+                will generate a personalized roadmap to help you achieve your goals.
+            </p>
+
+            <div class="roadmap-search">
+
+                <input
+                    type="text"
+                    id="roadmapInput"
+                    placeholder="Enter a topic (e.g. SaaS Programming, Java, UI/UX Design)"
+                >
+
+                <button class="btn-purple" onclick="generateRoadmap()">
+                    Generate Roadmap
+                </button>
+
+            </div>
+
+            <div class="topic-chips">
+
+                <span onclick="selectTopic('Frontend Development')">Frontend</span>
+                <span onclick="selectTopic('Backend Development')">Backend</span>
+                <span onclick="selectTopic('Java')">Java</span>
+                <span onclick="selectTopic('Python')">Python</span>
+                <span onclick="selectTopic('SaaS Programming')">SaaS Programming</span>
+                <span onclick="selectTopic('UI/UX Design')">UI/UX</span>
+                <span onclick="selectTopic('AI / ML')">AI / ML</span>
+                <span onclick="selectTopic('Cyber Security')">Cyber Security</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ROADMAP OUTPUT -->
+    <section class="container roadmap-section">
+
+        <div class="roadmap-preview" id="roadmapPreview">
+
+            <h2>Your Roadmap Will Appear Here</h2>
+
+            <p>
+                Enter a topic above and generate a personalized learning path.
+            </p>
+
+        </div>
+
+    </section>
+
+    
+
+  
+
+</body>
+</html>
+
