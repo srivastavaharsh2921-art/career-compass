@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="test.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
   <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
   <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
@@ -18,17 +20,19 @@
 
   <aside class="sidebar" id="sidebar">
     <div>
-        <nav class="nav-menu">
-        <a href="#" class="nav-item">
+      <nav class="nav-menu">
+        <h1><br></h1>
+
+        <a href="index.html" class="nav-item">
           <i data-lucide="layout-dashboard"></i> Dashboard
         </a>
-        <a href="#" class="nav-item active">
+        <a href="test.html" class="nav-item active">
           <i data-lucide="brain-circuit"></i> Career Quiz
         </a>
         <a href="roadmap.html" class="nav-item">
           <i data-lucide="map"></i> Roadmaps
         </a>
-        <a href="#" class="nav-item">
+        <a href="courses.html" class="nav-item">
           <i data-lucide="graduation-cap"></i> Courses
         </a>
         <a href="#" class="nav-item">
@@ -62,7 +66,7 @@
   </aside>
 
   <main class="main-wrapper">
-    
+
     <header class="top-bar">
       <a href="index.html" class="logo page-title">
         <i data-lucide="compass" class="page-title-icon"></i>
@@ -85,18 +89,21 @@
     </header>
 
     <div class="content-grid">
-      
+
       <div class="left-column">
-        
+
         <div class="hero-card">
           <div class="hero-info">
             <h1>Career Quiz</h1>
-            <p>Answer a few personalized questions and let our AI analyze your <span>interests, skills, and personality.</span></p>
+            <p>Answer a few personalized questions and let our AI analyze your <span>interests, skills, and
+                personality.</span></p>
           </div>
           <div class="hero-visual">
             <div class="brain-glow"></div>
-            <i data-lucide="clipboard-list" style="position:absolute; width:50px; height:50px; color:#a78bfa; opacity:0.8;"></i>
-            <i data-lucide="brain" style="position:absolute; width:60px; height:60px; color:#6366f1; right:10px; top:20px;"></i>
+            <i data-lucide="clipboard-list"
+              style="position:absolute; width:50px; height:50px; color:#a78bfa; opacity:0.8;"></i>
+            <i data-lucide="brain"
+              style="position:absolute; width:60px; height:60px; color:#6366f1; right:10px; top:20px;"></i>
           </div>
         </div>
 
@@ -138,7 +145,7 @@
         <div class="quiz-card">
           <h2>Let's get started!</h2>
           <p class="subtitle">Tell us what excites you the most.</p>
-          
+
           <div class="question-title">
             What are your top areas of interest? <span>(Select up to 3)</span>
           </div>
@@ -191,7 +198,7 @@
       </div>
 
       <div class="right-column">
-        
+
         <div class="side-card">
           <h3>Quiz Progress</h3>
           <div class="progress-container">
@@ -254,7 +261,8 @@
     <div class="tip-banner">
       <div class="tip-content">
         <i data-lucide="lightbulb" class="tip-icon" size="18"></i>
-        <span><strong>Tip:</strong> There are no right or wrong answers. Be honest to get the most accurate results!</span>
+        <span><strong>Tip:</strong> There are no right or wrong answers. Be honest to get the most accurate
+          results!</span>
       </div>
     </div>
 
@@ -334,4 +342,5 @@
     }
   </script>
 </body>
+
 </html>

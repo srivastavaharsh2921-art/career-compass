@@ -14,9 +14,68 @@
         rel="stylesheet">
     <!-- External CSS -->
     <link rel="stylesheet" href="about-us.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
+
+    <!-- SIDEBAR NAVIGATION PANEL -->
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+    <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
+        <span class="lines"></span>
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+        <div>
+            <div class="logo-container">
+                <i data-lucide="compass" class="logo-icon"></i>
+                <span>Career Compass</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i> Dashboard
+                </a>
+                <a href="test.html" class="nav-item">
+                    <i data-lucide="brain-circuit"></i> Career Quiz
+                </a>
+                <a href="roadmap.html" class="nav-item">
+                    <i data-lucide="map"></i> Roadmaps
+                </a>
+                <a href="courses.html" class="nav-item">
+                    <i data-lucide="graduation-cap"></i> Courses
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="bot"></i> AI Mentor
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="bar-chart-3"></i> Skill Analyzer
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="git-compare"></i> Career Compare
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="line-chart"></i> Progress
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="settings"></i> Settings
+                </a>
+            </nav>
+        </div>
+
+        <div class="ai-box">
+            <div class="ai-avatar">
+                <i data-lucide="bot" style="color: #2563eb;"></i>
+            </div>
+            <h4>Need Help?</h4>
+            <p>Chat with our AI Mentor anytime!</p>
+            <button class="chat-btn">
+                Chat Now <i data-lucide="arrow-right" size="16"></i>
+            </button>
+        </div>
+    </aside>
 
     <!-- HEADER / NAVIGATION -->
     <header class="navbar">
@@ -391,6 +450,41 @@
         </div>
     </footer>
 
+    <!-- SIDEBAR TOGGLE LOGIC -->
+    <script>
+        // Initialize standard Lucide SVG icons smoothly
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+
+        // Sidebar toggle logic
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function setSidebarOpen(isOpen) {
+            if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+            sidebar.classList.toggle('open', isOpen);
+            sidebarOverlay.classList.toggle('visible', isOpen);
+            sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+            sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+        }
+
+        sidebarToggle?.addEventListener('click', () => {
+            const isOpen = sidebar.classList.contains('open');
+            setSidebarOpen(!isOpen);
+        });
+
+        sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+
+        sidebar?.addEventListener('scroll', () => {
+            sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') setSidebarOpen(false);
+        });
+    </script>
 </body>
 
 </html>

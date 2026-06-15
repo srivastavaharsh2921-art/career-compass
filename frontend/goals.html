@@ -13,24 +13,26 @@
 </head>
 <body>
 
-  <aside class="sidebar">
-    <div>
-      <div class="logo-container">
-        <i data-lucide="compass" class="logo-icon"></i>
-        <span>Career Compass</span>
-      </div>
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
+    <span class="lines"></span>
+  </button>
 
+  <aside class="sidebar" id="sidebar">
+    <div>
       <nav class="nav-menu">
-        <a href="#" class="nav-item">
+        <h1><br></h1>
+
+        <a href="index.html" class="nav-item">
           <i data-lucide="layout-dashboard"></i> Dashboard
         </a>
-        <a href="#" class="nav-item active">
+        <a href="test.html" class="nav-item active">
           <i data-lucide="brain-circuit"></i> Career Quiz
         </a>
-        <a href="#" class="nav-item">
+        <a href="roadmap.html" class="nav-item">
           <i data-lucide="map"></i> Roadmaps
         </a>
-        <a href="#" class="nav-item">
+        <a href="courses.html" class="nav-item">
           <i data-lucide="graduation-cap"></i> Courses
         </a>
         <a href="#" class="nav-item">
@@ -66,6 +68,10 @@
   <main class="main-wrapper">
     
     <header class="top-bar">
+      <a href="index.html" class="logo page-title">
+        <i data-lucide="compass" class="page-title-icon"></i>
+        <span>Career</span> Compass
+      </a>
       <div class="top-nav">
         <a href="index.html" class="top-link">Home</a>
         <a href="test.html" class="top-link active">Career Test</a>
@@ -304,6 +310,34 @@
         window.location.href = 'results.html';
       });
     }
+
+    // Sidebar toggle logic
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function setSidebarOpen(isOpen) {
+      if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+      sidebar.classList.toggle('open', isOpen);
+      sidebarOverlay.classList.toggle('visible', isOpen);
+      sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+      sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+    }
+
+    sidebarToggle?.addEventListener('click', () => {
+      const isOpen = sidebar.classList.contains('open');
+      setSidebarOpen(!isOpen);
+    });
+
+    sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+
+    sidebar?.addEventListener('scroll', () => {
+      sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setSidebarOpen(false);
+    });
   </script>
 </body>
 </html>
