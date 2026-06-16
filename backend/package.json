@@ -1,0 +1,11 @@
+{
+  "name": "career-compass-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local backend API for Career Compass.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  }
+}
