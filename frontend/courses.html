@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass - Professional Courses</title>
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="courses.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- SIDEBAR NAVIGATION PANEL -->
+    <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+    <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
+        <span class="lines"></span>
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+        <div>
+            <div class="logo-container">
+                <i data-lucide="compass" class="logo-icon"></i>
+                <span>Career Compass</span>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-item">
+                    <i data-lucide="layout-dashboard"></i> Dashboard
+                </a>
+                <a href="test.html" class="nav-item">
+                    <i data-lucide="brain-circuit"></i> Career Quiz
+                </a>
+                <a href="roadmap.html" class="nav-item">
+                    <i data-lucide="map"></i> Roadmaps
+                </a>
+                <a href="courses.html" class="nav-item active">
+                    <i data-lucide="graduation-cap"></i> Courses
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="bot"></i> AI Mentor
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="bar-chart-3"></i> Skill Analyzer
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="git-compare"></i> Career Compare
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="line-chart"></i> Progress
+                </a>
+                <a href="#" class="nav-item">
+                    <i data-lucide="settings"></i> Settings
+                </a>
+            </nav>
+        </div>
+
+        <div class="ai-box">
+            <div class="ai-avatar">
+                <i data-lucide="bot" style="color: #2563eb;"></i>
+            </div>
+            <h4>Need Help?</h4>
+            <p>Chat with our AI Mentor anytime!</p>
+            <button class="chat-btn">
+                Chat Now <i data-lucide="arrow-right" size="16"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- MOBILE NAVIGATION OVERLAY BUTTON -->
+    <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span class="lines"></span>
+    </button>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="ph-bold ph-compass logo-icon"></i>
+                    Career<span>Compass</span>
+                </a>
+            </div>
+            <nav class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="test.html">Career Test</a>
+                <a href="roadmap.html">Roadmaps</a>
+                <a href="courses.html" class="active">Courses</a>
+                <a href="resources.html">Resources <i class="ph ph-caret-down"></i></a>
+                <a href="about-us.html">About Us</a>
+            </nav>
+            <div class="nav-actions">
+                <a class="btn-login" href="login.html">Login</a>
+                <a class="btn-signup" href="signup.html">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <span class="badge">CURATED LEARNING PATHS</span>
+            <h1>Master The Skills That <br><span class="highlight">Accelerate Your Career</span></h1>
+            <p>Discover industry-standard courses curated by AI to align with your personalized roadmaps and career goals.</p>
+        </div>
+    </section>
+
+    <!-- AI RECOMMENDATION PLAYGROUND SECTION -->
+    <section class="container ai-widget-section">
+        <div class="ai-playground-card">
+            <div class="ai-widget-grid">
+                <div class="ai-left-desc">
+                    <h2><i class="fa-solid fa-wand-magic-sparkles"></i> AI Course Finder</h2>
+                    <p>Not sure which course is right for your goals? Describe what you want to learn, or paste your target job title, and our AI will recommend the top matching courses instantly.</p>
+                    <div class="ai-input-group">
+                        <div class="ai-textarea-wrapper">
+                            <textarea id="aiInput" placeholder="e.g., I want to learn frontend development using React and build interactive projects, preferably starting from scratch..."></textarea>
+                        </div>
+                        <button class="btn-ai-submit" id="btnAiSuggest">
+                            Get AI Recommendations <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="ai-right-chat">
+                    <div class="chat-header">
+                        <div class="chat-status">
+                            <span class="status-dot"></span>
+                            <span>Compass AI Mentor</span>
+                        </div>
+                        <div class="chat-actions">
+                            <span class="chat-dot"></span>
+                            <span class="chat-dot"></span>
+                            <span class="chat-dot"></span>
+                        </div>
+                    </div>
+                    <div class="chat-body" id="chatBody">
+                        <div class="message-ai">
+                            <div class="msg-avatar">
+                                <i class="ph-bold ph-sparkle"></i>
+                            </div>
+                            <div class="msg-bubble">
+                                <p>Hello! Tell me what skills or career path you are looking to build, and I will recommend the best courses from our catalog.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN GRID LAYOUT SECTION (FILTERS & COURSES) -->
+    <section class="container main-content-section">
+        <div class="courses-layout">
+            
+            <!-- FILTERS SIDEBAR -->
+            <aside class="filters-sidebar">
+                <div class="filters-header">
+                    <h3><i class="fa-solid fa-sliders"></i> Filters</h3>
+                    <button class="btn-clear-filters" id="btnClearFilters">Clear All</button>
+                </div>
+
+                <!-- Platform Filter -->
+                <div class="filter-group">
+                    <h4>Platform</h4>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-platform" value="Coursera">
+                        <span>Coursera</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-platform" value="Udemy">
+                        <span>Udemy</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-platform" value="edX">
+                        <span>edX</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-platform" value="Google">
+                        <span>Google</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-platform" value="YouTube">
+                        <span>YouTube</span>
+                    </label>
+                </div>
+
+                <!-- Level Filter -->
+                <div class="filter-group">
+                    <h4>Difficulty Level</h4>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-level" value="Beginner">
+                        <span>Beginner</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-level" value="Intermediate">
+                        <span>Intermediate</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-level" value="Advanced">
+                        <span>Advanced</span>
+                    </label>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="filter-group">
+                    <h4>Price Type</h4>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-price" value="Free">
+                        <span>Free Courses</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="filter-checkbox filter-price" value="Paid">
+                        <span>Paid Courses</span>
+                    </label>
+                </div>
+            </aside>
+
+            <!-- COURSES LIST CONTAINER -->
+            <div class="courses-container">
+                
+                <!-- Search & Sort Topbar -->
+                <div class="search-sort-bar">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="courseSearch" placeholder="Search courses, skills, or instructors...">
+                    </div>
+                    
+                    <div class="sort-dropdown-wrapper">
+                        <label for="courseSort">Sort by:</label>
+                        <select id="courseSort" class="sort-select">
+                            <option value="relevant">Most Relevant</option>
+                            <option value="rating">Top Rated</option>
+                            <option value="popularity">Most Enrolled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Category Slider Chips -->
+                <div class="category-filter-chips" id="categoryChips">
+                    <button class="chip active" data-category="All">All Categories</button>
+                    <button class="chip" data-category="Programming">Programming</button>
+                    <button class="chip" data-category="Data & AI">Data & AI</button>
+                    <button class="chip" data-category="Design">Design</button>
+                    <button class="chip" data-category="Business & Finance">Business & Finance</button>
+                    <button class="chip" data-category="Marketing">Marketing</button>
+                </div>
+
+                <!-- Live Results Metadata -->
+                <div class="results-meta-bar">
+                    <div class="results-count" id="resultsCount">
+                        Showing <span>0</span> courses
+                    </div>
+                    <div class="bookmark-summary" id="bookmarkSummary" style="display: none;">
+                        <i class="fa-solid fa-heart"></i>
+                        <span id="bookmarkCount">0 Saved Courses</span>
+                    </div>
+                </div>
+
+                <!-- Dynamic Course Grid -->
+                <div class="course-grid" id="courseGrid">
+                    <!-- Cards will be dynamically rendered via JS -->
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BLUE CTA BANNER -->
+    <section class="cta-banner">
+        <div class="container cta-flex">
+            <div>
+                <h2>Not Sure Where To Begin Your Journey?</h2>
+                <p>Take our AI-powered career assessment to map your interests to recommended courses.</p>
+            </div>
+            <div class="cta-buttons">
+                <a class="btn-white" href="test.html">Start Quiz Journey</a>
+                <a class="btn-outline-white" href="roadmap.html">Generate Roadmap</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo light-logo">
+                    <i class="fa-solid fa-compass logo-icon"></i>
+                    <span class="logo-text">CAREER <br><small>COMPASS</small></span>
+                </div>
+                <p>Guiding students toward the right career knowledge and opportunities.</p>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/career_compass4u?igsh=Z21wcjNyMWRmcGpy"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="test.html">Career Test</a></li>
+                    <li><a href="roadmap.html">Roadmaps</a></li>
+                    <li><a href="courses.html" class="active">Courses</a></li>
+                    <li><a href="resources.html">Resources <i class="ph ph-caret-down"></i></a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fa-regular fa-envelope"></i> support@careercompass.com</li>
+                    <li><i class="fa-solid fa-phone"></i> +91 9044703646</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Gorakhpur, India</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 Career Compass. All Rights Reserved.</p>
+            <a href="#" class="scroll-up" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Hamburger Menu Interactivity
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+                hamburger.setAttribute('aria-expanded', !expanded);
+                navLinks.classList.toggle('mobile-active');
+            });
+        }
+
+        // --- COURSE MOCK DATABASE ---
+        const COURSES_DATABASE = [
+            {
+                id: 1,
+                title: "Google UX Design Professional Certificate",
+                category: "Design",
+                platform: "Coursera",
+                instructor: "Google Career Certificates",
+                rating: 4.8,
+                reviews: "14.2k",
+                enrolled: 125000,
+                duration: "3 months",
+                level: "Beginner",
+                price: "Free Audit",
+                isFree: true,
+                skills: ["Figma", "User Research", "Wireframing", "Prototyping"],
+                image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 2,
+                title: "CS50's Introduction to Computer Science",
+                category: "Programming",
+                platform: "edX",
+                instructor: "David J. Malan (Harvard)",
+                rating: 4.9,
+                reviews: "42.5k",
+                enrolled: 450000,
+                duration: "4 months",
+                level: "Beginner",
+                price: "Free",
+                isFree: true,
+                skills: ["C Programming", "Python", "SQL", "Algorithms", "Data Structures"],
+                image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 3,
+                title: "Advanced React and Redux with Webpack",
+                category: "Programming",
+                platform: "Udemy",
+                instructor: "Stephen Grider",
+                rating: 4.7,
+                reviews: "8.9k",
+                enrolled: 43000,
+                duration: "1 month",
+                level: "Advanced",
+                price: "Paid",
+                isFree: false,
+                skills: ["React", "Redux", "Webpack", "Middleware", "TDD"],
+                image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 4,
+                title: "Machine Learning Specialization",
+                category: "Data & AI",
+                platform: "Coursera",
+                instructor: "Andrew Ng (DeepLearning.AI)",
+                rating: 4.9,
+                reviews: "28.4k",
+                enrolled: 180000,
+                duration: "2 months",
+                level: "Intermediate",
+                price: "Paid",
+                isFree: false,
+                skills: ["Python", "Supervised Learning", "Regression", "Neural Networks"],
+                image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 5,
+                title: "Figma UI/UX Design Essentials",
+                category: "Design",
+                platform: "Udemy",
+                instructor: "Daniel Walter Scott",
+                rating: 4.7,
+                reviews: "18.1k",
+                enrolled: 98000,
+                duration: "1 month",
+                level: "Beginner",
+                price: "Paid",
+                isFree: false,
+                skills: ["Figma", "UI Design", "Responsive Layouts", "Prototyping"],
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 6,
+                title: "AI For Everyone",
+                category: "Data & AI",
+                platform: "Coursera",
+                instructor: "Andrew Ng",
+                rating: 4.8,
+                reviews: "35.6k",
+                enrolled: 290000,
+                duration: "3 weeks",
+                level: "Beginner",
+                price: "Free Audit",
+                isFree: true,
+                skills: ["AI Strategy", "Machine Learning Basics", "AI Ethics"],
+                image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 7,
+                title: "Social Media Marketing Agency Mastery",
+                category: "Marketing",
+                platform: "Udemy",
+                instructor: "Robin & Jesper",
+                rating: 4.5,
+                reviews: "11.8k",
+                enrolled: 62000,
+                duration: "2 weeks",
+                level: "Intermediate",
+                price: "Paid",
+                isFree: false,
+                skills: ["SEO", "Facebook Ads", "Instagram Growth", "Copywriting"],
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 8,
+                title: "Introduction to Financial Accounting",
+                category: "Business & Finance",
+                platform: "Coursera",
+                instructor: "Brian Bushee (UPenn)",
+                rating: 4.6,
+                reviews: "5.2k",
+                enrolled: 31000,
+                duration: "2 months",
+                level: "Beginner",
+                price: "Paid",
+                isFree: false,
+                skills: ["Accounting", "Financial Statements", "Bookkeeping"],
+                image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80"
+            }
+        ];
+
+        // --- STATE & INITIALIZATION ---
+        let bookmarks = JSON.parse(localStorage.getItem('cc_bookmarks')) || [];
+        let activeCategory = "All";
+
+        const courseGrid = document.getElementById('courseGrid');
+        const resultsCountEl = document.getElementById('resultsCount');
+        const bookmarkSummary = document.getElementById('bookmarkSummary');
+        const bookmarkCountEl = document.getElementById('bookmarkCount');
+        const courseSearch = document.getElementById('courseSearch');
+        const courseSort = document.getElementById('courseSort');
+        const categoryChips = document.getElementById('categoryChips');
+        const btnClearFilters = document.getElementById('btnClearFilters');
+        
+        // Checkboxes
+        const checkboxes = document.querySelectorAll('.filter-checkbox');
+
+        // Initial Render
+        renderCourses();
+        updateBookmarkSummary();
+
+        // --- FILTER & RENDER ENGINE ---
+        function renderCourses() {
+            // Apply Filters
+            let filtered = [...COURSES_DATABASE];
+
+            // 1. Search Query
+            const query = courseSearch.value.trim().toLowerCase();
+            if (query !== '') {
+                filtered = filtered.filter(course => 
+                    course.title.toLowerCase().includes(query) ||
+                    course.instructor.toLowerCase().includes(query) ||
+                    course.skills.some(skill => skill.toLowerCase().includes(query))
+                );
+            }
+
+            // 2. Category Chip Selection
+            if (activeCategory !== "All") {
+                filtered = filtered.filter(course => course.category === activeCategory);
+            }
+
+            // 3. Platform Checkboxes
+            const selectedPlatforms = Array.from(document.querySelectorAll('.filter-platform:checked')).map(cb => cb.value);
+            if (selectedPlatforms.length > 0) {
+                filtered = filtered.filter(course => selectedPlatforms.includes(course.platform));
+            }
+
+            // 4. Level Checkboxes
+            const selectedLevels = Array.from(document.querySelectorAll('.filter-level:checked')).map(cb => cb.value);
+            if (selectedLevels.length > 0) {
+                filtered = filtered.filter(course => selectedLevels.includes(course.level));
+            }
+
+            // 5. Price Checkboxes
+            const selectedPrices = Array.from(document.querySelectorAll('.filter-price:checked')).map(cb => cb.value);
+            if (selectedPrices.length > 0) {
+                filtered = filtered.filter(course => {
+                    if (selectedPrices.includes("Free") && course.isFree) return true;
+                    if (selectedPrices.includes("Paid") && !course.isFree) return true;
+                    return false;
+                });
+            }
+
+            // 6. Sorting
+            const sortBy = courseSort.value;
+            if (sortBy === 'rating') {
+                filtered.sort((a, b) => b.rating - a.rating);
+            } else if (sortBy === 'popularity') {
+                filtered.sort((a, b) => b.enrolled - a.enrolled);
+            }
+
+            // Clear container
+            courseGrid.innerHTML = '';
+
+            // Update Counter
+            resultsCountEl.querySelector('span').innerText = filtered.length;
+
+            if (filtered.length === 0) {
+                // Render Empty State
+                courseGrid.innerHTML = `
+                    <div class="courses-empty-state">
+                        <div class="empty-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h3>No Courses Found</h3>
+                        <p>We couldn't find any courses matching your specific search criteria. Try removing some filters or query terms.</p>
+                        <button class="btn-enroll" style="padding: 10px 20px" onclick="resetAllFilters()">Reset All Filters</button>
+                    </div>
+                `;
+                return;
+            }
+
+            // Render Course Cards
+            filtered.forEach(course => {
+                const isBookmarked = bookmarks.includes(course.id);
+                const priceBadge = course.isFree ? `<span class="price-value free">FREE</span>` : `<span class="price-value">PAID</span>`;
+                
+                // Build Tags HTML
+                let tagsHTML = '';
+                course.skills.slice(0, 3).forEach(skill => {
+                    tagsHTML += `<span class="card-tag">${skill}</span>`;
+                });
+
+                // Build Card Template
+                const card = document.createElement('div');
+                card.className = 'course-card';
+                card.setAttribute('data-id', course.id);
+                card.innerHTML = `
+                    <div class="card-img-wrapper">
+                        <img src="${course.image}" alt="${course.title}" loading="lazy">
+                        <div class="card-decorations">
+                            <span class="platform-pill ${course.platform.toLowerCase()}">${course.platform}</span>
+                            <button class="btn-bookmark ${isBookmarked ? 'active' : ''}" onclick="toggleBookmark(${course.id}, this)">
+                                <i class="fa-${isBookmarked ? 'solid' : 'regular'} fa-heart"></i>
+                            </button>
+                        </div>
+                        <span class="card-level-tag">${course.level}</span>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-category">${course.category}</span>
+                        <h3>${course.title}</h3>
+                        <div class="card-instructor">
+                            <i class="fa-regular fa-user"></i>
+                            <span>${course.instructor}</span>
+                        </div>
+                        <div class="card-rating-block">
+                            <span class="rating-numeric">${course.rating}</span>
+                            <div class="stars-wrapper">
+                                ${getStarsHTML(course.rating)}
+                            </div>
+                            <span class="rating-reviews">(${course.reviews})</span>
+                        </div>
+                        <div class="card-tags">
+                            ${tagsHTML}
+                        </div>
+                        <div class="card-footer">
+                            <div class="course-price">
+                                <span class="price-label">Price Model</span>
+                                ${priceBadge}
+                            </div>
+                            <button class="btn-enroll" onclick="enrollMock(${course.id})">
+                                Enroll Now <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                courseGrid.appendChild(card);
+            });
+        }
+
+        // Star rating helper
+        function getStarsHTML(rating) {
+            let stars = '';
+            const floor = Math.floor(rating);
+            const half = rating % 1 >= 0.5;
+            for (let i = 1; i <= 5; i++) {
+                if (i <= floor) {
+                    stars += `<i class="fa-solid fa-star"></i>`;
+                } else if (i === floor + 1 && half) {
+                    stars += `<i class="fa-solid fa-star-half-stroke"></i>`;
+                } else {
+                    stars += `<i class="fa-regular fa-star"></i>`;
+                }
+            }
+            return stars;
+        }
+
+        // --- EVENT LISTENERS ---
+        courseSearch.addEventListener('input', renderCourses);
+        courseSort.addEventListener('change', renderCourses);
+        checkboxes.forEach(cb => cb.addEventListener('change', renderCourses));
+
+        // Category slider chip selection
+        categoryChips.addEventListener('click', (e) => {
+            const chip = e.target.closest('.chip');
+            if (!chip) return;
+            
+            categoryChips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            activeCategory = chip.getAttribute('data-category');
+            renderCourses();
+        });
+
+        // Reset Filters Button
+        btnClearFilters.addEventListener('click', resetAllFilters);
+
+        function resetAllFilters() {
+            courseSearch.value = '';
+            courseSort.value = 'relevant';
+            checkboxes.forEach(cb => cb.checked = false);
+            categoryChips.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            categoryChips.querySelector('[data-category="All"]').classList.add('active');
+            activeCategory = "All";
+            renderCourses();
+        }
+
+        // --- BOOKMARKS CONTROLLER ---
+        window.toggleBookmark = function(id, btn) {
+            const index = bookmarks.indexOf(id);
+            if (index === -1) {
+                bookmarks.push(id);
+                btn.classList.add('active');
+                btn.querySelector('i').className = 'fa-solid fa-heart';
+            } else {
+                bookmarks.splice(index, 1);
+                btn.classList.remove('active');
+                btn.querySelector('i').className = 'fa-regular fa-heart';
+            }
+            localStorage.setItem('cc_bookmarks', JSON.stringify(bookmarks));
+            updateBookmarkSummary();
+        };
+
+        function updateBookmarkSummary() {
+            if (bookmarks.length > 0) {
+                bookmarkSummary.style.display = 'flex';
+                bookmarkCountEl.innerText = `${bookmarks.length} Saved Course${bookmarks.length > 1 ? 's' : ''}`;
+            } else {
+                bookmarkSummary.style.display = 'none';
+            }
+        }
+
+        // Mock Enrollment action
+        window.enrollMock = function(id) {
+            const course = COURSES_DATABASE.find(c => c.id === id);
+            alert(`Redirecting you to ${course.platform} for the course:\n"${course.title}"!`);
+        };
+
+        // --- AI RECOMMENDATION PLAYGROUND ENGINE ---
+        const btnAiSuggest = document.getElementById('btnAiSuggest');
+        const aiInput = document.getElementById('aiInput');
+        const chatBody = document.getElementById('chatBody');
+
+        const MOCK_AI_RESPONSES = [
+            {
+                keywords: ["react", "frontend", "script", "code", "programming", "js", "javascript"],
+                reply: "Based on your interest in Frontend and React, I highly recommend starting with Harvard's CS50 to build core programming fundamentals, and then immediately progressing to 'Advanced React and Redux' on Udemy. Here are the curated selections for you:",
+                matches: [2, 3, 5]
+            },
+            {
+                keywords: ["ux", "ui", "design", "figma", "sketch", "graphics"],
+                reply: "If you are focused on UI/UX Design, Figma competency and solid user research principles are key. I suggest enrolling in the Google UX Design Professional Certificate for structural training and following up with Figma UI/UX Essentials to master the tool. Explore these courses:",
+                matches: [1, 5]
+            },
+            {
+                keywords: ["ai", "machine", "ml", "data", "python", "neural", "deep"],
+                reply: "For Artificial Intelligence and Machine Learning, Andrew Ng's courses are the gold standard. Start with 'AI For Everyone' to get the business context, and follow up with the 'Machine Learning Specialization' to code the algorithms yourself. Here are your options:",
+                matches: [6, 4, 2]
+            }
+        ];
+
+        btnAiSuggest.addEventListener('click', () => {
+            const val = aiInput.value.trim();
+            if (val === '') {
+                alert('Please describe what you want to learn first!');
+                return;
+            }
+
+            // User Chat Bubble
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message-ai';
+            userMsg.style.flexDirection = 'row-reverse';
+            userMsg.innerHTML = `
+                <div class="msg-bubble" style="border-radius: 12px 0 12px 12px; background: rgba(59, 130, 246, 0.15); border-color: rgba(59, 130, 246, 0.3);">
+                    <p>${escapeHTML(val)}</p>
+                </div>
+            `;
+            chatBody.appendChild(userMsg);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Clear Input
+            aiInput.value = '';
+
+            // Render Typing Indicator
+            const typingBubble = document.createElement('div');
+            typingBubble.className = 'message-ai';
+            typingBubble.innerHTML = `
+                <div class="msg-avatar"><i class="ph-bold ph-sparkle"></i></div>
+                <div class="msg-bubble">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            chatBody.appendChild(typingBubble);
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            // Simulate AI response delay
+            setTimeout(() => {
+                // Find match
+                let bestMatch = MOCK_AI_RESPONSES[0]; // fallback to Programming
+                const textLower = val.toLowerCase();
+                
+                for (let res of MOCK_AI_RESPONSES) {
+                    if (res.keywords.some(keyword => textLower.includes(keyword))) {
+                        bestMatch = res;
+                        break;
+                    }
+                }
+
+                // Render Response
+                typingBubble.remove();
+                
+                // Build Course Rows HTML
+                let coursesHTML = '';
+                bestMatch.matches.forEach(id => {
+                    const c = COURSES_DATABASE.find(course => course.id === id);
+                    coursesHTML += `
+                        <div class="mini-course-row" onclick="highlightCourse(${c.id})">
+                            <span class="mini-course-title">${c.title}</span>
+                            <span class="mini-course-meta">${c.platform} &middot; ${c.level}</span>
+                        </div>
+                    `;
+                });
+
+                const aiReply = document.createElement('div');
+                aiReply.className = 'message-ai';
+                aiReply.innerHTML = `
+                    <div class="msg-avatar"><i class="ph-bold ph-sparkle"></i></div>
+                    <div class="msg-bubble">
+                        <p>${bestMatch.reply}</p>
+                        <div class="chat-results">
+                            ${coursesHTML}
+                        </div>
+                    </div>
+                `;
+                chatBody.appendChild(aiReply);
+                chatBody.scrollTop = chatBody.scrollHeight;
+
+            }, 1500);
+        });
+
+        function highlightCourse(id) {
+            // Focus on Search & Grid, filter by category
+            const course = COURSES_DATABASE.find(c => c.id === id);
+            
+            // Apply category
+            activeCategory = course.category;
+            categoryChips.querySelectorAll('.chip').forEach(c => {
+                if (c.getAttribute('data-category') === activeCategory) {
+                    c.classList.add('active');
+                } else {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Put title in search
+            courseSearch.value = course.title;
+            renderCourses();
+
+            // Scroll to Grid
+            document.querySelector('.search-sort-bar').scrollIntoView({ behavior: 'smooth' });
+
+            // Temporary Glow
+            setTimeout(() => {
+                const card = document.querySelector(`.course-card[data-id="${id}"]`);
+                if (card) {
+                    card.style.borderColor = 'var(--neon-purple)';
+                    card.style.boxShadow = '0 0 25px rgba(124, 58, 237, 0.4)';
+                    setTimeout(() => {
+                        card.style.borderColor = '';
+                        card.style.boxShadow = '';
+                    }, 3000);
+                }
+            }, 800);
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        // Initialize standard Lucide SVG icons smoothly
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+
+        // Sidebar toggle logic
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function setSidebarOpen(isOpen) {
+            if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+            sidebar.classList.toggle('open', isOpen);
+            sidebarOverlay.classList.toggle('visible', isOpen);
+            sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+            sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+        }
+
+        sidebarToggle?.addEventListener('click', () => {
+            const isOpen = sidebar.classList.contains('open');
+            setSidebarOpen(!isOpen);
+        });
+
+        sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+
+        sidebar?.addEventListener('scroll', () => {
+            sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') setSidebarOpen(false);
+        });
+    </script>
+</body>
+
+</html>
