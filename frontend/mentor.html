@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Career Compass - AI Career Mentor</title>
-  
+
   <!-- Font and Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
+
   <!-- CSS Styles -->
   <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="mentor.css">
-  
+
   <!-- Lucide Icon Library -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
 
   <!-- SIDEBAR NAVIGATION PANEL -->
@@ -60,6 +62,15 @@
         <a href="#" class="nav-item">
           <i data-lucide="settings"></i> Settings
         </a>
+        <a href="about-us.html" class="nav-item mobile-only-nav">
+          <i data-lucide="info"></i> About Us
+        </a>
+        <a href="login.html" class="nav-item mobile-only-nav">
+          <i data-lucide="log-in"></i> Login
+        </a>
+        <a href="signup.html" class="nav-item mobile-only-nav">
+          <i data-lucide="user-plus"></i> Sign Up
+        </a>
       </nav>
     </div>
 
@@ -77,7 +88,7 @@
 
   <!-- MAIN CHAT CONTAINER -->
   <main class="main-wrapper">
-    
+
     <!-- HEADER BAR -->
     <header class="top-bar">
       <a href="index.html" class="logo page-title">
@@ -96,14 +107,14 @@
         <button class="icon-btn" aria-label="Notifications">
           <i data-lucide="bell"></i>
         </button>
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Profile" class="profile-img">
+        <img src="" alt="Profile" class="profile-img">
       </div>
     </header>
 
     <!-- CHAT VIEWPORT -->
     <div class="chat-container">
       <div class="chat-board">
-        
+
         <!-- Board Header -->
         <div class="chat-board-header">
           <div class="mentor-profile">
@@ -150,7 +161,8 @@
         <!-- Inputs wrapper -->
         <div class="chat-input-area">
           <div class="chat-input-wrapper">
-            <input type="text" id="chatInput" placeholder="Ask your AI Mentor about roadmaps, roles, resume tips, or skills...">
+            <input type="text" id="chatInput"
+              placeholder="Ask your AI Mentor about roadmaps, roles, resume tips, or skills...">
             <button class="chat-attachment-btn" title="Attach file">
               <i data-lucide="paperclip"></i>
             </button>
@@ -279,7 +291,7 @@
     // Load initial welcome messages
     function initChat() {
       chatFeed.innerHTML = '';
-      
+
       // AI Greeting message
       addMessage("ai", `
         <p>Hello! I am your <strong>Career Compass AI Mentor</strong>. 🚀</p>
@@ -291,8 +303,8 @@
     function addMessage(sender, textHTML) {
       const msgDiv = document.createElement('div');
       msgDiv.className = `message ${sender}`;
-      
-      const avatarHTML = sender === "ai" 
+
+      const avatarHTML = sender === "ai"
         ? `<div class="message-avatar"><i data-lucide="bot" style="width:20px; height:20px; color:#fff;"></i></div>`
         : `<div class="message-avatar"><i data-lucide="user" style="width:20px; height:20px; color:#fff;"></i></div>`;
 
@@ -347,7 +359,7 @@
 
       // Add user message
       addMessage("user", `<p>${escapeHTML(query)}</p>`);
-      
+
       // Clear input
       chatInput.value = '';
 
@@ -376,7 +388,7 @@
 
     // Attachment helper function
     function escapeHTML(str) {
-      return str.replace(/[&<>'"]/g, 
+      return str.replace(/[&<>'"]/g,
         tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
       );
     }
@@ -412,4 +424,5 @@
 
   </script>
 </body>
+
 </html>

@@ -174,24 +174,36 @@
     line-height:1.8;
 }
 /* ===================================== RESPONSIVE ===================================== */
- @media(max-width:768px)
- { .nav-links, 
-   .nav-actions{ 
-    display:none;
- }
-   .roadmap-hero{
-     padding:90px 0;
-     }
-    .roadmap-hero h1{
-         font-size:2.7rem;
-         } 
-    .roadmap-search{
-         flex-direction:column;
-         } 
-    .roadmap-search button{
-         width:100%;
-         } 
-    .topic-chips{
-         gap:10px;
-         }
-         }
+@media (max-width: 900px) {
+  .nav-links, .nav-actions { 
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .roadmap-hero {
+    padding: 90px 0;
+  }
+  .roadmap-hero h1 {
+    font-size: 2.7rem;
+  } 
+  .roadmap-search {
+    flex-direction: column;
+    gap: 12px;
+  } 
+  .roadmap-search button {
+    width: 100%;
+  } 
+  .roadmap-search input {
+    width: 100%;
+  }
+  .topic-chips {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .roadmap-hero h1 {
+    font-size: 2rem;
+  }
+}

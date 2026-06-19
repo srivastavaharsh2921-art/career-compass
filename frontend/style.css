@@ -678,6 +678,9 @@
         }
 
         @media (max-width: 900px) {
+            header nav, header .nav-actions {
+                display: none !important;
+            }
             .hero {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -687,6 +690,10 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+            }
+            .hero-cta {
+                flex-wrap: wrap;
+                justify-content: center;
             }
             .hero-right {
                 max-width: 500px;
@@ -971,4 +978,16 @@
         @media (max-width: 640px) {
             .login-section { padding: 30px 16px; }
             .login-card { padding: 30px 24px; }
+        }
+
+        .login-container-wrapper {
+            padding: 60px 40px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .login-container-wrapper {
+                padding: 40px 16px;
+            }
         }
