@@ -14,7 +14,9 @@ function loadEnv() {
     const trimmed = line.trim();
     if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) return;
     const [key, ...valueParts] = trimmed.split("=");
-    if (!process.env[key]) process.env[key] = valueParts.join("=").trim();
+    const value = valueParts.join("=").trim();
+    const unquoted = value.replace(/^(['"])(.*)\1$/, "$2");
+    if (!process.env[key]) process.env[key] = unquoted;
   });
 }
 
@@ -45,7 +47,61 @@ const defaultDb = {
   roadmaps: []
 };
 
+const mongoStore = {
+  enabled: false,
+  collection: null
+};
+
+async function readJsonDbIfPresent() {
+  try {
+    const raw = await fs.readFile(DB_PATH, "utf8");
+    return { ...defaultDb, ...JSON.parse(raw) };
+  } catch {
+    return { ...defaultDb };
+  }
+}
+
+function stripMongoId(db) {
+  const { _id, ...data } = db || {};
+  return data;
+}
+
+async function connectMongo() {
+  if (!process.env.MONGO_URI) return false;
+
+  let mongoose;
+  try {
+    mongoose = require("mongoose");
+  } catch {
+    console.warn("MONGO_URI is set, but mongoose is not installed. Using local JSON storage.");
+    return false;
+  }
+
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: Number(process.env.MONGO_TIMEOUT_MS || 5000)
+    });
+    mongoStore.enabled = true;
+    mongoStore.collection = mongoose.connection.collection(process.env.MONGO_COLLECTION || "career_compass");
+    console.log("MongoDB connected successfully");
+    return true;
+  } catch (error) {
+    console.warn(`MongoDB connection failed (${error.message}). Using local JSON storage.`);
+    return false;
+  }
+}
+
 async function ensureDb() {
+  if (mongoStore.enabled) {
+    const initialDb = await readJsonDbIfPresent();
+    await mongoStore.collection.updateOne(
+      { _id: "app" },
+      { $setOnInsert: { _id: "app", ...initialDb } },
+      { upsert: true }
+    );
+    return;
+  }
+
   await fs.mkdir(DATA_DIR, { recursive: true });
 
   try {
@@ -56,12 +112,26 @@ async function ensureDb() {
 }
 
 async function readDb() {
+  if (mongoStore.enabled) {
+    const db = await mongoStore.collection.findOne({ _id: "app" });
+    return { ...defaultDb, ...stripMongoId(db) };
+  }
+
   await ensureDb();
   const raw = await fs.readFile(DB_PATH, "utf8");
   return { ...defaultDb, ...JSON.parse(raw) };
 }
 
 async function writeDb(db) {
+  if (mongoStore.enabled) {
+    await mongoStore.collection.updateOne(
+      { _id: "app" },
+      { $set: stripMongoId({ ...defaultDb, ...db }) },
+      { upsert: true }
+    );
+    return;
+  }
+
   await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2));
 }
 
@@ -533,8 +603,15 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-ensureDb().then(() => {
+async function startServer() {
+  await connectMongo();
+  await ensureDb();
   server.listen(PORT, () => {
     console.log(`Career Compass running at http://localhost:${PORT}`);
   });
+}
+
+startServer().catch(error => {
+  console.error(error.message || "Unable to start Career Compass");
+  process.exit(1);
 });
