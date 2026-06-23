@@ -835,10 +835,12 @@ p {
     }
 }
 
+@media (max-width: 900px) {
+    .nav-links, .nav-actions { display: none !important; }
+}
+
 @media (max-width: 768px) {
     section { padding: 70px 0; }
-    
-    .nav-links, .nav-actions { display: none; } /* Adaptive toggle breakpoint fallback */
     
     .hero-container {
         grid-template-columns: 1fr;

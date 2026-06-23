@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Compass - AI Career Mentor</title>
+
+  <!-- Font and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="mentor.css">
+
+  <!-- Lucide Icon Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR NAVIGATION PANEL -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
+    <span class="lines"></span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div>
+      <div class="logo-container">
+        <i data-lucide="compass" class="logo-icon"></i>
+        <span>Career Compass</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
+          <i data-lucide="layout-dashboard"></i> Dashboard
+        </a>
+        <a href="test.html" class="nav-item">
+          <i data-lucide="brain-circuit"></i> Career Quiz
+        </a>
+        <a href="roadmap.html" class="nav-item">
+          <i data-lucide="map"></i> Roadmaps
+        </a>
+        <a href="courses.html" class="nav-item">
+          <i data-lucide="graduation-cap"></i> Courses
+        </a>
+        <a href="mentor.html" class="nav-item active">
+          <i data-lucide="bot"></i> AI Mentor
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="bar-chart-3"></i> Skill Analyzer
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="git-compare"></i> Career Compare
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="line-chart"></i> Progress
+        </a>
+        <a href="#" class="nav-item">
+          <i data-lucide="settings"></i> Settings
+        </a>
+        <a href="about-us.html" class="nav-item mobile-only-nav">
+          <i data-lucide="info"></i> About Us
+        </a>
+        <a href="login.html" class="nav-item mobile-only-nav">
+          <i data-lucide="log-in"></i> Login
+        </a>
+        <a href="signup.html" class="nav-item mobile-only-nav">
+          <i data-lucide="user-plus"></i> Sign Up
+        </a>
+      </nav>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-avatar">
+        <i data-lucide="bot" style="color: #2563eb;"></i>
+      </div>
+      <h4>Need Help?</h4>
+      <p>Chat with our AI Mentor anytime!</p>
+      <button class="chat-btn">
+        Chat Now <i data-lucide="arrow-right" size="16"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CHAT CONTAINER -->
+  <main class="main-wrapper">
+
+    <!-- HEADER BAR -->
+    <header class="top-bar">
+      <a href="index.html" class="logo page-title">
+        <i data-lucide="compass" class="page-title-icon"></i>
+        <span>Career</span> Compass
+      </a>
+      <div class="top-nav">
+        <a href="index.html" class="top-link">Home</a>
+        <a href="test.html" class="top-link">Career Test</a>
+        <a href="roadmap.html" class="top-link">Roadmaps</a>
+        <a href="courses.html" class="top-link">Courses</a>
+        <a href="mentor.html" class="top-link active">AI Mentor</a>
+        <a href="about-us.html" class="top-link">About Us</a>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+        </button>
+        <img src="" alt="Profile" class="profile-img">
+      </div>
+    </header>
+
+    <!-- CHAT VIEWPORT -->
+    <div class="chat-container">
+      <div class="chat-board">
+
+        <!-- Board Header -->
+        <div class="chat-board-header">
+          <div class="mentor-profile">
+            <div class="mentor-avatar">
+              <i data-lucide="bot"></i>
+              <span class="online-indicator"></span>
+            </div>
+            <div class="mentor-meta">
+              <h3>AI Career Mentor</h3>
+              <p>Powered by Compass Intelligence &middot; Online</p>
+            </div>
+          </div>
+          <div class="mentor-actions">
+            <button class="mentor-action-btn" id="btnRestartChat" title="Restart Conversation">
+              <i data-lucide="rotate-ccw"></i>
+            </button>
+            <button class="mentor-action-btn" title="View Details">
+              <i data-lucide="info"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat messages feed -->
+        <div class="chat-feed" id="chatFeed">
+          <!-- Welcome message rendered dynamically -->
+        </div>
+
+        <!-- Prompt suggestion chips -->
+        <div class="suggestion-area" id="suggestionArea">
+          <button class="suggestion-chip" data-prompt="roadmap">
+            <i data-lucide="map" size="14"></i> Generate Frontend Roadmap
+          </button>
+          <button class="suggestion-chip" data-prompt="interview">
+            <i data-lucide="award" size="14"></i> Software Interview Prep Tips
+          </button>
+          <button class="suggestion-chip" data-prompt="resume">
+            <i data-lucide="file-text" size="14"></i> How do I improve my resume?
+          </button>
+          <button class="suggestion-chip" data-prompt="pm">
+            <i data-lucide="briefcase" size="14"></i> Switch to Product Management
+          </button>
+        </div>
+
+        <!-- Inputs wrapper -->
+        <div class="chat-input-area">
+          <div class="chat-input-wrapper">
+            <input type="text" id="chatInput"
+              placeholder="Ask your AI Mentor about roadmaps, roles, resume tips, or skills...">
+            <button class="chat-attachment-btn" title="Attach file">
+              <i data-lucide="paperclip"></i>
+            </button>
+          </div>
+          <button class="btn-send" id="btnSend" aria-label="Send message">
+            <i data-lucide="send"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="api.js"></script>
+  <script>
+    // Initialize standard Lucide SVG icons smoothly
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    // Sidebar drawer toggle logic
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function setSidebarOpen(isOpen) {
+      if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+      sidebar.classList.toggle('open', isOpen);
+      sidebarOverlay.classList.toggle('visible', isOpen);
+      sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+      sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+    }
+
+    sidebarToggle?.addEventListener('click', () => {
+      const isOpen = sidebar.classList.contains('open');
+      setSidebarOpen(!isOpen);
+    });
+
+    sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+
+    sidebar?.addEventListener('scroll', () => {
+      sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setSidebarOpen(false);
+    });
+
+    // ==========================================
+    // INTERACTIVE CHAT ENGINE (FRONTEND LOGIC)
+    // ==========================================
+    const chatFeed = document.getElementById('chatFeed');
+    const chatInput = document.getElementById('chatInput');
+    const btnSend = document.getElementById('btnSend');
+    const btnRestartChat = document.getElementById('btnRestartChat');
+    const suggestionArea = document.getElementById('suggestionArea');
+
+    // Preset Response database
+    const RESPONSE_DATABASE = {
+      roadmap: {
+        bubble: `
+          <h4>Frontend Development Roadmap</h4>
+          <p>Here is a step-by-step visual outline to guide your learning path in Frontend Engineering:</p>
+          <ul>
+            <li><strong>Step 1: Core Fundamentals</strong> — HTML5 (structure), CSS3 (layouts/flexbox/grid), and Vanilla Javascript (ES6+, DOM manipulation).</li>
+            <li><strong>Step 2: Command Line & Git</strong> — Basic shell commands, local version control (Git), and hosting code on GitHub/GitLab.</li>
+            <li><strong>Step 3: CSS Utilities</strong> — Responsive frameworks (TailwindCSS, Bootstrap) and preprocessors (SASS/SCSS).</li>
+            <li><strong>Step 4: Package Managers & Tooling</strong> — npm/yarn, bundling and development servers (Vite, Webpack).</li>
+            <li><strong>Step 5: Modern Frameworks</strong> — Master <strong>React.js</strong> (hooks, virtual DOM, functional components), or alternatively Vue or Angular.</li>
+            <li><strong>Step 6: State & Data Management</strong> — Client-side stores (Redux Toolkit, Zustand) and fetching APIs (REST, GraphQL, Axios).</li>
+          </ul>
+          <p>🚀 <em>Tip: You can use our interactive <a href="roadmap.html" style="color:#a78bfa; font-weight:600; text-decoration:underline;">Roadmap Generator</a> to customize visual nodes for other career paths!</em></p>
+        `
+      },
+      interview: {
+        bubble: `
+          <h4>Software Engineering Interview Prep Tips</h4>
+          <p>To succeed in tech interviews, divide your preparation into four pillars:</p>
+          <ul>
+            <li><strong>1. Data Structures & Algorithms</strong> — Practice solving problems on arrays, string manipulation, hash maps, binary trees, DFS/BFS, and dynamic programming. Focus on understanding time & space complexities (Big O).</li>
+            <li><strong>2. System Design</strong> — Study architectural concepts such as horizontal vs vertical scaling, load balancing, caching (Redis), CDNs, SQL vs NoSQL databases, and rate limiters.</li>
+            <li><strong>3. Practical Front-End (If UI focused)</strong> — Be ready to build responsive layout structures in real-time, explain browser rendering optimization, event delegation, closures, and async JS patterns.</li>
+            <li><strong>4. Behavioral (STAR Method)</strong> — Format your project stories clearly: describe the <strong>S</strong>ituation, <strong>T</strong>ask, <strong>A</strong>ction, and measurable <strong>R</strong>esults.</li>
+          </ul>
+        `
+      },
+      resume: {
+        bubble: `
+          <h4>Resume Improvement Checklist</h4>
+          <p>Optimize your resume for applicant tracking systems (ATS) and tech recruiters with these guidelines:</p>
+          <ul>
+            <li><strong>Keep it Impact-Driven:</strong> Instead of writing <em>"responsible for creating APIs"</em>, rewrite it using active metrics: <em>"Engineered high-throughput REST APIs, reducing microservice roundtrip latency by 24%."</em></li>
+            <li><strong>Use standard ATS formatting:</strong> Single column, clean layouts, standard headings (Education, Experience, Skills), and save as a PDF. Avoid overly complex graphics.</li>
+            <li><strong>List relevant stack items:</strong> Place a dedicated "Skills" section showing exactly what tools you know (e.g., Languages: Javascript, Python; Frameworks: React, Express).</li>
+            <li><strong>Include active portfolio links:</strong> Ensure links to your GitHub profile and live deployed projects are clearly accessible.</li>
+          </ul>
+        `
+      },
+      pm: {
+        bubble: `
+          <h4>Switching Career Path to Product Management</h4>
+          <p>Switching from engineering, design, or marketing into Product Management requires building key business and operational skills:</p>
+          <ul>
+            <li><strong>Strategic Focus:</strong> Learn user research techniques, how to write PRDs (Product Requirement Documents), analyze business viability, and run agile sprints.</li>
+            <li><strong>Key Metrics Tools:</strong> Master user analytics software (SQL, Amplitude, Mixpanel) and project management systems (Jira, Linear).</li>
+            <li><strong>Translate existing experience:</strong> Highlight cross-functional collaboration, system analysis, and project planning achievements on your resume.</li>
+          </ul>
+          <p>💡 <em>Take the <a href="test.html" style="color:#a78bfa; font-weight:600; text-decoration:underline;">Career Assessment Quiz</a> to analyze how closely your strengths map to Product Management!</em></p>
+        `
+      },
+      default: {
+        bubble: `
+          <h4>Career Compass Assistant</h4>
+          <p>I am here to guide your career path! I can help you with tech stack roadmaps, switch strategies, resume guidelines, and general career advice.</p>
+          <p>Try typing topics like "frontend", "interview", "resume", or "product" to get instant resources. You can also explore our core features directly:</p>
+          <ul>
+            <li>📝 <a href="test.html" style="color:#a78bfa; text-decoration:none;">Take Career Assessment Quiz</a></li>
+            <li>🗺️ <a href="roadmap.html" style="color:#a78bfa; text-decoration:none;">Generate personalized roadmaps</a></li>
+            <li>🎓 <a href="courses.html" style="color:#a78bfa; text-decoration:none;">Browse AI recommended courses</a></li>
+          </ul>
+        `
+      }
+    };
+
+    // Load initial welcome messages
+    function initChat() {
+      chatFeed.innerHTML = '';
+
+      // AI Greeting message
+      addMessage("ai", `
+        <p>Hello! I am your <strong>Career Compass AI Mentor</strong>. 🚀</p>
+        <p>I can help you build custom learning roadmaps, recommend skill sets, give interview preparation checklists, or review your resume guidelines. What career path are you exploring today?</p>
+      `);
+    }
+
+    // Append message element to feed
+    function addMessage(sender, textHTML) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `message ${sender}`;
+
+      const avatarHTML = sender === "ai"
+        ? `<div class="message-avatar"><i data-lucide="bot" style="width:20px; height:20px; color:#fff;"></i></div>`
+        : `<div class="message-avatar"><i data-lucide="user" style="width:20px; height:20px; color:#fff;"></i></div>`;
+
+      msgDiv.innerHTML = `
+        ${avatarHTML}
+        <div class="message-bubble">
+          ${textHTML}
+        </div>
+      `;
+
+      chatFeed.appendChild(msgDiv);
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+    }
+
+    // Render typing dots placeholder
+    function showTypingIndicator() {
+      const indicator = document.createElement('div');
+      indicator.className = "message ai";
+      indicator.id = "typingIndicator";
+      indicator.innerHTML = `
+        <div class="message-avatar"><i data-lucide="bot" style="width:20px; height:20px; color:#fff;"></i></div>
+        <div class="message-bubble" style="padding: 10px 18px;">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      `;
+      chatFeed.appendChild(indicator);
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+    }
+
+    // Hide typing dots
+    function removeTypingIndicator() {
+      const indicator = document.getElementById('typingIndicator');
+      if (indicator) {
+        indicator.remove();
+      }
+    }
+
+    // Main send logic
+    function handleSend(inputText) {
+      const query = (inputText || chatInput.value).trim();
+      if (query === '') return;
+
+      // Add user message
+      addMessage("user", `<p>${escapeHTML(query)}</p>`);
+
+      // Clear input
+      chatInput.value = '';
+
+      // Determine match response key
+      let matchedKey = "default";
+      const cleanText = query.toLowerCase();
+      if (cleanText.includes("frontend") || cleanText.includes("react") || cleanText.includes("roadmap")) {
+        matchedKey = "roadmap";
+      } else if (cleanText.includes("interview") || cleanText.includes("prep") || cleanText.includes("prepare")) {
+        matchedKey = "interview";
+      } else if (cleanText.includes("resume") || cleanText.includes("cv") || cleanText.includes("review")) {
+        matchedKey = "resume";
+      } else if (cleanText.includes("product") || cleanText.includes("manager") || cleanText.includes("pm")) {
+        matchedKey = "pm";
+      }
+
+      // Show typing indicator
+      showTypingIndicator();
+
+      // Delay reply to simulate processing
+      setTimeout(() => {
+        removeTypingIndicator();
+        addMessage("ai", RESPONSE_DATABASE[matchedKey].bubble);
+      }, 1200);
+    }
+
+    // Attachment helper function
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g,
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    // Click trigger on Send button
+    btnSend.addEventListener('click', () => handleSend());
+
+    // Enter trigger in input
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        handleSend();
+      }
+    });
+
+    // Reset Chat
+    btnRestartChat.addEventListener('click', () => {
+      if (confirm("Restart conversation?")) {
+        initChat();
+      }
+    });
+
+    // Handle suggested chips clicks
+    suggestionArea.addEventListener('click', (e) => {
+      const chip = e.target.closest('.suggestion-chip');
+      if (!chip) return;
+      const promptType = chip.getAttribute('data-prompt');
+      const text = chip.innerText.trim();
+      handleSend(text);
+    });
+
+    // Start App
+    initChat();
+
+  </script>
+</body>
+
+</html>

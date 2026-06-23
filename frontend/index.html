@@ -43,10 +43,10 @@
                 <a href="courses.html" class="nav-item">
                     <i data-lucide="graduation-cap"></i> Courses
                 </a>
-                <a href="#" class="nav-item">
+                <a href="mentor.html" class="nav-item">
                     <i data-lucide="bot"></i> AI Mentor
                 </a>
-                <a href="#" class="nav-item">
+                <a href="skills-analyzer.html" class="nav-item">
                     <i data-lucide="bar-chart-3"></i> Skill Analyzer
                 </a>
                 <a href="#" class="nav-item">
@@ -58,6 +58,15 @@
                 <a href="#" class="nav-item">
                     <i data-lucide="settings"></i> Settings
                 </a>
+                <a href="about-us.html" class="nav-item mobile-only-nav">
+                    <i data-lucide="info"></i> About Us
+                </a>
+                <a href="login.html" class="nav-item mobile-only-nav">
+                    <i data-lucide="log-in"></i> Login
+                </a>
+                <a href="signup.html" class="nav-item mobile-only-nav">
+                    <i data-lucide="user-plus"></i> Sign Up
+                </a>
             </nav>
         </div>
 
@@ -67,7 +76,7 @@
             </div>
             <h4>Need Help?</h4>
             <p>Chat with our AI Mentor anytime!</p>
-            <button class="chat-btn">
+            <button class="chat-btn" onclick="window.location.href='mentor.html'">
                 Chat Now <i data-lucide="arrow-right" size="16"></i>
             </button>
         </div>
@@ -89,7 +98,7 @@
                 <a href="test.html">Career Test</a>
                 <a href="roadmap.html">Roadmaps</a>
                 <a href="courses.html">Courses</a>
-                <a href="resources.html">Resources <i class="ph ph-caret-down"></i></a>
+              
                 <a href="about-us.html">About Us</a>
 
             </nav>
@@ -214,12 +223,12 @@
 
         <!-- Features Grid Layout -->
         <section class="features-grid">
-            <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='test.html'" style="cursor: pointer;">
                 <div class="icon-wrapper f-quiz"><i class="ph-bold ph-brain"></i></div>
                 <h3>Smart Career Quiz</h3>
                 <p>Discover careers that match your skills and interests</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='roadmap.html'" style="cursor: pointer;">
                 <div class="icon-wrapper f-roadmaps"><i class="ph-bold ph-map-trifold"></i></div>
                 <h3>Personalized Roadmaps</h3>
                 <p>Step-by-step plan to reach your career goals</p>
@@ -229,7 +238,7 @@
                 <h3>Salary & Growth Insights</h3>
                 <p>Real data on salary trends and future growth</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='courses.html'" style="cursor: pointer;">
                 <div class="icon-wrapper f-courses"><i class="ph-bold ph-graduation-cap"></i></div>
                 <h3>Course Recommendations</h3>
                 <p>Top courses aligned with your career path</p>
@@ -239,7 +248,7 @@
                 <h3>Progress Tracker</h3>
                 <p>Track your achievements and milestones</p>
             </div>
-            <div class="feature-card">
+            <div class="feature-card" onclick="window.location.href='mentor.html'" style="cursor: pointer;">
                 <div class="icon-wrapper f-mentor"><i class="ph-bold ph-robot"></i></div>
                 <h3>AI Career Mentor</h3>
                 <p>24/7 AI guidance whenever you need help</p>
@@ -283,7 +292,16 @@
             </div>
         </section>
     </div>
-
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+                <a href="#" class="logo">
+                    <i class="ph-bold ph-graduation-cap"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
     <script src="script.js"></script>
 
     <script>

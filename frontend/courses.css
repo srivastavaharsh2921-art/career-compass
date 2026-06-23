@@ -1248,18 +1248,20 @@ p {
     }
 }
 
+@media (max-width: 900px) {
+    .nav-links, .nav-actions {
+        display: none !important;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 0;
     }
     
-    .nav-links, .nav-actions {
-        display: none;
-    }
-    
-    /* Toggle Mobile Navigation via hamburger */
+    /* Toggle Mobile Navigation via hamburger (Disabled for unified sidebar) */
     .hamburger {
-        display: flex;
+        display: none !important;
     }
     
     .nav-links.mobile-active {

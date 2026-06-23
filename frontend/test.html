@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="test.css">
+  <link rel="stylesheet" href="sidebar.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
@@ -18,23 +19,28 @@
 
   <aside class="sidebar" id="sidebar">
     <div>
-        <nav class="nav-menu">
-        <a href="#" class="nav-item">
+      <div class="logo-container">
+        <i data-lucide="compass" class="logo-icon"></i>
+        <span>Career Compass</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
           <i data-lucide="layout-dashboard"></i> Dashboard
         </a>
-        <a href="#" class="nav-item active">
+        <a href="test.html" class="nav-item active">
           <i data-lucide="brain-circuit"></i> Career Quiz
         </a>
         <a href="roadmap.html" class="nav-item">
           <i data-lucide="map"></i> Roadmaps
         </a>
-        <a href="#" class="nav-item">
+        <a href="courses.html" class="nav-item">
           <i data-lucide="graduation-cap"></i> Courses
         </a>
-        <a href="#" class="nav-item">
+        <a href="mentor.html" class="nav-item">
           <i data-lucide="bot"></i> AI Mentor
         </a>
-        <a href="#" class="nav-item">
+        <a href="skills-analyzer.html" class="nav-item">
           <i data-lucide="bar-chart-3"></i> Skill Analyzer
         </a>
         <a href="#" class="nav-item">
@@ -46,6 +52,15 @@
         <a href="#" class="nav-item">
           <i data-lucide="settings"></i> Settings
         </a>
+        <a href="about-us.html" class="nav-item mobile-only-nav">
+          <i data-lucide="info"></i> About Us
+        </a>
+        <a href="login.html" class="nav-item mobile-only-nav">
+          <i data-lucide="log-in"></i> Login
+        </a>
+        <a href="signup.html" class="nav-item mobile-only-nav">
+          <i data-lucide="user-plus"></i> Sign Up
+        </a>
       </nav>
     </div>
 
@@ -55,7 +70,7 @@
       </div>
       <h4>Need Help?</h4>
       <p>Chat with our AI Mentor anytime!</p>
-      <button class="chat-btn">
+      <button class="chat-btn" onclick="window.location.href='mentor.html'">
         Chat Now <i data-lucide="arrow-right" size="16"></i>
       </button>
     </div>
@@ -73,7 +88,7 @@
         <a href="#" class="top-link active">Career Test</a>
         <a href="roadmap.html" class="top-link">Roadmaps</a>
         <a href="courses.html" class="top-link">Courses</a>
-        <a href="resources.html" class="top-link">Resources</a>
+    
         <a href="about-us.html" class="top-link">About Us</a>
       </div>
       <div class="top-actions">

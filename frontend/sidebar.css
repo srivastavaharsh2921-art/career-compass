@@ -221,3 +221,9 @@
     padding-left: 70px !important;
   }
 }
+
+@media (min-width: 901px) {
+  .mobile-only-nav {
+    display: none !important;
+  }
+}

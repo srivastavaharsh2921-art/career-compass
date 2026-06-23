@@ -250,23 +250,24 @@
       transform: translateY(-50%);
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       text-decoration: none;
       color: #fff;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
       z-index: 1250;
     }
 
     .logo.page-title .page-title-icon {
-      color: #3b82f6;
-      width: 20px;
-      height: 20px;
+      color: var(--accent-purple);
+      width: 22px;
+      height: 22px;
+      filter: drop-shadow(0 0 6px var(--accent-purple));
     }
 
     .logo.page-title span {
-      color: #3b82f6;
+      color: var(--accent-purple);
     }
 
     .top-nav {
@@ -842,4 +843,77 @@
 
     .close-tip:hover {
       color: #fff;
+    }
+
+    /* --- RESPONSIVE MEDIA QUERIES --- */
+    @media (max-width: 900px) {
+      .top-nav {
+        display: none !important;
+      }
+      .logo.page-title {
+        left: 70px;
+      }
+      .content-grid {
+        flex-direction: column;
+        padding: 24px 20px;
+      }
+      .right-column {
+        width: 100% !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .step-desc {
+        display: none !important;
+      }
+      .step-label {
+        font-size: 11px;
+      }
+      .steps-timeline::before {
+        top: 20px;
+      }
+      .step-node {
+        width: 36px;
+        height: 36px;
+        margin-bottom: 8px;
+      }
+      .options-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px;
+      }
+      .tip-banner {
+        margin: 0 20px 20px;
+        padding: 12px 16px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-card {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px;
+      }
+      .hero-info {
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero-visual {
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .options-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .top-actions {
+        right: 16px;
+        gap: 12px;
+      }
+      .top-actions .icon-btn {
+        display: none;
+      }
+      .logo.page-title {
+        font-size: 15px !important;
+      }
     }
