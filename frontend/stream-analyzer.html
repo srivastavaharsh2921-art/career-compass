@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Compass - 12th Pass Guide & Stream Analyzer</title>
+  
+  <!-- Font and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="stream-analyzer.css">
+
+  <!-- Lucide Icon Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR NAVIGATION PANEL -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
+    <span class="lines"></span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div>
+      <div class="logo-container">
+        <i data-lucide="compass" class="logo-icon"></i>
+        <span>Career Compass</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
+          <i data-lucide="layout-dashboard"></i> Dashboard
+        </a>
+        <a href="test.html" class="nav-item">
+          <i data-lucide="brain-circuit"></i> Career Quiz
+        </a>
+        <a href="roadmap.html" class="nav-item">
+          <i data-lucide="map"></i> Roadmaps
+        </a>
+        <a href="courses.html" class="nav-item">
+          <i data-lucide="graduation-cap"></i> Courses
+        </a>
+        <a href="mentor.html" class="nav-item">
+          <i data-lucide="bot"></i> AI Mentor
+        </a>
+        <a href="skills-analyzer.html" class="nav-item">
+          <i data-lucide="bar-chart-3"></i> Skill Analyzer
+        </a>
+        <a href="stream-analyzer.html" class="nav-item active">
+          <i data-lucide="book-open"></i> 12th Pass Guide
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i data-lucide="settings"></i> Settings
+        </a>
+        <a href="about-us.html" class="nav-item mobile-only-nav">
+          <i data-lucide="info"></i> About Us
+        </a>
+        <a href="login.html" class="nav-item mobile-only-nav">
+          <i data-lucide="log-in"></i> Login
+        </a>
+        <a href="signup.html" class="nav-item mobile-only-nav">
+          <i data-lucide="user-plus"></i> Sign Up
+        </a>
+      </nav>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-avatar">
+        <i data-lucide="bot" style="color: #2563eb;"></i>
+      </div>
+      <h4>Need Help?</h4>
+      <p>Chat with our AI Mentor anytime!</p>
+      <button class="chat-btn" onclick="window.location.href='mentor.html'">
+        Chat Now <i data-lucide="arrow-right" size="16"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="main-wrapper">
+    
+    <!-- HEADER BAR -->
+    <header class="top-bar">
+      <a href="index.html" class="logo page-title">
+        <i data-lucide="compass" class="page-title-icon"></i>
+        <span>Career</span> Compass
+      </a>
+      <div class="top-nav">
+        <a href="index.html" class="top-link">Home</a>
+        <a href="test.html" class="top-link">Career Test</a>
+        <a href="roadmap.html" class="top-link">Roadmaps</a>
+        <a href="courses.html" class="top-link">Courses</a>
+        <a href="mentor.html" class="top-link">AI Mentor</a>
+        <a href="about-us.html" class="top-link">About Us</a>
+      </div>
+      <div class="top-actions">
+        <a href="notifications.html" class="icon-btn" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+        </a>
+        <a href="profile.html" class="profile-btn" style="display: flex; align-items: center; border-radius: 50%; padding: 0;">
+          <img src="" alt="Profile" class="profile-img">
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT LAYOUT -->
+    <div class="content-grid">
+      
+      <!-- LEFT WORKSPACE COLUMN -->
+      <div class="left-column">
+        
+        <!-- Hero Card -->
+        <div class="hero-card">
+          <div class="hero-info">
+            <span class="guide-badge">Class 12 Dedicated Guide</span>
+            <h1>12th Stream & Undergrad Course Analyzer</h1>
+            <p>Confused about what course or career path to pursue after 12th? Input your stream, board subjects, and interests to find compatible degree pathways and entrance exams.</p>
+          </div>
+          <div class="hero-visual">
+            <div class="brain-glow"></div>
+            <i data-lucide="graduation-cap" style="position:absolute; width:50px; height:50px; color:#a78bfa; opacity:0.8; top:15px; left:15px;"></i>
+            <i data-lucide="book-open" style="position:absolute; width:65px; height:65px; color:#6366f1; right:10px; top:20px;"></i>
+          </div>
+        </div>
+
+        <!-- Configuration Card -->
+        <div class="analyzer-card">
+          <h2><i data-lucide="sliders" class="header-icon"></i> Configure Stream & Subjects</h2>
+          <p class="subtitle">Select your 12th standard academic background.</p>
+
+          <!-- Stream Selector -->
+          <div class="input-group">
+            <label for="streamSelect">Select Your 12th Stream</label>
+            <div class="select-wrapper">
+              <select id="streamSelect">
+                <option value="pcm">Science (PCM - Physics, Chemistry, Maths)</option>
+                <option value="pcb">Science (PCB - Physics, Chemistry, Biology)</option>
+                <option value="commerce">Commerce (Accountancy, Economics, Business Studies)</option>
+                <option value="arts">Arts / Humanities (History, Political Science, Geography)</option>
+              </select>
+              <i data-lucide="chevron-down" class="select-arrow"></i>
+            </div>
+          </div>
+
+          <!-- Marksheet Drag & Drop Zone -->
+          <div class="marksheet-upload-zone" id="marksheetZone">
+            <input type="file" id="marksheetFileInput" accept=".pdf,.png,.jpg,.jpeg,.txt" style="display: none;">
+            <div class="upload-content" id="uploadNormalContent">
+              <i data-lucide="file-text" class="upload-icon"></i>
+              <h3>Upload Class 12 Marksheet / Report Card</h3>
+              <p>Drag & drop or <span>browse files</span> to auto-detect subjects and stream</p>
+            </div>
+            
+            <div class="upload-content parsing-state" id="uploadParsingContent" style="display: none;">
+              <div class="spinner"></div>
+              <h3>Analyzing Marksheet with AI...</h3>
+              <p>Scanning academic records and validating grades</p>
+            </div>
+
+            <div class="upload-content success-state" id="uploadSuccessContent" style="display: none;">
+              <i data-lucide="check-circle" class="upload-icon text-success"></i>
+              <h3>Mark Card Processed!</h3>
+              <p id="parsedSummaryText">Detected Science (PCM) with 5 board subjects.</p>
+            </div>
+          </div>
+
+          <!-- Select Subjects Grid -->
+          <div class="subjects-editor-section">
+            <label>Select Your Board Subjects</label>
+            <div class="chips-grid" id="subjectsChipsGrid">
+              <!-- Rendered Dynamically based on Stream selection -->
+            </div>
+          </div>
+
+          <!-- Career / Field Interests -->
+          <div class="subjects-editor-section">
+            <label>Select Your Future Field Interests</label>
+            <div class="chips-grid" id="interestsChipsGrid">
+              <button class="interest-chip" data-interest="Coding & Tech">Coding & Software</button>
+              <button class="interest-chip" data-interest="Business & Startups">Business Management</button>
+              <button class="interest-chip" data-interest="Healthcare & Medicine">Medicine & BioTech</button>
+              <button class="interest-chip" data-interest="Finance & Numbers">Banking & Finance</button>
+              <button class="interest-chip" data-interest="Corporate Law">Corporate Law & Public Policy</button>
+              <button class="interest-chip" data-interest="Creative Designing">Designing & Media Arts</button>
+              <button class="interest-chip" data-interest="Public Service">Civil Services & UPSC</button>
+            </div>
+          </div>
+
+          <button class="next-btn action-btn" id="btnAnalyzeDegrees">
+            Calculate Compatibility <i data-lucide="sparkles" size="18"></i>
+          </button>
+        </div>
+
+        <!-- Dashboard Analysis Card (Dynamic results) -->
+        <div class="analyzer-card results-card" id="resultsSection" style="display: none;">
+          <div class="results-header">
+            <div>
+              <h2>Undergrad Degree Alignment</h2>
+              <p class="subtitle">Best undergraduate paths suited for your board stream.</p>
+            </div>
+            <button class="secondary-btn" id="btnResetAnalyzer"><i data-lucide="refresh-cw" size="14"></i> Reset</button>
+          </div>
+
+          <div class="results-dashboard-grid">
+            
+            <!-- Radial Progress Area -->
+            <div class="progress-col">
+              <div class="results-circle-container">
+                <svg class="results-svg">
+                  <circle class="results-bg" cx="70" cy="70" r="60"></circle>
+                  <circle class="results-bar" id="compatibilityBar" cx="70" cy="70" r="60"></circle>
+                </svg>
+                <div class="results-value-container">
+                  <span class="score-percent" id="compatibilityText">95%</span>
+                  <span class="score-label">Best Match</span>
+                </div>
+              </div>
+              <div class="best-degree-name" id="bestDegreeName">B.Tech in CSE</div>
+            </div>
+
+            <!-- Gaps Details Column -->
+            <div class="gaps-col">
+              <h3>Compatible Undergraduate Degrees</h3>
+              <p class="gaps-subtext">Eligibility and stream alignment score for college admissions:</p>
+
+              <!-- Compatibility bars list -->
+              <div class="compatibility-degree-list" id="compatibilityDegreeList">
+                <!-- Rendered Dynamically -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Interactive Degree Detail Pane -->
+          <div class="degree-detail-pane" id="degreeDetailPane" style="display: none;">
+            <div class="detail-pane-header">
+              <h3 id="detailDegreeTitle">B.Tech (Computer Science & Engineering)</h3>
+              <span class="match-score-badge" id="detailMatchScore">98% Match</span>
+            </div>
+            
+            <div class="pane-body">
+              <div class="pane-section">
+                <h4><i data-lucide="info" size="14"></i> Why it Matches:</h4>
+                <p id="detailDegreeReason">Requires core Science background with Physics and Mathematics. Highly aligned with your interest in Coding & Software.</p>
+              </div>
+
+              <div class="pane-section-grid">
+                <div class="pane-section">
+                  <h4><i data-lucide="calendar" size="14"></i> Entrance Exams to Target:</h4>
+                  <div class="exam-pills" id="detailEntranceExams">
+                    <span class="exam-pill">JEE Main</span>
+                    <span class="exam-pill">JEE Advanced</span>
+                    <span class="exam-pill">CUET</span>
+                  </div>
+                </div>
+
+                <div class="pane-section">
+                  <h4><i data-lucide="building-2" size="14"></i> Premiere Institutions (India):</h4>
+                  <p id="detailColleges" class="detail-text-highlight">IITs, NITs, IIITs, BITS Pilani</p>
+                </div>
+              </div>
+
+              <div class="pane-action-bar">
+                <button class="roadmap-generate-btn" id="btnDegreeRoadmap" style="margin-top: 12px; width: auto; padding: 12px 24px;">
+                  Generate Admission Roadmap <i data-lucide="map" size="16"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN (OUTLOOK & ADMISSIONS TARGETS) -->
+      <div class="right-column">
+        
+        <!-- Entrance exam schedule card -->
+        <div class="side-card outlook-card">
+          <h3>Entrance Exam Pathways</h3>
+          <p class="side-subtext">Primary admission routes for 12th pass students:</p>
+          
+          <div class="exam-schedule-list">
+            <div class="exam-item">
+              <div class="exam-meta-row">
+                <span class="exam-title">JEE Main / Advanced</span>
+                <span class="exam-status bg-blue">April & June</span>
+              </div>
+              <p>For engineering courses (B.Tech) in IITs, NITs, and IIITs. Requires Physics, Chemistry, Maths.</p>
+            </div>
+
+            <div class="exam-item">
+              <div class="exam-meta-row">
+                <span class="exam-title">NEET UG</span>
+                <span class="exam-status bg-red">May</span>
+              </div>
+              <p>For medical degrees (MBBS, BDS, AYUSH). Requires Physics, Chemistry, Biology.</p>
+            </div>
+
+            <div class="exam-item">
+              <div class="exam-meta-row">
+                <span class="exam-title">CUET UG</span>
+                <span class="exam-status bg-green">May - June</span>
+              </div>
+              <p>For standard Honours courses (B.Sc, B.Com, B.A., BCA) in central universities like DU, BHU, JNU.</p>
+            </div>
+
+            <div class="exam-item">
+              <div class="exam-meta-row">
+                <span class="exam-title">CLAT</span>
+                <span class="exam-status bg-purple">December</span>
+              </div>
+              <p>For integrated corporate and civil law courses (BA LLB, BBA LLB) in NLUs.</p>
+            </div>
+
+            <div class="exam-item">
+              <div class="exam-meta-row">
+                <span class="exam-title">UCEED / NID</span>
+                <span class="exam-status bg-teal">January</span>
+              </div>
+              <p>For Design courses (B.Des) in IITs, National Institute of Design. Open to all streams.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Guidance widget -->
+        <div class="side-card advice-card">
+          <h3>AI Guidance Tip</h3>
+          <div class="advice-content">
+            <i data-lucide="lightbulb" class="advice-icon"></i>
+            <p><strong>Science Stream</strong> students can also switch to Management (BBA), Commerce (B.Com), Law (BA LLB), or Design (B.Des) if they have matching creative/analytical interests. <strong>Commerce & Arts</strong> students cannot switch to B.Tech/MBBS due to board requirements.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    // ===================================================
+    // UNDERGRAD DEGREES DATABASE
+    // ===================================================
+    const SUBJECT_MAPPING = {
+      pcm: ["Physics", "Chemistry", "Mathematics", "English", "Computer Science"],
+      pcb: ["Physics", "Chemistry", "Biology", "English", "Biotechnology"],
+      commerce: ["Accountancy", "Business Studies", "Economics", "English", "Mathematics"],
+      arts: ["History", "Political Science", "Geography", "Psychology", "English", "Economics"]
+    };
+
+    const DEGREES_DATABASE = {
+      "btech": {
+        title: "B.Tech / B.E. (Engineering)",
+        minPrereqs: ["Mathematics", "Physics", "Chemistry"],
+        streamWeights: { pcm: 95, pcb: 20, commerce: 10, arts: 5 },
+        interestWeights: { "Coding & Tech": 15, "Business & Startups": 5 },
+        exams: ["JEE Main", "JEE Advanced", "MHT CET", "COMEDK"],
+        colleges: "IITs, NITs, IIITs, BITS Pilani, VIT Vellore",
+        reason: "Requires core Science stream with Physics and Mathematics. Highly aligned with logical aptitude and technology interests."
+      },
+      "mbbs": {
+        title: "MBBS / BDS (Medical Science)",
+        minPrereqs: ["Biology", "Physics", "Chemistry"],
+        streamWeights: { pcm: 10, pcb: 95, commerce: 5, arts: 5 },
+        interestWeights: { "Healthcare & Medicine": 15 },
+        exams: ["NEET UG"],
+        colleges: "AIIMS New Delhi, MAMC Delhi, AFMC Pune, KGMU Lucknow",
+        reason: "Requires core Biology and Chemistry stream setup. Highly aligned with healthcare and hospital service fields."
+      },
+      "bpharma": {
+        title: "B.Pharma (Pharmacy & Therapeutics)",
+        minPrereqs: ["Chemistry", "Biology"],
+        streamWeights: { pcm: 60, pcb: 92, commerce: 5, arts: 5 },
+        interestWeights: { "Healthcare & Medicine": 10, "Business & Startups": 5 },
+        exams: ["NEET UG", "CUET UG", "State CETs"],
+        colleges: "NIPER Mohali, Jamia Hamdard Delhi, BITS Pilani",
+        reason: "Requires Chemistry and biological science prerequisites. Focuses on pharmaceutical research, formulations, and manufacturing."
+      },
+      "bcom": {
+        title: "B.Com / B.Com Hons (Commerce & Finance)",
+        minPrereqs: ["Accountancy", "Economics"],
+        streamWeights: { pcm: 70, pcb: 30, commerce: 95, arts: 40 },
+        interestWeights: { "Finance & Numbers": 15, "Business & Startups": 5 },
+        exams: ["CUET UG", "IPU CET", "NPAT"],
+        colleges: "SRCC Delhi, LSR Delhi, Loyola College Chennai, Hindu College",
+        reason: "Requires commercial concepts, accounting foundations, and financial principles. Strongly aligned with analytical numerical fields."
+      },
+      "bba": {
+        title: "BBA / BMS (Business Administration)",
+        minPrereqs: ["English"],
+        streamWeights: { pcm: 80, pcb: 70, commerce: 95, arts: 80 },
+        interestWeights: { "Business & Startups": 15, "Finance & Numbers": 5, "Coding & Tech": 5 },
+        exams: ["IPMAT (IIM)", "NPAT", "SET", "CUET UG"],
+        colleges: "IIM Indore (IPM), IIM Rohtak, Shaheed Sukhdev College (DU), NMIMS",
+        reason: "Open to all streams. Highly recommended for students interested in organizational management, business strategy, and startups."
+      },
+      "ballb": {
+        title: "BA LLB / BBA LLB (Integrated Law Honors)",
+        minPrereqs: ["English"],
+        streamWeights: { pcm: 80, pcb: 75, commerce: 90, arts: 95 },
+        interestWeights: { "Corporate Law": 15, "Public Service": 5 },
+        exams: ["CLAT", "AILET", "LSAT India", "SLAT"],
+        colleges: "NLSIU Bangalore, NALSAR Hyderabad, NUJS Kolkata, NLU Delhi",
+        reason: "Integrated law program open to all streams. Highly aligned with verbal reasoning, logical deduction, and public policy interests."
+      },
+      "bsc": {
+        title: "B.Sc Hons / BS (Research Sciences)",
+        minPrereqs: ["Physics", "Chemistry"],
+        streamWeights: { pcm: 90, pcb: 90, commerce: 15, arts: 10 },
+        interestWeights: { "Healthcare & Medicine": 10, "Coding & Tech": 5 },
+        exams: ["CUET UG", "NEST", "IISER Aptitude Test"],
+        colleges: "IISc Bangalore, IISERs, St. Stephen's College DU, BHU Varanasi",
+        reason: "Designed for scientific research and advanced domain degrees in Physics, Chemistry, Biology, or Mathematics."
+      },
+      "bca": {
+        title: "BCA (Computer Applications)",
+        minPrereqs: ["English"],
+        streamWeights: { pcm: 90, pcb: 60, commerce: 75, arts: 50 },
+        interestWeights: { "Coding & Tech": 15 },
+        exams: ["CUET UG", "IPU CET", "State exams"],
+        colleges: "Christ University Bangalore, SICSR Pune, IP University DU",
+        reason: "Excellent technical alternative for students who want to build a software development career without doing standard engineering."
+      },
+      "bdes": {
+        title: "B.Des (Bachelor of Design)",
+        minPrereqs: ["English"],
+        streamWeights: { pcm: 85, pcb: 80, commerce: 85, arts: 92 },
+        interestWeights: { "Creative Designing": 15, "Coding & Tech": 5 },
+        exams: ["UCEED", "NID DAT", "NIFT", "CEED"],
+        colleges: "IDC IIT Bombay, NID Ahmedabad, NIFT Delhi, Srishti Bangalore",
+        reason: "Open to all streams. Highly recommended for students who possess strong visual visualization skills and creative arts aptitude."
+      }
+    };
+
+    // ===================================================
+    // STATE & LISTENERS
+    // ===================================================
+    let selectedSubjects = [];
+    let selectedInterests = [];
+    let parsedStream = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Lucide Icons
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+
+      // Stream selection listener
+      const streamSelect = document.getElementById("streamSelect");
+      streamSelect.addEventListener("change", () => {
+        parsedStream = null; // Clear marksheet detection on manual override
+        document.getElementById("uploadNormalContent").style.display = "flex";
+        document.getElementById("uploadSuccessContent").style.display = "none";
+        renderSubjectChips();
+      });
+
+      // Initialize defaults
+      renderSubjectChips();
+
+      // Hook up buttons
+      document.getElementById("btnAnalyzeDegrees").addEventListener("click", calculateAdmissionsCompatibility);
+      document.getElementById("btnResetAnalyzer").addEventListener("click", resetStreamAnalyzer);
+      
+      // Hook up interests selection
+      const interestChips = document.querySelectorAll(".interest-chip");
+      interestChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          const interest = chip.getAttribute("data-interest");
+          chip.classList.toggle("selected");
+          
+          if (chip.classList.contains("selected")) {
+            if (!selectedInterests.includes(interest)) selectedInterests.push(interest);
+          } else {
+            selectedInterests = selectedInterests.filter(i => i !== interest);
+          }
+        });
+      });
+
+      // DRAG AND DROP MARKSHEET DETECTOR
+      const marksheetZone = document.getElementById("marksheetZone");
+      const fileInput = document.getElementById("marksheetFileInput");
+
+      marksheetZone.addEventListener("click", () => {
+        fileInput.click();
+      });
+
+      marksheetZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        marksheetZone.classList.add("dragover");
+      });
+
+      marksheetZone.addEventListener("dragleave", () => {
+        marksheetZone.classList.remove("dragover");
+      });
+
+      marksheetZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        marksheetZone.classList.remove("dragover");
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+          processMarksheetSim(e.dataTransfer.files[0]);
+        }
+      });
+
+      fileInput.addEventListener("change", (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+          processMarksheetSim(e.target.files[0]);
+        }
+      });
+    });
+
+    // Render chips based on selected stream
+    function renderSubjectChips() {
+      const select = document.getElementById("streamSelect");
+      const streamVal = parsedStream || select.value;
+      
+      // Update dropdown selection visually to match if parsed
+      if (parsedStream) {
+        select.value = parsedStream;
+      }
+
+      const subjectsList = SUBJECT_MAPPING[streamVal] || [];
+      const chipsGrid = document.getElementById("subjectsChipsGrid");
+      chipsGrid.innerHTML = "";
+
+      selectedSubjects = [...subjectsList]; // Auto-select all default subjects for the stream
+
+      subjectsList.forEach(subject => {
+        const btn = document.createElement("button");
+        btn.className = "subject-chip selected";
+        btn.innerText = subject;
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("selected");
+          if (btn.classList.contains("selected")) {
+            if (!selectedSubjects.includes(subject)) selectedSubjects.push(subject);
+          } else {
+            selectedSubjects = selectedSubjects.filter(s => s !== subject);
+          }
+        });
+        chipsGrid.appendChild(btn);
+      });
+    }
+
+    // Process uploaded marksheet
+    function processMarksheetSim(file) {
+      document.getElementById("uploadNormalContent").style.display = "none";
+      document.getElementById("uploadParsingContent").style.display = "block";
+      document.getElementById("uploadSuccessContent").style.display = "none";
+
+      setTimeout(() => {
+        // Random stream simulation based on file name or generic Science default
+        const fileName = file.name.toLowerCase();
+        let detected = "pcm";
+        let summaryText = "Detected Science (PCM) with 5 board subjects.";
+
+        if (fileName.includes("biology") || fileName.includes("pcb") || fileName.includes("medical")) {
+          detected = "pcb";
+          summaryText = "Detected Science (PCB) stream with Biology, Physics & Chemistry.";
+        } else if (fileName.includes("commerce") || fileName.includes("accounts") || fileName.includes("bstd")) {
+          detected = "commerce";
+          summaryText = "Detected Commerce stream with Accountancy, Economics & Business Studies.";
+        } else if (fileName.includes("arts") || fileName.includes("history") || fileName.includes("humanities")) {
+          detected = "arts";
+          summaryText = "Detected Arts stream with History, Political Science & Geography.";
+        }
+
+        parsedStream = detected;
+        
+        document.getElementById("uploadNormalContent").style.display = "none";
+        document.getElementById("uploadParsingContent").style.display = "none";
+        
+        const successDiv = document.getElementById("uploadSuccessContent");
+        successDiv.style.display = "block";
+        document.getElementById("parsedSummaryText").innerText = summaryText;
+
+        // Render matching chips
+        renderSubjectChips();
+      }, 2000);
+    }
+
+    // Calculation Logic
+    function calculateAdmissionsCompatibility() {
+      const select = document.getElementById("streamSelect");
+      const streamVal = select.value;
+
+      const scores = [];
+
+      Object.keys(DEGREES_DATABASE).forEach(degreeKey => {
+        const degree = DEGREES_DATABASE[degreeKey];
+        
+        // Base stream compatibility
+        let baseScore = degree.streamWeights[streamVal] || 10;
+
+        // Check prerequisites. If missing key subject, heavily reduce compatibility
+        let missingPrereq = false;
+        degree.minPrereqs.forEach(prereq => {
+          const hasPrereq = selectedSubjects.some(s => s.toLowerCase() === prereq.toLowerCase());
+          if (!hasPrereq) {
+            missingPrereq = true;
+          }
+        });
+
+        if (missingPrereq) {
+          baseScore = Math.round(baseScore * 0.2); // Drop score to 20% of original
+        }
+
+        // Add interest factors
+        let interestBoost = 0;
+        selectedInterests.forEach(interest => {
+          if (degree.interestWeights[interest]) {
+            interestBoost += degree.interestWeights[interest];
+          }
+        });
+
+        let finalScore = baseScore + interestBoost;
+        if (finalScore > 100) finalScore = 100;
+        if (finalScore < 5) finalScore = 5;
+
+        scores.push({
+          key: degreeKey,
+          title: degree.title,
+          score: finalScore,
+          colleges: degree.colleges,
+          exams: degree.exams,
+          reason: degree.reason
+        });
+      });
+
+      // Sort by score descending
+      scores.sort((a, b) => b.score - a.score);
+
+      // Render Dashboard Compatibility report
+      const resultsSection = document.getElementById("resultsSection");
+      resultsSection.style.display = "block";
+
+      const best = scores[0];
+      
+      // Update best match radial score
+      document.getElementById("compatibilityText").innerText = `${best.score}%`;
+      document.getElementById("bestDegreeName").innerText = best.title;
+
+      const compatibilityBar = document.getElementById("compatibilityBar");
+      const circumference = 377; // 2 * pi * 60
+      const offset = circumference - (circumference * best.score) / 100;
+      compatibilityBar.style.strokeDasharray = circumference;
+      compatibilityBar.style.strokeDashoffset = offset;
+
+      // Color progress based on compatibility
+      if (best.score >= 85) {
+        compatibilityBar.style.stroke = "#10b981"; // Success Green
+      } else if (best.score >= 60) {
+        compatibilityBar.style.stroke = "#6366f1"; // Accent Purple
+      } else {
+        compatibilityBar.style.stroke = "#fbbf24"; // Warning Yellow
+      }
+
+      // Render degree items list
+      const degreeList = document.getElementById("compatibilityDegreeList");
+      degreeList.innerHTML = "";
+
+      scores.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "degree-score-row";
+        if (item.key === best.key) {
+          row.classList.add("active-row");
+        }
+
+        row.innerHTML = `
+          <div class="degree-meta">
+            <span class="degree-title-lbl">${item.title}</span>
+            <span class="degree-score-val">${item.score}% Match</span>
+          </div>
+          <div class="degree-progress-track">
+            <div class="degree-progress-fill" style="width: ${item.score}%;"></div>
+          </div>
+        `;
+        
+        row.addEventListener("click", () => {
+          // Highlight active row
+          document.querySelectorAll(".degree-score-row").forEach(r => r.classList.remove("active-row"));
+          row.classList.add("active-row");
+          showDegreeDetails(item);
+        });
+
+        degreeList.appendChild(row);
+      });
+
+      // Show details of the best matched degree initially
+      showDegreeDetails(best);
+
+      // Scroll to results
+      resultsSection.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Detail Pane Handler
+    function showDegreeDetails(degreeItem) {
+      const pane = document.getElementById("degreeDetailPane");
+      pane.style.display = "block";
+
+      document.getElementById("detailDegreeTitle").innerText = degreeItem.title;
+      document.getElementById("detailMatchScore").innerText = `${degreeItem.score}% Match`;
+      document.getElementById("detailDegreeReason").innerText = degreeItem.reason;
+      document.getElementById("detailColleges").innerText = degreeItem.colleges;
+
+      // Class-score color adjustments
+      const scoreBadge = document.getElementById("detailMatchScore");
+      scoreBadge.className = "match-score-badge";
+      if (degreeItem.score >= 85) {
+        scoreBadge.classList.add("bg-success-glow");
+      } else if (degreeItem.score >= 60) {
+        scoreBadge.classList.add("bg-purple-glow");
+      } else {
+        scoreBadge.classList.add("bg-warning-glow");
+      }
+
+      // Render Entrance exam pills
+      const examContainer = document.getElementById("detailEntranceExams");
+      examContainer.innerHTML = "";
+      degreeItem.exams.forEach(exam => {
+        const pill = document.createElement("span");
+        pill.className = "exam-pill";
+        pill.innerText = exam;
+        examContainer.appendChild(pill);
+      });
+
+      // Hook up roadmap generation redirect button for the selected degree
+      const roadmapBtn = document.getElementById("btnDegreeRoadmap");
+      
+      // Remove old listener
+      const newRoadmapBtn = roadmapBtn.cloneNode(true);
+      roadmapBtn.parentNode.replaceChild(newRoadmapBtn, roadmapBtn);
+      
+      newRoadmapBtn.addEventListener("click", () => {
+        localStorage.setItem("careerCompassRoadmapTopic", degreeItem.title);
+        window.location.href = `roadmap.html?topic=${encodeURIComponent(degreeItem.title)}`;
+      });
+
+      // Refresh icons in pane
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+    }
+
+    function resetStreamAnalyzer() {
+      parsedStream = null;
+      document.getElementById("uploadNormalContent").style.display = "flex";
+      document.getElementById("uploadSuccessContent").style.display = "none";
+      document.getElementById("streamSelect").value = "pcm";
+      
+      // Clear interest checkboxes
+      document.querySelectorAll(".interest-chip").forEach(c => c.classList.remove("selected"));
+      selectedInterests = [];
+      
+      renderSubjectChips();
+
+      document.getElementById("resultsSection").style.display = "none";
+    }
+
+    // Sidebar drawer toggle logic
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function setSidebarOpen(isOpen) {
+      if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+      sidebar.classList.toggle('open', isOpen);
+      sidebarOverlay.classList.toggle('visible', isOpen);
+      sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+      sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+    }
+
+    sidebarToggle?.addEventListener('click', () => {
+      const isOpen = sidebar.classList.contains('open');
+      setSidebarOpen(!isOpen);
+    });
+
+    sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+
+    sidebar?.addEventListener('scroll', () => {
+      sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setSidebarOpen(false);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Compass - Notifications</title>
+  
+  <!-- Font and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="notifications.css">
+
+  <!-- Lucide Icon Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- SIDEBAR NAVIGATION PANEL -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
+    <span class="lines"></span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div>
+      <div class="logo-container">
+        <i data-lucide="compass" class="logo-icon"></i>
+        <span>Career Compass</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
+          <i data-lucide="layout-dashboard"></i> Dashboard
+        </a>
+        <a href="test.html" class="nav-item">
+          <i data-lucide="brain-circuit"></i> Career Quiz
+        </a>
+        <a href="roadmap.html" class="nav-item">
+          <i data-lucide="map"></i> Roadmaps
+        </a>
+        <a href="courses.html" class="nav-item">
+          <i data-lucide="graduation-cap"></i> Courses
+        </a>
+        <a href="mentor.html" class="nav-item">
+          <i data-lucide="bot"></i> AI Mentor
+        </a>
+        <a href="skills-analyzer.html" class="nav-item">
+          <i data-lucide="bar-chart-3"></i> Skill Analyzer
+        </a>
+        <a href="stream-analyzer.html" class="nav-item">
+          <i data-lucide="book-open"></i> 12th Pass Guide
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i data-lucide="settings"></i> Settings
+        </a>
+        <a href="about-us.html" class="nav-item mobile-only-nav">
+          <i data-lucide="info"></i> About Us
+        </a>
+        <a href="login.html" class="nav-item mobile-only-nav">
+          <i data-lucide="log-in"></i> Login
+        </a>
+        <a href="signup.html" class="nav-item mobile-only-nav">
+          <i data-lucide="user-plus"></i> Sign Up
+        </a>
+      </nav>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-avatar">
+        <i data-lucide="bot" style="color: #2563eb;"></i>
+      </div>
+      <h4>Need Help?</h4>
+      <p>Chat with our AI Mentor anytime!</p>
+      <button class="chat-btn" onclick="window.location.href='mentor.html'">
+        Chat Now <i data-lucide="arrow-right" size="16"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="main-wrapper" style="flex: 1; display: flex; flex-direction: column;">
+    
+    <!-- HEADER BAR -->
+    <header class="top-bar">
+      <a href="index.html" class="logo page-title">
+        <i data-lucide="compass" class="page-title-icon"></i>
+        <span>Career</span> Compass
+      </a>
+      <div class="top-nav">
+        <a href="index.html" class="top-link">Home</a>
+        <a href="test.html" class="top-link">Career Test</a>
+        <a href="roadmap.html" class="top-link">Roadmaps</a>
+        <a href="courses.html" class="top-link">Courses</a>
+        <a href="mentor.html" class="top-link">AI Mentor</a>
+        <a href="about-us.html" class="top-link">About Us</a>
+      </div>
+      <div class="top-actions">
+        <a href="notifications.html" class="icon-btn active" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+          <span class="badge-dot" id="headerNotificationDot" style="display: none;"></span>
+        </a>
+        <a href="profile.html" class="profile-btn" style="display: flex; align-items: center; border-radius: 50%; padding: 0;">
+          <img src="" alt="Profile" class="profile-img" id="headerProfileImg">
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT LAYOUT -->
+    <div class="content-grid">
+      
+      <!-- LEFT COLUMN (NOTIFICATIONS HUB) -->
+      <div class="left-column">
+        
+        <!-- Hero Title Card -->
+        <div class="hero-card">
+          <div class="hero-info">
+            <h1>Notifications Hub</h1>
+            <p>Keep track of your academic assessments, career matches, roadmap updates, and AI mentor counselor tips.</p>
+          </div>
+          <div class="hero-visual">
+            <div class="bell-glow"></div>
+            <i data-lucide="bell" style="position:absolute; width:65px; height:65px; color:#6366f1; right:10px; top:20px; filter: drop-shadow(0 0 10px rgba(99,102,241,0.35));"></i>
+          </div>
+        </div>
+
+        <!-- Notifications Container -->
+        <div class="notifications-hub">
+          
+          <div class="hub-header" id="hubHeader" style="display: none;">
+            <h2>Alerts & Messages <span id="notificationCount">0</span></h2>
+            <button class="clear-all-btn" id="btnClearAll">
+              <i data-lucide="trash-2" size="14"></i> Clear All
+            </button>
+          </div>
+
+          <!-- Empty State (Shown when no notifications are present) -->
+          <div class="empty-state-container" id="emptyState" style="display: none;">
+            <div class="empty-icon-box">
+              <i data-lucide="bell-off"></i>
+            </div>
+            <div class="empty-text">your notifications will appear here</div>
+          </div>
+
+          <!-- Active Notifications List -->
+          <div class="notifications-list" id="notificationsList">
+            <!-- Rendered Dynamically -->
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN (DEVELOPER TESTING / CONTROL BOX) -->
+      <div class="right-column">
+        
+        <!-- Simulation Control Card -->
+        <div class="side-card simulation-bar">
+          <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+            <h3>Simulator Panel</h3>
+            <p style="font-size: 12px; color: var(--text-muted); line-height: 1.45; margin-bottom: 12px;">
+              Use these tools to push new simulated updates or completely clear the list to test the empty-state layout.
+            </p>
+            <div class="sim-actions" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+              <button class="sim-btn" id="btnSimulateNoti" style="width: 100%; padding: 10px;">
+                <i data-lucide="plus-circle" size="14" style="margin-right: 4px; vertical-align: middle;"></i> Simulate New Notification
+              </button>
+              <button class="sim-btn" id="btnResetNoti" style="width: 100%; padding: 10px; background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.08); color: var(--text-muted);">
+                <i data-lucide="rotate-ccw" size="14" style="margin-right: 4px; vertical-align: middle;"></i> Reset Default Notifications
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Help Advice Widget -->
+        <div class="side-card advice-card" style="background: linear-gradient(135deg, #0d1233 0%, #070919 100%); border: 1px solid rgba(255,255,255,0.04); border-radius: 20px; padding: 24px;">
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+            <i data-lucide="lightbulb" style="color: #f59e0b; width: 18px; height: 18px;"></i> Pro Tip
+          </h3>
+          <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+            Notifications are saved in your local storage memory. Adding, dismissing, or clearing messages will persist across page refreshes.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="api.js"></script>
+  <script>
+    // ===================================================
+    // NOTIFICATIONS DATA STORAGE & SIMULATION
+    // ===================================================
+    const DEFAULT_NOTIFICATIONS = [
+      {
+        id: "noti-1",
+        type: "system",
+        title: "Welcome to Career Compass!",
+        message: "You've successfully set up your account. Start by taking our personalized Career Quiz to discover the ideal path for your future.",
+        time: "Just now",
+        unread: true
+      },
+      {
+        id: "noti-2",
+        type: "alert",
+        title: "Class 12 Stream Guide Available",
+        message: "Are you a 12th pass student? We've launched an interactive guide to help you analyze degree compatibility based on school board subjects. Try the '12th Pass Guide' on the sidebar!",
+        time: "2 hours ago",
+        unread: true
+      },
+      {
+        id: "noti-3",
+        type: "mentor",
+        title: "AI Mentor Guidance Ready",
+        message: "Your personalized counselor has generated detailed skill gap roadmaps based on your target role in software development. Review recommendations in the AI Mentor tab.",
+        time: "1 day ago",
+        unread: false
+      }
+    ];
+
+    const SIMULATED_POOL = [
+      {
+        type: "quiz",
+        title: "Quiz Progress Updated",
+        message: "Congratulations! You have completed 3 steps of the career quiz. Complete the Personality and Goals stages to view final results."
+      },
+      {
+        type: "alert",
+        title: "JEE registration deadline upcoming",
+        message: "Alert: The national engineering entrance exam registration closes in 4 days. Double check eligibility constraints in the 12th Pass Guide."
+      },
+      {
+        type: "system",
+        title: "New Course Recommended",
+        message: "Based on your tech-interest tag selection, we have recommended a premium 'Introduction to Web Architecture' course in the catalog."
+      },
+      {
+        type: "mentor",
+        title: "New Counselor Message",
+        message: "AI Mentor says: 'I noticed you added React and SQL to your skills analyzer. Let's build a mini-project roadmap next!'"
+      }
+    ];
+
+    let notifications = [];
+
+    // Load from LocalStorage or Fallback to Default
+    function loadNotifications() {
+      const saved = localStorage.getItem("cc_notifications");
+      if (saved !== null) {
+        notifications = JSON.parse(saved);
+      } else {
+        notifications = [...DEFAULT_NOTIFICATIONS];
+        saveNotifications();
+      }
+    }
+
+    function saveNotifications() {
+      localStorage.setItem("cc_notifications", JSON.stringify(notifications));
+      updateBadgeState();
+    }
+
+    function updateBadgeState() {
+      const hasUnread = notifications.some(n => n.unread);
+      const dot = document.getElementById("headerNotificationDot");
+      if (dot) {
+        dot.style.display = hasUnread ? "block" : "none";
+      }
+    }
+
+    // Render Function
+    function renderNotifications() {
+      const listContainer = document.getElementById("notificationsList");
+      const emptyState = document.getElementById("emptyState");
+      const hubHeader = document.getElementById("hubHeader");
+      const countLabel = document.getElementById("notificationCount");
+
+      // Clear previous list
+      listContainer.innerHTML = "";
+
+      if (notifications.length === 0) {
+        // Show empty state
+        emptyState.style.display = "flex";
+        hubHeader.style.display = "none";
+      } else {
+        // Show list
+        emptyState.style.display = "none";
+        hubHeader.style.display = "flex";
+        countLabel.innerText = notifications.length;
+
+        notifications.forEach(noti => {
+          const item = document.createElement("div");
+          item.className = `notification-item ${noti.unread ? 'unread' : ''}`;
+          item.id = noti.id;
+
+          // Type Icon Map
+          let icon = "bell";
+          if (noti.type === "system") icon = "settings";
+          else if (noti.type === "quiz") icon = "brain-circuit";
+          else if (noti.type === "mentor") icon = "bot";
+          else if (noti.type === "alert") icon = "alert-circle";
+
+          item.innerHTML = `
+            <div class="noti-icon-box ${noti.type}">
+              <i data-lucide="${icon}"></i>
+            </div>
+            <div class="noti-content">
+              <div class="noti-title-row">
+                <h4 class="noti-title">${noti.title}</h4>
+                <span class="noti-time">${noti.time}</span>
+              </div>
+              <p class="noti-message">${noti.message}</p>
+            </div>
+            <button class="noti-dismiss-btn" onclick="dismissNotification('${noti.id}')" aria-label="Dismiss Notification">
+              <i data-lucide="x" size="14"></i>
+            </button>
+          `;
+
+          listContainer.appendChild(item);
+        });
+
+        // Initialize Lucide Icons in list
+        if (typeof lucide !== "undefined") {
+          lucide.createIcons();
+        }
+      }
+    }
+
+    // Dismiss a single notification
+    window.dismissNotification = function(id) {
+      const element = document.getElementById(id);
+      if (!element) return;
+
+      // Add dismissal animation class
+      element.classList.add("dismissing");
+
+      // Wait for animation to finish
+      setTimeout(() => {
+        notifications = notifications.filter(n => n.id !== id);
+        saveNotifications();
+        renderNotifications();
+      }, 300);
+    };
+
+    // Clear All
+    document.getElementById("btnClearAll").addEventListener("click", () => {
+      // Animate all items out
+      const items = document.querySelectorAll(".notification-item");
+      items.forEach(item => item.classList.add("dismissing"));
+
+      setTimeout(() => {
+        notifications = [];
+        saveNotifications();
+        renderNotifications();
+      }, 300);
+    });
+
+    // Simulate New Notification
+    document.getElementById("btnSimulateNoti").addEventListener("click", () => {
+      // Pick a random template
+      const template = SIMULATED_POOL[Math.floor(Math.random() * SIMULATED_POOL.length)];
+      
+      const newNoti = {
+        id: `noti-${Date.now()}`,
+        type: template.type,
+        title: template.title,
+        message: template.message,
+        time: "Just now",
+        unread: true
+      };
+
+      notifications.unshift(newNoti);
+      saveNotifications();
+      renderNotifications();
+    });
+
+    // Reset Defaults
+    document.getElementById("btnResetNoti").addEventListener("click", () => {
+      notifications = [...DEFAULT_NOTIFICATIONS];
+      saveNotifications();
+      renderNotifications();
+    });
+
+    // ===================================================
+    // INITIALIZATION & SIDEBAR SCRIPTS
+    // ===================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Lucide Icons
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+
+      // Load initial dataset
+      loadNotifications();
+      renderNotifications();
+
+      // Sidebar drawer toggle logic
+      const sidebar = document.getElementById('sidebar');
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+      function setSidebarOpen(isOpen) {
+        if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+        sidebar.classList.toggle('open', isOpen);
+        sidebarOverlay.classList.toggle('visible', isOpen);
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+        sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+      }
+
+      sidebarToggle?.addEventListener('click', () => {
+        const isOpen = sidebar.classList.contains('open');
+        setSidebarOpen(!isOpen);
+      });
+
+      sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+
+      sidebar?.addEventListener('scroll', () => {
+        sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setSidebarOpen(false);
+      });
+    });
+  </script>
+</body>
+</html>

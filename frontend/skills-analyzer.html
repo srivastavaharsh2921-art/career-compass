@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Compass - Skill Analyzer</title>
+
+  <!-- Font and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="skills-analyzer.css">
+
+  <!-- Lucide Icon Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR NAVIGATION PANEL -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
+    <span class="lines"></span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div>
+      <div class="logo-container">
+        <i data-lucide="compass" class="logo-icon"></i>
+        <span>Career Compass</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
+          <i data-lucide="layout-dashboard"></i> Dashboard
+        </a>
+        <a href="test.html" class="nav-item">
+          <i data-lucide="brain-circuit"></i> Career Quiz
+        </a>
+        <a href="roadmap.html" class="nav-item">
+          <i data-lucide="map"></i> Roadmaps
+        </a>
+        <a href="courses.html" class="nav-item">
+          <i data-lucide="graduation-cap"></i> Courses
+        </a>
+        <a href="mentor.html" class="nav-item">
+          <i data-lucide="bot"></i> AI Mentor
+        </a>
+        <a href="skills-analyzer.html" class="nav-item active">
+          <i data-lucide="bar-chart-3"></i> Skill Analyzer
+        </a>
+        <a href="stream-analyzer.html" class="nav-item">
+          <i data-lucide="book-open"></i> 12th Pass Guide
+        </a>
+        <a href="settings.html" class="nav-item">
+          <i data-lucide="settings"></i> Settings
+        </a>
+        <a href="about-us.html" class="nav-item mobile-only-nav">
+          <i data-lucide="info"></i> About Us
+        </a>
+        <a href="login.html" class="nav-item mobile-only-nav">
+          <i data-lucide="log-in"></i> Login
+        </a>
+        <a href="signup.html" class="nav-item mobile-only-nav">
+          <i data-lucide="user-plus"></i> Sign Up
+        </a>
+      </nav>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-avatar">
+        <i data-lucide="bot" style="color: #2563eb;"></i>
+      </div>
+      <h4>Need Help?</h4>
+      <p>Chat with our AI Mentor anytime!</p>
+      <button class="chat-btn" onclick="window.location.href='mentor.html'">
+        Chat Now <i data-lucide="arrow-right" size="16"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="main-wrapper">
+
+    <!-- HEADER BAR -->
+    <header class="top-bar">
+      <a href="index.html" class="logo page-title">
+        <i data-lucide="compass" class="page-title-icon"></i>
+        <span>Career</span> Compass
+      </a>
+      <div class="top-nav">
+        <a href="index.html" class="top-link">Home</a>
+        <a href="test.html" class="top-link">Career Test</a>
+        <a href="roadmap.html" class="top-link">Roadmaps</a>
+        <a href="courses.html" class="top-link">Courses</a>
+        <a href="mentor.html" class="top-link">AI Mentor</a>
+        <a href="about-us.html" class="top-link">About Us</a>
+      </div>
+      <div class="top-actions">
+        <a href="notifications.html" class="icon-btn" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+        </a>
+        <a href="profile.html" class="profile-btn" style="display: flex; align-items: center; border-radius: 50%; padding: 0;">
+          <img src="" alt="Profile" class="profile-img">
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT LAYOUT -->
+    <div class="content-grid">
+
+      <!-- LEFT WORKSPACE COLUMN -->
+      <div class="left-column">
+
+        <!-- Hero card -->
+        <div class="hero-card">
+          <div class="hero-info">
+            <h1>Skill Analyzer</h1>
+            <p>Select your target role and map your current skills to check your job-readiness, identify skill gaps, and
+              get a personalized action plan.</p>
+          </div>
+          <div class="hero-visual">
+            <div class="brain-glow"></div>
+            <i data-lucide="bar-chart-3"
+              style="position:absolute; width:50px; height:50px; color:#a78bfa; opacity:0.8; top:15px; left:15px;"></i>
+            <i data-lucide="target"
+              style="position:absolute; width:65px; height:65px; color:#6366f1; right:10px; top:20px;"></i>
+          </div>
+        </div>
+
+        <!-- Analyzer Inputs Config Card -->
+        <div class="analyzer-card">
+          <h2><i data-lucide="sliders" class="header-icon"></i> Configure Skills</h2>
+          <p class="subtitle">Set up your profile to run the analysis.</p>
+
+          <div class="input-group">
+            <label for="targetRoleSelect">Select Target Career Path</label>
+            <div class="select-wrapper">
+              <select id="targetRoleSelect">
+                <option value="software-dev">Software Developer (Frontend / Backend)</option>
+                <option value="ui-ux-design">UI/UX Designer</option>
+                <option value="data-analyst">Data Analyst</option>
+                <option value="product-manager">Product Manager</option>
+                <option value="ai-ml-engineer">AI / Machine Learning Engineer</option>
+                <option value="marketing-spec">Digital Marketing Specialist</option>
+              </select>
+              <i data-lucide="chevron-down" class="select-arrow"></i>
+            </div>
+          </div>
+
+          <!-- Drag and Drop Resume Uploader -->
+          <div class="resume-upload-zone" id="resumeZone">
+            <input type="file" id="resumeFileInput" accept=".pdf,.doc,.docx,.txt" style="display: none;">
+            <div class="upload-content" id="uploadNormalContent">
+              <i data-lucide="file-text" class="upload-icon"></i>
+              <h3>Drag & Drop your Resume here</h3>
+              <p>Or <span>browse files</span> to instantly extract your skills via AI</p>
+            </div>
+
+            <div class="upload-content parsing-state" id="uploadParsingContent" style="display: none;">
+              <div class="spinner"></div>
+              <h3>Parsing Resume with AI...</h3>
+              <p>Extracting profile details and technical capabilities</p>
+            </div>
+
+            <div class="upload-content success-state" id="uploadSuccessContent" style="display: none;">
+              <i data-lucide="check-circle" class="upload-icon text-success"></i>
+              <h3>Resume Parsed Successfully!</h3>
+              <p id="parsedSummaryText">Extracted 4 skills from your document.</p>
+            </div>
+          </div>
+
+          <!-- Add custom skills editor -->
+          <div class="skills-editor-section">
+            <label>Your Current Skills & Proficiency</label>
+            <div class="skills-input-wrapper">
+              <input type="text" id="skillSearchInput"
+                placeholder="Type a skill (e.g., Python, Figma) and press enter...">
+              <button class="add-skill-btn" id="btnAddSkill">Add Skill</button>
+            </div>
+
+            <!-- Quick Suggestion Chips -->
+            <div class="chips-container">
+              <span class="chip-label">Popular:</span>
+              <button class="suggestion-chip" data-skill="React">React</button>
+              <button class="suggestion-chip" data-skill="Figma">Figma</button>
+              <button class="suggestion-chip" data-skill="Python">Python</button>
+              <button class="suggestion-chip" data-skill="SQL">SQL</button>
+              <button class="suggestion-chip" data-skill="Git">Git</button>
+              <button class="suggestion-chip" data-skill="JavaScript">JavaScript</button>
+              <button class="suggestion-chip" data-skill="Communication">Communication</button>
+            </div>
+
+            <!-- Selected Skills Grid -->
+            <div class="selected-skills-grid" id="selectedSkillsGrid">
+              <!-- Rendered Dynamically -->
+            </div>
+          </div>
+
+          <button class="next-btn action-btn" id="btnRunAnalysis">
+            Run Skill Analysis <i data-lucide="sparkles" size="18"></i>
+          </button>
+        </div>
+
+        <!-- Dashboard Analysis Card (Dynamic results) -->
+        <div class="analyzer-card results-card" id="resultsSection" style="display: none;">
+          <div class="results-header">
+            <div>
+              <h2>Analysis Report</h2>
+              <p class="subtitle">AI match score against industry expectations.</p>
+            </div>
+            <button class="secondary-btn" id="btnRecalculate"><i data-lucide="refresh-cw" size="14"></i> Reset</button>
+          </div>
+
+          <div class="results-dashboard-grid">
+
+            <!-- Radial Progress Area -->
+            <div class="progress-col">
+              <div class="results-circle-container">
+                <svg class="results-svg">
+                  <circle class="results-bg" cx="70" cy="70" r="60"></circle>
+                  <circle class="results-bar" id="scoreBar" cx="70" cy="70" r="60"></circle>
+                </svg>
+                <div class="results-value-container">
+                  <span class="score-percent" id="scoreText">75%</span>
+                  <span class="score-label">Match Score</span>
+                </div>
+              </div>
+              <div class="score-grade" id="scoreGrade">Excellent Match</div>
+            </div>
+
+            <!-- Gaps Details Column -->
+            <div class="gaps-col">
+              <h3>Role Coverage Breakdown</h3>
+              <p class="gaps-subtext">Detailed comparison between requirements and your inventory.</p>
+
+              <div class="breakdown-stat-bars">
+                <div class="stat-bar-item">
+                  <div class="stat-bar-label">
+                    <span>Required Skills Coverage</span>
+                    <span id="coveragePercentText">3/4 Skills</span>
+                  </div>
+                  <div class="bar-track">
+                    <div class="bar-fill bg-success" id="coverageFill" style="width: 75%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Strengths vs Gaps pills -->
+              <div class="pills-comparison-grid">
+                <div class="pill-group-container">
+                  <h4 class="text-success"><i data-lucide="check-circle-2" class="pill-icon"></i> Strengths</h4>
+                  <div class="compact-pills-list" id="strengthsList">
+                    <!-- Rendered Dynamically -->
+                  </div>
+                </div>
+
+                <div class="pill-group-container">
+                  <h4 class="text-warning"><i data-lucide="help-circle" class="pill-icon"></i> Skill Gaps</h4>
+                  <div class="compact-pills-list" id="gapsList">
+                    <!-- Rendered Dynamically -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Interactive Bar Chart of Proficiencies -->
+          <div class="proficiency-chart-wrapper">
+            <h3>Skill Proficiency Calibration</h3>
+            <p class="gaps-subtext">How your skills score in depth compared to senior levels.</p>
+            <div class="chart-bars-list" id="proficiencyChartList">
+              <!-- Rendered Dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN (CONTEXTUAL METRICS & ACTIONS) -->
+      <div class="right-column">
+
+        <!-- Job Outlook statistics card -->
+        <div class="side-card outlook-card" id="outlookCard">
+          <h3>Market Outlook</h3>
+          <div class="role-title-highlight" id="outlookRoleTitle">Software Developer</div>
+
+          <div class="metric-row">
+            <div class="metric-item">
+              <span class="metric-label">Average Salary</span>
+              <span class="metric-value" id="outlookSalary">₹6L - ₹24L</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-label">Hiring Demand</span>
+              <span class="metric-badge bg-green-glow" id="outlookDemand">Very High</span>
+            </div>
+          </div>
+
+          <div class="outlook-details">
+            <div class="detail-item">
+              <i data-lucide="trending-up" class="detail-icon text-purple"></i>
+              <div>
+                <h5>Growth Index</h5>
+                <p id="outlookGrowth">+22% YoY Expansion</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <i data-lucide="briefcase" class="detail-icon text-blue"></i>
+              <div>
+                <h5>Primary Employers</h5>
+                <p id="outlookEmployers">Tech firms, Startups, Financial Services</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Action plans / Recommended Course Links -->
+        <div class="side-card recommendations-card" id="recommendationsCard" style="display: none;">
+          <h3>Bridging the Gap</h3>
+          <p class="side-subtext">Recommended actions to reach 100% job readiness.</p>
+
+          <div class="recs-list" id="coursesRecList">
+            <!-- Rendered Dynamically -->
+          </div>
+
+          <button class="roadmap-generate-btn" id="btnLinkRoadmap">
+            Generate Dynamic Roadmap <i data-lucide="arrow-right" size="14"></i>
+          </button>
+        </div>
+
+        <div class="side-card privacy-box">
+          <div class="privacy-shield">
+            <i data-lucide="shield-check" size="20"></i>
+          </div>
+          <div class="info-text">
+            <h5>AI Engine Standards</h5>
+            <p style="margin-bottom: 6px;">Skills match profiles are calibrated using updated 2026 industry profiles.
+            </p>
+            <p>Resume files are parsed securely in-sandbox.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="api.js"></script>
+  <script>
+    // ===================================================
+    // DATA DICTIONARIES & MOCK DATABASE DEFINITION
+    // ===================================================
+    const ROLES_DATABASE = {
+      "software-dev": {
+        title: "Software Developer",
+        required: ["Coding & Tech", "Problem Solving", "Git", "REST APIs", "JavaScript"],
+        niceToHave: ["Communication", "React"],
+        salary: "₹6L - ₹24L",
+        demand: "Very High",
+        growth: "+22% YoY Growth",
+        employers: "Tech Platforms, SaaS, Fintechs, Enterprise Tech",
+        courses: [
+          { title: "CS50's Introduction to Computer Science", platform: "edX", difficulty: "Beginner" },
+          { title: "Advanced React and Redux with Webpack", platform: "Udemy", difficulty: "Advanced" }
+        ]
+      },
+      "ui-ux-design": {
+        title: "UI/UX Designer",
+        required: ["Creative & Design", "Figma", "User Research", "Wireframing", "Prototyping"],
+        niceToHave: ["Communication", "HTML/CSS"],
+        salary: "₹5L - ₹18L",
+        demand: "High",
+        growth: "+18% YoY Growth",
+        employers: "Design Studios, Startups, Product Agencies, Consumer Tech",
+        courses: [
+          { title: "Google UX Design Professional Certificate", platform: "Coursera", difficulty: "Beginner" },
+          { title: "Figma UI/UX Design Essentials", platform: "Udemy", difficulty: "Beginner" }
+        ]
+      },
+      "data-analyst": {
+        title: "Data Analyst",
+        required: ["Data & Research", "SQL", "Excel", "Data Visualization", "Problem Solving"],
+        niceToHave: ["Python", "Communication"],
+        salary: "₹5L - ₹15L",
+        demand: "High",
+        growth: "+25% YoY Growth",
+        employers: "Consulting Firms, Analytics Hubs, Retailers, Corporates",
+        courses: [
+          { title: "CS50's Introduction to Computer Science", platform: "edX", difficulty: "Beginner" },
+          { title: "Machine Learning Specialization", platform: "Coursera", difficulty: "Intermediate" }
+        ]
+      },
+      "product-manager": {
+        title: "Product Manager",
+        required: ["Leadership", "Communication", "Problem Solving", "Product Roadmap", "User Research"],
+        niceToHave: ["Data & Research", "Agile"],
+        salary: "₹8L - ₹30L",
+        demand: "High",
+        growth: "+15% YoY Growth",
+        employers: "Software Publishers, Unicorn Startups, Big Tech, B2B SaaS",
+        courses: [
+          { title: "AI For Everyone", platform: "Coursera", difficulty: "Beginner" }
+        ]
+      },
+      "ai-ml-engineer": {
+        title: "AI / ML Engineer",
+        required: ["Coding & Tech", "Problem Solving", "Python", "Machine Learning", "Neural Networks"],
+        niceToHave: ["SQL", "Data & Research"],
+        salary: "₹10L - ₹40L",
+        demand: "Critical",
+        growth: "+35% YoY Growth",
+        employers: "AI Research Labs, Deep Tech Startups, Automotives, Big Tech",
+        courses: [
+          { title: "Machine Learning Specialization", platform: "Coursera", difficulty: "Intermediate" },
+          { title: "AI For Everyone", platform: "Coursera", difficulty: "Beginner" }
+        ]
+      },
+      "marketing-spec": {
+        title: "Digital Marketing Specialist",
+        required: ["Marketing & Sales", "Communication", "SEO", "Social Media Growth", "Copywriting"],
+        niceToHave: ["Creative & Design", "Data & Research"],
+        salary: "₹4L - ₹12L",
+        demand: "Medium",
+        growth: "+10% YoY Growth",
+        employers: "Marketing Agencies, Brands, E-commerce, Media Tech",
+        courses: [
+          { title: "Social Media Marketing Agency Mastery", platform: "Udemy", difficulty: "Intermediate" }
+        ]
+      }
+    };
+
+    // Preloaded mock skills list that will be matched to inputs
+    const POPULAR_SKILLS = [
+      "Coding & Tech", "Creative & Design", "Problem Solving", "Data & Research",
+      "Communication", "Leadership", "Marketing & Sales", "Git", "REST APIs",
+      "JavaScript", "Python", "SQL", "Figma", "User Research", "Wireframing",
+      "Prototyping", "Excel", "Data Visualization", "Product Roadmap", "Agile",
+      "Machine Learning", "Neural Networks", "SEO", "Social Media Growth", "Copywriting",
+      "HTML/CSS"
+    ];
+
+    // ===================================================
+    // STATE MANAGEMENT
+    // ===================================================
+    let currentSkills = [];
+
+    // Initialize Page Controls
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Lucide icons
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+
+      // Load skills from local storage (if any quiz taken)
+      loadLocalStorageSkills();
+
+      // Hook up event listeners
+      initEventListeners();
+
+      // Update outlook card based on default selected role
+      updateOutlookCard();
+    });
+
+    // Load from Career Quiz
+    function loadLocalStorageSkills() {
+      try {
+        const quizData = JSON.parse(localStorage.getItem("careerCompassQuiz") || "{}");
+        if (quizData.skills && quizData.skills.selections) {
+          quizData.skills.selections.forEach(skillName => {
+            // Add if not already present
+            addSkill(skillName, "Intermediate");
+          });
+        }
+      } catch (e) {
+        console.warn("Could not read quiz skills from local storage", e);
+      }
+
+      // Fallback defaults if list is empty
+      if (currentSkills.length === 0) {
+        addSkill("Coding & Tech", "Intermediate");
+        addSkill("Problem Solving", "Advanced");
+        addSkill("Git", "Beginner");
+      }
+
+      renderSkillsGrid();
+    }
+
+    // Add skill helper
+    function addSkill(name, proficiency = "Intermediate") {
+      name = name.trim();
+      if (!name) return false;
+
+      // Case insensitive duplicate check
+      const exists = currentSkills.some(s => s.name.toLowerCase() === name.toLowerCase());
+      if (exists) return false;
+
+      currentSkills.push({ name, proficiency });
+      return true;
+    }
+
+    // Remove skill helper
+    function removeSkill(name) {
+      currentSkills = currentSkills.filter(s => s.name.toLowerCase() !== name.toLowerCase());
+      renderSkillsGrid();
+    }
+
+    // Change proficiency level
+    function updateProficiency(name, level) {
+      const idx = currentSkills.findIndex(s => s.name.toLowerCase() === name.toLowerCase());
+      if (idx !== -1) {
+        currentSkills[idx].proficiency = level;
+      }
+    }
+
+    // ===================================================
+    // UI RENDERERS
+    // ===================================================
+    function renderSkillsGrid() {
+      const grid = document.getElementById("selectedSkillsGrid");
+      grid.innerHTML = "";
+
+      if (currentSkills.length === 0) {
+        grid.innerHTML = `<div class="empty-skills-msg">No skills added yet. Add skills below or upload your resume.</div>`;
+        return;
+      }
+
+      currentSkills.forEach(skill => {
+        const tag = document.createElement("div");
+        tag.className = "skill-editor-tag";
+
+        tag.innerHTML = `
+          <span class="skill-tag-name">${escapeHTML(skill.name)}</span>
+          <div class="skill-tag-options">
+            <select class="proficiency-tag-select" onchange="updateProficiency('${escapeHTML(skill.name)}', this.value)">
+              <option value="Beginner" ${skill.proficiency === 'Beginner' ? 'selected' : ''}>Beginner</option>
+              <option value="Intermediate" ${skill.proficiency === 'Intermediate' ? 'selected' : ''}>Intermediate</option>
+              <option value="Advanced" ${skill.proficiency === 'Advanced' ? 'selected' : ''}>Advanced</option>
+            </select>
+            <button class="remove-skill-tag" onclick="removeSkill('${escapeHTML(skill.name)}')">&times;</button>
+          </div>
+        `;
+        grid.appendChild(tag);
+      });
+    }
+
+    function updateOutlookCard() {
+      const select = document.getElementById("targetRoleSelect");
+      const roleKey = select.value;
+      const roleData = ROLES_DATABASE[roleKey];
+      if (!roleData) return;
+
+      document.getElementById("outlookRoleTitle").innerText = roleData.title;
+      document.getElementById("outlookSalary").innerText = roleData.salary;
+      document.getElementById("outlookDemand").innerText = roleData.demand;
+      document.getElementById("outlookGrowth").innerText = roleData.growth;
+      document.getElementById("outlookEmployers").innerText = roleData.employers;
+
+      // Adjust demand badge color
+      const demandEl = document.getElementById("outlookDemand");
+      demandEl.className = "metric-badge";
+      if (roleData.demand === "Critical") {
+        demandEl.classList.add("bg-critical");
+      } else if (roleData.demand === "Very High" || roleData.demand === "High") {
+        demandEl.classList.add("bg-green-glow");
+      } else {
+        demandEl.classList.add("bg-yellow-glow");
+      }
+    }
+
+    // ===================================================
+    // ANALYSIS LOGIC
+    // ===================================================
+    function runAnalysis() {
+      const roleKey = document.getElementById("targetRoleSelect").value;
+      const roleData = ROLES_DATABASE[roleKey];
+      if (!roleData) return;
+
+      // Filter matching skills vs gaps
+      const userSkillNames = currentSkills.map(s => s.name.toLowerCase());
+
+      const strengths = [];
+      const gaps = [];
+
+      // Calculate score based on required skills weightages
+      let scoreWeight = 0;
+      let totalMaxWeight = roleData.required.length * 10; // Max 10 points per required skill
+
+      roleData.required.forEach(reqSkill => {
+        const matchingSkill = currentSkills.find(s => s.name.toLowerCase() === reqSkill.toLowerCase());
+
+        if (matchingSkill) {
+          strengths.push(reqSkill);
+          // Score factor based on proficiency
+          let factor = 0.5; // Beginner
+          if (matchingSkill.proficiency === "Intermediate") factor = 0.8;
+          if (matchingSkill.proficiency === "Advanced") factor = 1.0;
+
+          scoreWeight += (10 * factor);
+        } else {
+          gaps.push(reqSkill);
+        }
+      });
+
+      // Nice to have skills boost score
+      roleData.niceToHave.forEach(niceSkill => {
+        const matchingSkill = currentSkills.find(s => s.name.toLowerCase() === niceSkill.toLowerCase());
+        if (matchingSkill) {
+          strengths.push(`${niceSkill} (Bonus)`);
+          let factor = 0.3; // nice-to-have has lower weight boost
+          if (matchingSkill.proficiency === "Intermediate") factor = 0.6;
+          if (matchingSkill.proficiency === "Advanced") factor = 0.8;
+          scoreWeight += (10 * factor);
+        }
+      });
+
+      // Final Math score
+      let finalScore = Math.round((scoreWeight / totalMaxWeight) * 100);
+      if (finalScore > 100) finalScore = 100;
+      if (finalScore < 15 && strengths.length > 0) finalScore = 15; // floor score if they have something
+      if (finalScore === 0) finalScore = 5; // offset zero for style
+
+      // Update Results Sections
+      document.getElementById("resultsSection").style.display = "block";
+      document.getElementById("recommendationsCard").style.display = "block";
+
+      // Render score progress wheel
+      const scoreBar = document.getElementById("scoreBar");
+      const scoreText = document.getElementById("scoreText");
+
+      scoreText.innerText = `${finalScore}%`;
+      // Circle circumference is 377 (2 * pi * 60)
+      const circumference = 377;
+      const offset = circumference - (circumference * finalScore) / 100;
+      scoreBar.style.strokeDasharray = circumference;
+      scoreBar.style.strokeDashoffset = offset;
+
+      // Adjust bar color based on match
+      scoreBar.style.stroke = "var(--accent-purple)";
+      if (finalScore >= 80) {
+        scoreBar.style.stroke = "#10b981"; // Success Green
+      } else if (finalScore >= 50) {
+        scoreBar.style.stroke = "#6366f1"; // Accent Purple
+      } else {
+        scoreBar.style.stroke = "#fbbf24"; // Warning Yellow
+      }
+
+      // Grade text
+      const scoreGrade = document.getElementById("scoreGrade");
+      if (finalScore >= 85) {
+        scoreGrade.innerText = "Highly Ready & Qualified";
+        scoreGrade.style.color = "#10b981";
+      } else if (finalScore >= 60) {
+        scoreGrade.innerText = "Solid Foundation (Some Gaps)";
+        scoreGrade.style.color = "#a78bfa";
+      } else {
+        scoreGrade.innerText = "Needs Practical Bridging";
+        scoreGrade.style.color = "#fbbf24";
+      }
+
+      // Coverage Bar
+      const totalReq = roleData.required.length;
+      const matchedReq = roleData.required.filter(req => userSkillNames.includes(req.toLowerCase())).length;
+      document.getElementById("coveragePercentText").innerText = `${matchedReq} of ${totalReq} required`;
+      document.getElementById("coverageFill").style.width = `${(matchedReq / totalReq) * 100}%`;
+
+      // Render Strength Pills
+      const strengthsList = document.getElementById("strengthsList");
+      strengthsList.innerHTML = "";
+      if (strengths.length === 0) {
+        strengthsList.innerHTML = `<span class="empty-pill-note">No matching strengths found.</span>`;
+      } else {
+        strengths.forEach(str => {
+          const pill = document.createElement("span");
+          pill.className = "compact-pill pill-success";
+          pill.innerHTML = `<i class="fa-solid fa-check"></i> ${escapeHTML(str)}`;
+          strengthsList.appendChild(pill);
+        });
+      }
+
+      // Render Gap Pills
+      const gapsList = document.getElementById("gapsList");
+      gapsList.innerHTML = "";
+      if (gaps.length === 0) {
+        gapsList.innerHTML = `<span class="compact-pill pill-success"><i class="fa-solid fa-star"></i> Fully Covered!</span>`;
+      } else {
+        gaps.forEach(gap => {
+          const pill = document.createElement("span");
+          pill.className = "compact-pill pill-warning";
+          pill.innerHTML = `<i class="fa-solid fa-exclamation"></i> ${escapeHTML(gap)}`;
+          gapsList.appendChild(pill);
+        });
+      }
+
+      // Render Proficiency Chart List
+      const profChart = document.getElementById("proficiencyChartList");
+      profChart.innerHTML = "";
+      currentSkills.forEach(skill => {
+        let pct = 33;
+        if (skill.proficiency === "Intermediate") pct = 66;
+        if (skill.proficiency === "Advanced") pct = 100;
+
+        const row = document.createElement("div");
+        row.className = "chart-bar-row";
+        row.innerHTML = `
+          <div class="chart-row-meta">
+            <span class="chart-skill-name">${escapeHTML(skill.name)}</span>
+            <span class="chart-skill-val">${skill.proficiency}</span>
+          </div>
+          <div class="chart-bar-track">
+            <div class="chart-bar-fill" style="width: ${pct}%;"></div>
+          </div>
+        `;
+        profChart.appendChild(row);
+      });
+
+      // Render Course Recommendations
+      const coursesRecList = document.getElementById("coursesRecList");
+      coursesRecList.innerHTML = "";
+      if (gaps.length === 0) {
+        coursesRecList.innerHTML = `
+          <div class="success-rec-msg">
+            <i data-lucide="party-popper" style="color: #10b981; width:28px; height:28px; margin-bottom: 8px;"></i>
+            <h5>Excellent Skill Match!</h5>
+            <p>You have all key skills. Ready to prepare for coding tests and portfolio reviews.</p>
+          </div>
+        `;
+      } else {
+        // Find matching courses from backend/database mocks
+        roleData.courses.forEach(course => {
+          const courseRow = document.createElement("div");
+          courseRow.className = "rec-item-row";
+          courseRow.innerHTML = `
+            <div class="rec-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="rec-meta">
+              <h5>${escapeHTML(course.title)}</h5>
+              <p>${escapeHTML(course.platform)} &middot; ${escapeHTML(course.difficulty)}</p>
+            </div>
+            <button class="rec-action-btn" onclick="enrollMock('${escapeHTML(course.title)}', '${escapeHTML(course.platform)}')">Enroll</button>
+          `;
+          coursesRecList.appendChild(courseRow);
+        });
+      }
+
+      // Setup lucide icons on dynamically created parts
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+
+      // Smooth scroll to results
+      document.getElementById("resultsSection").scrollIntoView({ behavior: "smooth" });
+    }
+
+    // Mock enrollment
+    window.enrollMock = function (courseTitle, platform) {
+      alert(`Redirecting you to ${platform} for the course:\n"${courseTitle}"!`);
+    };
+
+    // ===================================================
+    // INTERACTIVE CONTROLS
+    // ===================================================
+    function initEventListeners() {
+      // Role selection change triggers outlook update
+      document.getElementById("targetRoleSelect").addEventListener("change", () => {
+        updateOutlookCard();
+        // Clear old analysis report on selector change to keep logic clean
+        document.getElementById("resultsSection").style.display = "none";
+        document.getElementById("recommendationsCard").style.display = "none";
+      });
+
+      // Quick Chips Clicking
+      const chips = document.querySelectorAll(".suggestion-chip");
+      chips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          const skill = chip.getAttribute("data-skill");
+          if (addSkill(skill, "Intermediate")) {
+            renderSkillsGrid();
+          }
+        });
+      });
+
+      // Add skill text box enter
+      const skillInput = document.getElementById("skillSearchInput");
+      const btnAdd = document.getElementById("btnAddSkill");
+
+      skillInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          const val = skillInput.value.trim();
+          if (val) {
+            addSkill(val, "Intermediate");
+            renderSkillsGrid();
+            skillInput.value = "";
+          }
+        }
+      });
+
+      btnAdd.addEventListener("click", () => {
+        const val = skillInput.value.trim();
+        if (val) {
+          addSkill(val, "Intermediate");
+          renderSkillsGrid();
+          skillInput.value = "";
+        }
+      });
+
+      // Run button
+      document.getElementById("btnRunAnalysis").addEventListener("click", () => {
+        // Show mock loading trigger
+        const btn = document.getElementById("btnRunAnalysis");
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Processing Profile...`;
+
+        setTimeout(() => {
+          runAnalysis();
+          btn.disabled = false;
+          btn.innerHTML = `Run Skill Analysis <i class="lucide-sparkles"></i>`;
+          if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+          }
+        }, 1500);
+      });
+
+      // Reset action
+      document.getElementById("btnRecalculate").addEventListener("click", () => {
+        document.getElementById("resultsSection").style.display = "none";
+        document.getElementById("recommendationsCard").style.display = "none";
+      });
+
+      // Roadmap button click redirects to roadmap.html with topic query
+      document.getElementById("btnLinkRoadmap").addEventListener("click", () => {
+        const select = document.getElementById("targetRoleSelect");
+        const roleName = select.options[select.selectedIndex].text.split("(")[0].trim();
+        localStorage.setItem("careerCompassRoadmapTopic", roleName);
+        window.location.href = `roadmap.html?topic=${encodeURIComponent(roleName)}`;
+      });
+
+      // DRAG AND DROP RESUME SIMULATOR
+      const resumeZone = document.getElementById("resumeZone");
+      const fileInput = document.getElementById("resumeFileInput");
+
+      resumeZone.addEventListener("click", () => {
+        fileInput.click();
+      });
+
+      resumeZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        resumeZone.classList.add("dragover");
+      });
+
+      resumeZone.addEventListener("dragleave", () => {
+        resumeZone.classList.remove("dragover");
+      });
+
+      resumeZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        resumeZone.classList.remove("dragover");
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+          processFileSim(e.dataTransfer.files[0]);
+        }
+      });
+
+      fileInput.addEventListener("change", (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+          processFileSim(e.target.files[0]);
+        }
+      });
+
+      // Sidebar drawer toggle logic
+      const sidebar = document.getElementById('sidebar');
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+      function setSidebarOpen(isOpen) {
+        if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+        sidebar.classList.toggle('open', isOpen);
+        sidebarOverlay.classList.toggle('visible', isOpen);
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+        sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+      }
+
+      sidebarToggle?.addEventListener('click', () => {
+        const isOpen = sidebar.classList.contains('open');
+        setSidebarOpen(!isOpen);
+      });
+
+      sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+
+      sidebar?.addEventListener('scroll', () => {
+        sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setSidebarOpen(false);
+      });
+    }
+
+    // Mock Resume extraction algorithm
+    function processFileSim(file) {
+      document.getElementById("uploadNormalContent").style.display = "none";
+      document.getElementById("uploadParsingContent").style.display = "block";
+      document.getElementById("uploadSuccessContent").style.display = "none";
+
+      // Mock AI extraction delays
+      setTimeout(() => {
+        // Read file name / role context to extract relevant skills
+        const roleKey = document.getElementById("targetRoleSelect").value;
+        const roleData = ROLES_DATABASE[roleKey];
+
+        let skillsToAdd = [];
+        if (roleKey === "software-dev") {
+          skillsToAdd = [
+            { name: "Coding & Tech", level: "Advanced" },
+            { name: "REST APIs", level: "Intermediate" },
+            { name: "SQL", level: "Intermediate" },
+            { name: "JavaScript", level: "Advanced" }
+          ];
+        } else if (roleKey === "ui-ux-design") {
+          skillsToAdd = [
+            { name: "Creative & Design", level: "Advanced" },
+            { name: "Figma", level: "Advanced" },
+            { name: "User Research", level: "Intermediate" },
+            { name: "Prototyping", level: "Beginner" }
+          ];
+        } else if (roleKey === "data-analyst") {
+          skillsToAdd = [
+            { name: "Data & Research", level: "Advanced" },
+            { name: "SQL", level: "Intermediate" },
+            { name: "Excel", level: "Advanced" },
+            { name: "Communication", level: "Intermediate" }
+          ];
+        } else {
+          // Fallback random picker
+          skillsToAdd = [
+            { name: roleData.required[0], level: "Advanced" },
+            { name: roleData.required[1] || "Communication", level: "Intermediate" },
+            { name: roleData.niceToHave[0] || "Git", level: "Intermediate" }
+          ];
+        }
+
+        // Add to current state
+        let addedCount = 0;
+        skillsToAdd.forEach(s => {
+          if (addSkill(s.name, s.level)) {
+            addedCount++;
+          }
+        });
+
+        // Update parsed status
+        document.getElementById("uploadNormalContent").style.display = "none";
+        document.getElementById("uploadParsingContent").style.display = "none";
+
+        const successDiv = document.getElementById("uploadSuccessContent");
+        successDiv.style.display = "block";
+
+        document.getElementById("parsedSummaryText").innerText = `Extracted and synchronized ${skillsToAdd.length} skills from your resume (${file.name}).`;
+
+        // Refresh grid
+        renderSkillsGrid();
+      }, 2500);
+    }
+
+    // HTML sanitizer helper
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g,
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+  </script>
+</body>
+
+</html>
