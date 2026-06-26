@@ -353,7 +353,7 @@
     }
 
     // Main send logic
-    function handleSend(inputText) {
+    async function handleSend(inputText) {
       const query = (inputText || chatInput.value).trim();
       if (query === '') return;
 
@@ -379,11 +379,21 @@
       // Show typing indicator
       showTypingIndicator();
 
-      // Delay reply to simulate processing
-      setTimeout(() => {
-        removeTypingIndicator();
-        addMessage("ai", RESPONSE_DATABASE[matchedKey].bubble);
-      }, 1200);
+      try {
+        const data = await window.CareerCompassApi.askMentor(query);
+        setTimeout(() => {
+          removeTypingIndicator();
+          addMessage("ai", `
+            <h4>${escapeHTML((data.topic || "mentor").replace(/\b\w/g, char => char.toUpperCase()))} Guidance</h4>
+            <p>${escapeHTML(data.reply || "")}</p>
+          `);
+        }, 450);
+      } catch (error) {
+        setTimeout(() => {
+          removeTypingIndicator();
+          addMessage("ai", RESPONSE_DATABASE[matchedKey].bubble);
+        }, 1200);
+      }
     }
 
     // Attachment helper function

@@ -1,15 +1,11 @@
-const express = require("express");
+const { signup, login } = require("../../controllers/authcontroller");
 
-const router = express.Router();
-
-const {
-signup,
-login
+function registerAuthRoutes(app, basePath = "/api/auth") {
+  app.post(`${basePath}/signup`, signup);
+  app.post(`${basePath}/login`, login);
+  return app;
 }
-= require("../controllers/authController");
 
-router.post("/signup",signup);
-
-router.post("/login",login);
-
-module.exports = router;
+module.exports = registerAuthRoutes;
+module.exports.signup = signup;
+module.exports.login = login;

@@ -268,6 +268,13 @@
     }
   }
 
+  async function askMentor(message) {
+    return request("/mentor", {
+      method: "POST",
+      body: JSON.stringify({ message })
+    });
+  }
+
   function selectTopic(topic) {
     const input = document.getElementById("roadmapInput");
     if (input) input.value = topic;
@@ -360,6 +367,7 @@
     saveQuizStep,
     generateRoadmap,
     selectTopic,
+    askMentor,
     logout: clearSession
   };
   window.generateRoadmap = generateRoadmap;

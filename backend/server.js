@@ -222,11 +222,18 @@ function verifyToken(token) {
   const [encoded, signature] = token.split(".");
   const expected = crypto.createHmac("sha256", TOKEN_SECRET).update(encoded).digest("base64url");
 
-  if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) return null;
+  const signatureBuffer = Buffer.from(signature || "");
+  const expectedBuffer = Buffer.from(expected);
+  if (signatureBuffer.length !== expectedBuffer.length) return null;
+  if (!crypto.timingSafeEqual(signatureBuffer, expectedBuffer)) return null;
 
-  const payload = JSON.parse(Buffer.from(encoded, "base64url").toString("utf8"));
-  if (!payload.exp || payload.exp < Date.now()) return null;
-  return payload;
+  try {
+    const payload = JSON.parse(Buffer.from(encoded, "base64url").toString("utf8"));
+    if (!payload.exp || payload.exp < Date.now()) return null;
+    return payload;
+  } catch {
+    return null;
+  }
 }
 
 function getBearerToken(req) {
@@ -384,6 +391,58 @@ function buildRoadmap(topic) {
     summary: `A practical learning path for ${title}, from foundations to portfolio-ready work.`,
     steps,
     createdAt: nowIso()
+  };
+}
+
+function mentorReply(message) {
+  const text = String(message || "").trim();
+  const lower = text.toLowerCase();
+
+  if (!text) {
+    return {
+      topic: "general",
+      reply: "Ask me about a career path, skill roadmap, resume, interview prep, or switching fields."
+    };
+  }
+
+  if (/frontend|react|ui|web/.test(lower)) {
+    return {
+      topic: "frontend",
+      reply: "Start with HTML, CSS, and JavaScript fundamentals, then move into Git, responsive layouts, React, API fetching, accessibility, and two polished portfolio projects."
+    };
+  }
+
+  if (/backend|api|server|database|node/.test(lower)) {
+    return {
+      topic: "backend",
+      reply: "Focus on HTTP, REST API design, Node.js or another server stack, database modeling, authentication, validation, logging, and tests for the most important routes."
+    };
+  }
+
+  if (/resume|cv/.test(lower)) {
+    return {
+      topic: "resume",
+      reply: "Make your resume project-driven: list your stack, show measurable outcomes, link GitHub or live demos, and rewrite tasks as impact statements."
+    };
+  }
+
+  if (/interview|prep|prepare/.test(lower)) {
+    return {
+      topic: "interview",
+      reply: "Prepare in layers: fundamentals, practical project walkthroughs, common role-specific questions, behavioral stories using STAR, and timed mock interviews."
+    };
+  }
+
+  if (/product|manager|pm/.test(lower)) {
+    return {
+      topic: "product",
+      reply: "For product management, build proof around user research, prioritization, metrics, communication, PRDs, and cross-functional project ownership."
+    };
+  }
+
+  return {
+    topic: "general",
+    reply: "A good next step is to pick one target role, list the skills it asks for, build one project that proves those skills, then turn that project into resume and interview material."
   };
 }
 
@@ -560,6 +619,12 @@ async function handleApi(req, res, url) {
     return;
   }
 
+  if (req.method === "POST" && url.pathname === "/api/mentor") {
+    const reply = mentorReply(body.message || body.prompt || body.query);
+    sendJson(res, 200, { success: true, ...reply });
+    return;
+  }
+
   sendError(res, 404, "API route not found");
 }
 
@@ -611,7 +676,25 @@ async function startServer() {
   });
 }
 
-startServer().catch(error => {
-  console.error(error.message || "Unable to start Career Compass");
-  process.exit(1);
-});
+if (require.main === module) {
+  startServer().catch(error => {
+    console.error(error.message || "Unable to start Career Compass");
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  server,
+  startServer,
+  handleApi,
+  readDb,
+  writeDb,
+  normalizeEmail,
+  sanitizeUser,
+  hashPassword,
+  verifyPassword,
+  signToken,
+  careerMatches,
+  buildRoadmap,
+  mentorReply
+};

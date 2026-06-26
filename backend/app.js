@@ -1,12 +1,3 @@
-const express = require("express");
-const cors = require("cors");
-
-const app = express();
-
-app.use(cors());
-app.use(express.json());
-
-app.use("/api/auth",
-require("./routes/authRoutes"));
-
-module.exports = app;
+// Compatibility entry point for tooling that imports backend/app.js.
+// The project now uses the dependency-light HTTP server in server.js.
+module.exports = require("./server");

@@ -1,1 +1,4 @@
 backend/data/
+backend/.env
+backend/debug.log
+backend/node_modules/

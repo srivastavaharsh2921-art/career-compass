@@ -6,7 +6,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "smoke": "node scripts/smoke-test.js"
   },
   "dependencies": {
     "mongoose": "^8.16.0"
