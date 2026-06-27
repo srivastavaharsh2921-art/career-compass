@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const fsSync = require("fs");
 const fs = require("fs/promises");
 const http = require("http");
+const os = require("os");
 const path = require("path");
 const { URL } = require("url");
 
@@ -24,7 +25,10 @@ loadEnv();
 
 const PORT = Number(process.env.PORT || 5000);
 const TOKEN_SECRET = process.env.JWT_SECRET || process.env.TOKEN_SECRET || "careercompass-dev-secret";
-const DATA_DIR = path.join(__dirname, "data");
+const IS_SERVERLESS = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+const DATA_DIR = process.env.DATA_DIR || (IS_SERVERLESS
+  ? path.join(os.tmpdir(), "career-compass-data")
+  : path.join(__dirname, "data"));
 const DB_PATH = path.join(DATA_DIR, "db.json");
 const FRONTEND_DIR = path.join(__dirname, "..", "frontend");
 
@@ -51,6 +55,8 @@ const mongoStore = {
   enabled: false,
   collection: null
 };
+
+let initializationPromise;
 
 async function readJsonDbIfPresent() {
   try {
@@ -89,6 +95,20 @@ async function connectMongo() {
     console.warn(`MongoDB connection failed (${error.message}). Using local JSON storage.`);
     return false;
   }
+}
+
+function initializeBackend() {
+  if (!initializationPromise) {
+    initializationPromise = (async () => {
+      await connectMongo();
+      await ensureDb();
+    })().catch(error => {
+      initializationPromise = null;
+      throw error;
+    });
+  }
+
+  return initializationPromise;
 }
 
 async function ensureDb() {
@@ -653,10 +673,12 @@ async function serveStatic(req, res, url) {
   }
 }
 
-const server = http.createServer(async (req, res) => {
+async function requestHandler(req, res) {
   const url = new URL(req.url, `http://${req.headers.host || "localhost"}`);
 
   try {
+    await initializeBackend();
+
     if (url.pathname.startsWith("/api/")) {
       await handleApi(req, res, url);
       return;
@@ -666,11 +688,12 @@ const server = http.createServer(async (req, res) => {
   } catch (error) {
     sendError(res, 500, error.message || "Something went wrong");
   }
-});
+}
+
+const server = http.createServer(requestHandler);
 
 async function startServer() {
-  await connectMongo();
-  await ensureDb();
+  await initializeBackend();
   server.listen(PORT, () => {
     console.log(`Career Compass running at http://localhost:${PORT}`);
   });
@@ -686,6 +709,8 @@ if (require.main === module) {
 module.exports = {
   server,
   startServer,
+  requestHandler,
+  initializeBackend,
   handleApi,
   readDb,
   writeDb,
