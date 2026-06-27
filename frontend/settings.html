@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Compass - Settings</title>
+
+  <!-- Font and Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="settings.css">
+
+  <!-- Lucide Icon Library -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <!-- SIDEBAR NAVIGATION PANEL -->
+  <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+  <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
+    <span class="lines"></span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div>
+      <div class="logo-container">
+        <i data-lucide="compass" class="logo-icon"></i>
+        <span>Career Compass</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
+          <i data-lucide="layout-dashboard"></i> Dashboard
+        </a>
+        <a href="test.html" class="nav-item">
+          <i data-lucide="brain-circuit"></i> Career Quiz
+        </a>
+        <a href="roadmap.html" class="nav-item">
+          <i data-lucide="map"></i> Roadmaps
+        </a>
+        <a href="courses.html" class="nav-item">
+          <i data-lucide="graduation-cap"></i> Courses
+        </a>
+        <a href="mentor.html" class="nav-item">
+          <i data-lucide="bot"></i> AI Mentor
+        </a>
+        <a href="skills-analyzer.html" class="nav-item">
+          <i data-lucide="bar-chart-3"></i> Skill Analyzer
+        </a>
+        <a href="stream-analyzer.html" class="nav-item">
+          <i data-lucide="book-open"></i> 12th Pass Guide
+        </a>
+        <a href="settings.html" class="nav-item active">
+          <i data-lucide="settings"></i> Settings
+        </a>
+        <a href="about-us.html" class="nav-item mobile-only-nav">
+          <i data-lucide="info"></i> About Us
+        </a>
+        <a href="login.html" class="nav-item mobile-only-nav">
+          <i data-lucide="log-in"></i> Login
+        </a>
+        <a href="signup.html" class="nav-item mobile-only-nav">
+          <i data-lucide="user-plus"></i> Sign Up
+        </a>
+      </nav>
+    </div>
+
+    <div class="ai-box">
+      <div class="ai-avatar">
+        <i data-lucide="bot" style="color: #2563eb;"></i>
+      </div>
+      <h4>Need Help?</h4>
+      <p>Chat with our AI Mentor anytime!</p>
+      <button class="chat-btn" onclick="window.location.href='mentor.html'">
+        Chat Now <i data-lucide="arrow-right" size="16"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="main-wrapper">
+
+    <!-- HEADER BAR -->
+    <header class="top-bar">
+      <a href="index.html" class="logo page-title">
+        <i data-lucide="compass" class="page-title-icon"></i>
+        <span>Career</span> Compass
+      </a>
+      <div class="top-nav">
+        <a href="index.html" class="top-link">Home</a>
+        <a href="test.html" class="top-link">Career Test</a>
+        <a href="roadmap.html" class="top-link">Roadmaps</a>
+        <a href="courses.html" class="top-link">Courses</a>
+        <a href="mentor.html" class="top-link">AI Mentor</a>
+        <a href="about-us.html" class="top-link">About Us</a>
+      </div>
+      <div class="top-actions">
+        <a href="notifications.html" class="icon-btn" aria-label="Notifications">
+          <i data-lucide="bell"></i>
+        </a>
+        <a href="profile.html" class="profile-btn" style="display: flex; align-items: center; border-radius: 50%; padding: 0;">
+          <img src="" alt="Profile" class="profile-img" id="headerProfileImg">
+        </a>
+      </div>
+    </header>
+
+    <!-- CONTENT LAYOUT -->
+    <div class="content-grid">
+
+      <!-- LEFT WORKSPACE COLUMN (SETTINGS TABS & FORMS) -->
+      <div class="left-column">
+
+        <!-- Hero Title Card -->
+        <div class="hero-card">
+          <div class="hero-info">
+            <h1>Account Settings</h1>
+            <p>Customize your profile details, stream configurations, notification toggles, and account credentials.</p>
+          </div>
+          <div class="hero-visual">
+            <div class="brain-glow"></div>
+            <i data-lucide="settings"
+              style="position:absolute; width:65px; height:65px; color:#6366f1; right:10px; top:20px; filter: drop-shadow(0 0 10px rgba(99,102,241,0.3));"></i>
+          </div>
+        </div>
+
+        <!-- Settings Container -->
+        <div class="settings-container">
+
+          <!-- Tabs Navigation -->
+          <div class="settings-tabs-bar">
+            <button class="tab-btn active" data-tab="profile">
+              <i data-lucide="user" size="16"></i> Profile Settings
+            </button>
+            <button class="tab-btn" data-tab="academics">
+              <i data-lucide="graduation-cap" size="16"></i> Academics & Stream
+            </button>
+            <button class="tab-btn" data-tab="notifications">
+              <i data-lucide="bell" size="16"></i> Notifications
+            </button>
+            <button class="tab-btn" data-tab="security">
+              <i data-lucide="lock" size="16"></i> Security
+            </button>
+          </div>
+
+          <!-- TAB 1: PROFILE SETTINGS -->
+          <div class="tab-content active" id="tab-profile">
+            <h3>Personal Information</h3>
+            <p class="section-subtitle">Configure your public name and credentials.</p>
+
+            <form id="profileForm">
+              <!-- Avatar Upload Simulator -->
+              <div class="avatar-upload-zone">
+                <div class="avatar-wrapper">
+                  <img src="" alt="User Avatar" class="settings-avatar" id="avatarPreview">
+                  <div class="avatar-overlay" id="btnChangeAvatar">
+                    <i data-lucide="camera" size="18"></i>
+                  </div>
+                </div>
+                <div class="avatar-meta">
+                  <h4>Profile Picture</h4>
+                  <p>PNG, JPG or JPEG. Max size 2MB.</p>
+                  <input type="file" id="avatarFileInput" accept="image/*" style="display: none;">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="profileName">Full Name</label>
+                  <input type="text" id="profileName" value="">
+                </div>
+                <div class="form-group">
+                  <label for="profileEmail">Email Address</label>
+                  <input type="email" id="profileEmail" value="">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="profileTarget">Admissions Target</label>
+                  <input type="text" id="profileTarget" value="">
+                </div>
+                <div class="form-group">
+                  <label for="profileLocation">Location</label>
+                  <input type="text" id="profileLocation" value="">
+                </div>
+              </div>
+
+              <button type="submit" class="save-settings-btn">
+                Save Changes <i data-lucide="save" size="16"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- TAB 2: ACADEMICS & STREAM -->
+          <div class="tab-content" id="tab-academics">
+            <h3>Academic Background</h3>
+            <p class="section-subtitle">Set up your current academic stream for better personalized degree matching.</p>
+
+            <form id="academicsForm">
+              <div class="form-group">
+                <label for="settingsStream">12th School Stream</label>
+                <div class="select-wrapper">
+                  <select id="settingsStream">
+                    <option value="pcm" selected>Science (PCM - Physics, Chemistry, Maths)</option>
+                    <option value="pcb">Science (PCB - Physics, Chemistry, Biology)</option>
+                    <option value="commerce">Commerce</option>
+                    <option value="arts">Arts / Humanities</option>
+                  </select>
+                  <i data-lucide="chevron-down" class="select-arrow"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Focus Subjects / Strengths</label>
+                <div class="subjects-checkbox-grid">
+                  <label class="checkbox-wrapper">
+                    <input type="checkbox" checked>
+                    <span class="custom-checkbox"></span>
+                    Physics
+                  </label>
+                  <label class="checkbox-wrapper">
+                    <input type="checkbox" checked>
+                    <span class="custom-checkbox"></span>
+                    Chemistry
+                  </label>
+                  <label class="checkbox-wrapper">
+                    <input type="checkbox" checked>
+                    <span class="custom-checkbox"></span>
+                    Mathematics
+                  </label>
+                  <label class="checkbox-wrapper">
+                    <input type="checkbox">
+                    <span class="custom-checkbox"></span>
+                    Biology
+                  </label>
+                  <label class="checkbox-wrapper">
+                    <input type="checkbox" checked>
+                    <span class="custom-checkbox"></span>
+                    Computer Science
+                  </label>
+                  <label class="checkbox-wrapper">
+                    <input type="checkbox">
+                    <span class="custom-checkbox"></span>
+                    Economics
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="save-settings-btn">
+                Save Stream Preferences <i data-lucide="save" size="16"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- TAB 3: NOTIFICATIONS -->
+          <div class="tab-content" id="tab-notifications">
+            <h3>Notification Preferences</h3>
+            <p class="section-subtitle">Control what alerts and guides get sent to your console.</p>
+
+            <form id="notificationsForm">
+              <div class="notification-options-list">
+
+                <div class="notification-item-row">
+                  <div class="noti-meta">
+                    <h4>AI Mentor Push Notifications</h4>
+                    <p>Alert me immediately when the AI Mentor has tips or roadmap reviews ready.</p>
+                  </div>
+                  <label class="switch-control">
+                    <input type="checkbox" checked>
+                    <span class="switch-slider"></span>
+                  </label>
+                </div>
+
+                <div class="notification-item-row">
+                  <div class="noti-meta">
+                    <h4>Entrance Exam Reminders</h4>
+                    <p>Receive weekly alerts regarding JEE, NEET, CUET, and CLAT registration deadlines.</p>
+                  </div>
+                  <label class="switch-control">
+                    <input type="checkbox" checked>
+                    <span class="switch-slider"></span>
+                  </label>
+                </div>
+
+                <div class="notification-item-row">
+                  <div class="noti-meta">
+                    <h4>Weekly Academic Digests</h4>
+                    <p>Get progress tracking summaries and recommended courses catalog updates.</p>
+                  </div>
+                  <label class="switch-control">
+                    <input type="checkbox">
+                    <span class="switch-slider"></span>
+                  </label>
+                </div>
+
+              </div>
+
+              <button type="submit" class="save-settings-btn" style="margin-top: 24px;">
+                Save Notification Settings <i data-lucide="save" size="16"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- TAB 4: SECURITY -->
+          <div class="tab-content" id="tab-security">
+            <h3>Security & Password</h3>
+            <p class="section-subtitle">Update your password credentials to keep your profile secure.</p>
+
+            <form id="securityForm">
+              <div class="form-group">
+                <label for="currentPassword">Current Password</label>
+                <input type="password" id="currentPassword" placeholder="••••••••">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="newPassword">New Password</label>
+                  <input type="password" id="newPassword" placeholder="At least 6 characters">
+                </div>
+                <div class="form-group">
+                  <label for="confirmNewPassword">Confirm New Password</label>
+                  <input type="password" id="confirmNewPassword" placeholder="Confirm password">
+                </div>
+              </div>
+
+              <button type="submit" class="save-settings-btn">
+                Update Password <i data-lucide="lock" size="16"></i>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN (DANGER ZONE & SUMMARY) -->
+      <div class="right-column">
+
+        <!-- Account Status Card -->
+        <div class="side-card status-card">
+          <h3>Account Status</h3>
+          <div class="status-indicator-row">
+            <span class="pulse-indicator"></span>
+            <div>
+              <h5>Active Account</h5>
+              <p>Registered since June 2026</p>
+            </div>
+          </div>
+
+          <div class="account-summary-details">
+            <div class="summary-stat">
+              <span class="stat-label">Quiz Completed</span>
+              <span class="stat-val text-success">Yes (100%)</span>
+            </div>
+            <div class="summary-stat">
+              <span class="stat-label">Roadmaps Generated</span>
+              <span class="stat-val">3 Active</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Danger Zone Card -->
+        <div class="side-card danger-zone-card">
+          <h3>Danger Zone</h3>
+          <p class="danger-subtext">Wipe cached quiz answers, saved streams, and compatibility reports from local
+            memory.</p>
+
+          <button class="btn-wipe-data" id="btnWipeData">
+            Wipe Quiz Progress <i data-lucide="trash-2" size="14"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <script src="api.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Lucide Icons
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+
+      // Load Profile Data from LocalStorage
+      const savedName = localStorage.getItem("cc_profile_name");
+      const savedEmail = localStorage.getItem("cc_profile_email");
+      const savedTarget = localStorage.getItem("cc_profile_target");
+      const savedLocation = localStorage.getItem("cc_profile_location");
+      const savedAvatar = localStorage.getItem("cc_profile_avatar");
+
+      if (savedName) document.getElementById("profileName").value = savedName;
+      if (savedEmail) document.getElementById("profileEmail").value = savedEmail;
+      if (savedTarget) document.getElementById("profileTarget").value = savedTarget;
+      if (savedLocation) document.getElementById("profileLocation").value = savedLocation;
+      if (savedAvatar) {
+        document.getElementById("avatarPreview").src = savedAvatar;
+        if (document.getElementById("headerProfileImg")) {
+          document.getElementById("headerProfileImg").src = savedAvatar;
+        }
+      }
+
+      const savedStream = localStorage.getItem("cc_profile_stream");
+      if (savedStream) {
+        document.getElementById("settingsStream").value = savedStream;
+      }
+      
+      const savedSubjects = localStorage.getItem("cc_profile_subjects");
+      if (savedSubjects) {
+        const subjects = JSON.parse(savedSubjects);
+        document.querySelectorAll(".subjects-checkbox-grid label").forEach(label => {
+          const cb = label.querySelector("input[type='checkbox']");
+          const name = label.textContent.trim();
+          if (cb) {
+            cb.checked = subjects.includes(name);
+          }
+        });
+      }
+
+      // Handle Tab Switching
+      const tabs = document.querySelectorAll(".tab-btn");
+      const contents = document.querySelectorAll(".tab-content");
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          const target = tab.getAttribute("data-tab");
+
+          // Toggle tabs
+          tabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          // Toggle content
+          contents.forEach(c => c.classList.remove("active"));
+          document.getElementById(`tab-${target}`).classList.add("active");
+        });
+      });
+
+      // Handle Avatar Upload Simulator
+      const avatarOverlay = document.getElementById("btnChangeAvatar");
+      const avatarInput = document.getElementById("avatarFileInput");
+      const avatarPreview = document.getElementById("avatarPreview");
+      const headerProfileImg = document.getElementById("headerProfileImg");
+
+      avatarOverlay.addEventListener("click", () => {
+        avatarInput.click();
+      });
+
+      avatarInput.addEventListener("change", (e) => {
+        if (e.target.files && e.target.files[0]) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            avatarPreview.src = event.target.result;
+            if (headerProfileImg) {
+              headerProfileImg.src = event.target.result;
+            }
+            localStorage.setItem("cc_profile_avatar", event.target.result);
+            showNotification("Profile picture updated successfully!", "success");
+          };
+          reader.readAsDataURL(e.target.files[0]);
+        }
+      });
+
+      // Handle Form Submits
+      const forms = ["profileForm", "academicsForm", "notificationsForm", "securityForm"];
+      forms.forEach(formId => {
+        const form = document.getElementById(formId);
+        if (form) {
+          form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // Password validation helper
+            if (formId === "securityForm") {
+              const currentP = document.getElementById("currentPassword").value;
+              const newP = document.getElementById("newPassword").value;
+              const confirmP = document.getElementById("confirmNewPassword").value;
+
+              if (!currentP) {
+                showNotification("Please enter your current password.", "error");
+                return;
+              }
+              if (newP.length < 6) {
+                showNotification("New password must be at least 6 characters.", "error");
+                return;
+              }
+              if (newP !== confirmP) {
+                showNotification("New passwords do not match.", "error");
+                return;
+              }
+            }
+
+            if (formId === "profileForm") {
+              localStorage.setItem("cc_profile_name", document.getElementById("profileName").value);
+              localStorage.setItem("cc_profile_email", document.getElementById("profileEmail").value);
+              localStorage.setItem("cc_profile_target", document.getElementById("profileTarget").value);
+              localStorage.setItem("cc_profile_location", document.getElementById("profileLocation").value);
+            }
+            if (formId === "academicsForm") {
+              localStorage.setItem("cc_profile_stream", document.getElementById("settingsStream").value);
+              const checked = [];
+              document.querySelectorAll(".subjects-checkbox-grid label").forEach(label => {
+                const cb = label.querySelector("input[type='checkbox']");
+                if (cb && cb.checked) {
+                  checked.push(label.textContent.trim());
+                }
+              });
+              localStorage.setItem("cc_profile_subjects", JSON.stringify(checked));
+            }
+
+            // Save simulation
+            showNotification("Settings saved successfully!", "success");
+          });
+        }
+      });
+
+      // Danger Zone: Wipe local storage data
+      const btnWipe = document.getElementById("btnWipeData");
+      btnWipe.addEventListener("click", () => {
+        if (confirm("Are you sure you want to wipe all your Quiz progress? This will clear your saved stream scores and assessment results.")) {
+          localStorage.removeItem("careerCompassQuiz");
+          localStorage.removeItem("cc_bookmarks");
+          localStorage.removeItem("careerCompassRoadmapTopic");
+
+          showNotification("Quiz progress and local cache wiped.", "success");
+
+          // Refresh page in 1.5s
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        }
+      });
+
+      // Notification API Helper
+      function showNotification(message, type = "success") {
+        let notiBox = document.querySelector(".cc-settings-noti");
+        if (!notiBox) {
+          notiBox = document.createElement("div");
+          notiBox.className = "cc-settings-noti";
+          document.body.appendChild(notiBox);
+        }
+
+        notiBox.textContent = message;
+        notiBox.dataset.type = type;
+        Object.assign(notiBox.style, {
+          position: "fixed",
+          top: "18px",
+          right: "18px",
+          zIndex: "9999",
+          padding: "12px 18px",
+          borderRadius: "8px",
+          color: "#fff",
+          fontSize: "14px",
+          fontWeight: "600",
+          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.4)",
+          background: type === "success" ? "#10b981" : "#f43f5e",
+          border: type === "success" ? "1px solid rgba(16, 185, 129, 0.3)" : "1px solid rgba(244, 63, 94, 0.3)",
+          animation: "slideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)"
+        });
+
+        // Keyframe CSS injected once
+        if (!document.getElementById("noti-animation-style")) {
+          const style = document.createElement("style");
+          style.id = "noti-animation-style";
+          style.innerHTML = `
+            @keyframes slideIn {
+              0% { transform: translateX(120%); opacity: 0; }
+              100% { transform: translateX(0); opacity: 1; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+
+        window.clearTimeout(showNotification.timer);
+        showNotification.timer = setTimeout(() => {
+          notiBox.remove();
+        }, 3000);
+      }
+
+      // Sidebar toggle logic
+      const sidebar = document.getElementById('sidebar');
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+      function setSidebarOpen(isOpen) {
+        if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
+        sidebar.classList.toggle('open', isOpen);
+        sidebarOverlay.classList.toggle('visible', isOpen);
+        sidebarToggle.setAttribute('aria-expanded', String(isOpen));
+        sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+      }
+
+      sidebarToggle?.addEventListener('click', () => {
+        const isOpen = sidebar.classList.contains('open');
+        setSidebarOpen(!isOpen);
+      });
+
+      sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+
+      sidebar?.addEventListener('scroll', () => {
+        sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setSidebarOpen(false);
+      });
+    });
+  </script>
+</body>
+
+</html>
