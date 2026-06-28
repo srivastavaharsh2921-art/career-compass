@@ -477,6 +477,70 @@
                 isFree: false,
                 skills: ["Accounting", "Financial Statements", "Bookkeeping"],
                 image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 9,
+                title: "Data Scientist Career Path",
+                category: "Data & AI",
+                platform: "Coursera",
+                instructor: "IBM Skills Network",
+                rating: 4.7,
+                reviews: "21.3k",
+                enrolled: 156000,
+                duration: "5 months",
+                level: "Beginner",
+                price: "Free Audit",
+                isFree: true,
+                skills: ["Python", "SQL", "Pandas", "Data Visualization", "Machine Learning"],
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 10,
+                title: "Machine Learning Engineering & MLOps",
+                category: "Data & AI",
+                platform: "Coursera",
+                instructor: "DeepLearning.AI",
+                rating: 4.8,
+                reviews: "13.7k",
+                enrolled: 94000,
+                duration: "3 months",
+                level: "Advanced",
+                price: "Paid",
+                isFree: false,
+                skills: ["MLOps", "Model Deployment", "Data Pipelines", "Model Monitoring", "TensorFlow"],
+                image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 11,
+                title: "Generative AI and Large Language Models",
+                category: "Data & AI",
+                platform: "Coursera",
+                instructor: "DeepLearning.AI",
+                rating: 4.8,
+                reviews: "16.5k",
+                enrolled: 118000,
+                duration: "6 weeks",
+                level: "Intermediate",
+                price: "Paid",
+                isFree: false,
+                skills: ["Generative AI", "Large Language Models", "Transformers", "Prompt Engineering", "Responsible AI"],
+                image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+                id: 12,
+                title: "Data Analysis Professional Certificate",
+                category: "Data & AI",
+                platform: "Google",
+                instructor: "Google Career Certificates",
+                rating: 4.8,
+                reviews: "31.9k",
+                enrolled: 247000,
+                duration: "4 months",
+                level: "Beginner",
+                price: "Free Audit",
+                isFree: true,
+                skills: ["Spreadsheets", "SQL", "Data Cleaning", "Tableau", "Business Analytics"],
+                image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=600&q=80"
             }
         ];
 
@@ -711,6 +775,26 @@
 
         const MOCK_AI_RESPONSES = [
             {
+                keywords: ["data scientist", "data science"],
+                reply: "For a data science career path, begin with Python, SQL, statistics, and exploratory analysis before moving into predictive modeling. These courses cover that progression from foundations to portfolio-ready work:",
+                matches: [9, 4, 12]
+            },
+            {
+                keywords: ["data analyst", "data analysis", "analytics", "tableau", "power bi"],
+                reply: "For data analysis, prioritize spreadsheets, SQL, data cleaning, visualization, and concise business storytelling. These selections build those skills in a practical order:",
+                matches: [12, 9, 2]
+            },
+            {
+                keywords: ["machine learning", "ml engineer", "mlops"],
+                reply: "For machine learning engineering, build strong model-development fundamentals first, then learn deployment, pipelines, monitoring, and production reliability. These are the strongest matches in the catalog:",
+                matches: [4, 10, 9]
+            },
+            {
+                keywords: ["artificial intelligence", "generative ai", "large language model", "llm", "ai engineer"],
+                reply: "For artificial intelligence, start with the concepts and responsible-use foundations, then progress into machine learning, transformers, and generative AI systems. Here is a focused sequence:",
+                matches: [6, 4, 11]
+            },
+            {
                 keywords: ["react", "frontend", "script", "code", "programming", "js", "javascript"],
                 reply: "Based on your interest in Frontend and React, I highly recommend starting with Harvard's CS50 to build core programming fundamentals, and then immediately progressing to 'Advanced React and Redux' on Udemy. Here are the curated selections for you:",
                 matches: [2, 3, 5]
@@ -722,8 +806,8 @@
             },
             {
                 keywords: ["ai", "machine", "ml", "data", "python", "neural", "deep"],
-                reply: "For Artificial Intelligence and Machine Learning, Andrew Ng's courses are the gold standard. Start with 'AI For Everyone' to get the business context, and follow up with the 'Machine Learning Specialization' to code the algorithms yourself. Here are your options:",
-                matches: [6, 4, 2]
+                reply: "For Artificial Intelligence and Machine Learning, start with the core concepts, learn to train and evaluate models, and then move into generative AI or production ML. Here are your best matches:",
+                matches: [6, 4, 11, 10]
             }
         ];
 

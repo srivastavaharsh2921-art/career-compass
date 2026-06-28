@@ -124,23 +124,80 @@
         stage("Portfolio Projects", ["Mobile App Case Study", "Website Redesign", "SaaS Dashboard", "Portfolio Projects"], 55, "Advanced")
       ]
     },
-    aiml: {
-      label: "AI/ML",
-      title: "AI & Machine Learning Roadmap",
-      description: "Build the math, data, machine learning, and generative AI skills behind modern intelligent products.",
-      icon: "ph-brain",
-      aliases: ["ai", "ml", "ai ml", "ai/ml", "machine learning", "artificial intelligence"],
+    dataScience: {
+      label: "Data Scientist",
+      title: "Data Scientist Roadmap",
+      description: "Learn to investigate data, build predictive models, communicate findings, and deliver end-to-end data products.",
+      icon: "ph-chart-scatter",
+      aliases: ["data scientist", "data science", "data scientist course"],
+      docs: "https://pandas.pydata.org/docs/user_guide/",
+      nodes: [
+        stage("Python & Jupyter Foundations", ["Python", "Jupyter Notebook", "Functions", "Data Structures", "Virtual Environments"], 32),
+        stage("Statistics & Probability", ["Descriptive Statistics", "Probability", "Distributions", "Sampling", "Hypothesis Testing"], 45),
+        stage("Data Collection & SQL", ["SQL", "Joins", "Aggregations", "APIs", "Web Data", "Data Ethics"], 38, "Intermediate"),
+        stage("Data Wrangling", ["NumPy", "Pandas", "Missing Values", "Outliers", "Feature Types"], 42, "Intermediate"),
+        stage("Exploratory Data Analysis", ["Matplotlib", "Seaborn", "Correlation", "Segmentation", "Data Storytelling"], 36, "Intermediate"),
+        stage("Machine Learning", ["Regression", "Classification", "Clustering", "Model Selection", "Cross-validation"], 58, "Intermediate"),
+        stage("Advanced Modeling", ["Feature Engineering", "Ensembles", "Time Series", "Natural Language Processing", "Explainability"], 55, "Advanced"),
+        stage("Data Products & MLOps", ["Streamlit", "FastAPI", "Model Tracking", "Docker", "Monitoring"], 42, "Advanced"),
+        stage("Data Science Portfolio", ["Business EDA", "Prediction Project", "Experiment Analysis", "Deployed Data App"], 70, "Advanced")
+      ]
+    },
+    machineLearning: {
+      label: "Machine Learning",
+      title: "Machine Learning Engineer Roadmap",
+      description: "Master model development from mathematical foundations and clean training data to deployment and monitoring.",
+      icon: "ph-function",
+      aliases: ["machine learning", "ml", "machine learning engineer", "ml engineer"],
       docs: "https://scikit-learn.org/stable/user_guide.html",
       nodes: [
-        stage("Python for AI", ["Python", "Functions", "Data Structures", "Jupyter"], 28),
-        stage("Mathematics", ["Algebra", "Probability", "Statistics", "Calculus"], 50),
-        stage("Data Toolkit", ["NumPy", "Pandas", "Matplotlib"], 34, "Intermediate"),
-        stage("Prepare Data", ["Data Cleaning", "Feature Engineering"], 26, "Intermediate"),
-        stage("Machine Learning", ["Regression", "Classification", "Clustering"], 48, "Intermediate"),
-        stage("Deep Learning", ["Deep Learning", "Neural Networks", "TensorFlow", "PyTorch"], 55, "Advanced"),
-        stage("Applied AI", ["NLP", "Computer Vision"], 44, "Advanced"),
-        stage("Generative AI", ["LLM", "RAG", "AI Agents"], 45, "Advanced"),
-        stage("AI/ML Projects", ["Prediction Model", "Image Classifier", "RAG Assistant", "AI Agent"], 65, "Advanced")
+        stage("Python for Machine Learning", ["Python", "NumPy", "Pandas", "Jupyter", "Git"], 36),
+        stage("Mathematical Foundations", ["Linear Algebra", "Calculus", "Probability", "Statistics", "Optimization"], 55),
+        stage("Data Preparation", ["Data Cleaning", "Encoding", "Scaling", "Feature Engineering", "Train Test Split"], 36, "Intermediate"),
+        stage("Supervised Learning", ["Linear Regression", "Logistic Regression", "Decision Trees", "Random Forests", "Support Vector Machines"], 52, "Intermediate"),
+        stage("Unsupervised Learning", ["Clustering", "Dimensionality Reduction", "Anomaly Detection", "Recommendation Basics"], 38, "Intermediate"),
+        stage("Model Evaluation", ["Metrics", "Cross-validation", "Hyperparameter Tuning", "Data Leakage", "Bias & Variance"], 36, "Intermediate"),
+        stage("Deep Learning", ["Neural Networks", "Backpropagation", "PyTorch", "CNNs", "Transformers"], 65, "Advanced"),
+        stage("Production ML", ["Model APIs", "Docker", "Experiment Tracking", "CI/CD", "Drift Monitoring"], 48, "Advanced"),
+        stage("ML Engineering Projects", ["Churn Predictor", "Recommendation Engine", "Image Classifier", "Production Model Service"], 72, "Advanced")
+      ]
+    },
+    artificialIntelligence: {
+      label: "Artificial Intelligence",
+      title: "Artificial Intelligence Engineer Roadmap",
+      description: "Build intelligent applications using classical AI, deep learning, language models, retrieval, and responsible AI practices.",
+      icon: "ph-brain",
+      aliases: ["artificial intelligence", "ai", "ai engineer", "generative ai"],
+      docs: "https://pytorch.org/docs/stable/index.html",
+      nodes: [
+        stage("AI Foundations", ["AI vs ML", "Python", "Algorithms", "Data Structures", "Problem Formulation"], 34),
+        stage("Math for Intelligent Systems", ["Linear Algebra", "Probability", "Calculus", "Optimization"], 50),
+        stage("Classical AI", ["Search", "Heuristics", "Knowledge Representation", "Constraint Satisfaction", "Planning"], 42, "Intermediate"),
+        stage("Machine Learning Core", ["Regression", "Classification", "Clustering", "Feature Engineering", "Evaluation"], 52, "Intermediate"),
+        stage("Deep Learning", ["Neural Networks", "PyTorch", "CNNs", "Sequence Models", "Transformers"], 65, "Advanced"),
+        stage("Language & Vision", ["Natural Language Processing", "Computer Vision", "Embeddings", "Multimodal Models"], 52, "Advanced"),
+        stage("Generative AI Systems", ["Large Language Models", "Prompt Engineering", "RAG", "Vector Databases", "AI Agents"], 58, "Advanced"),
+        stage("Responsible & Production AI", ["AI Safety", "Bias", "Evaluation", "Guardrails", "Deployment", "Monitoring"], 42, "Advanced"),
+        stage("AI Portfolio Projects", ["Vision App", "RAG Assistant", "Tool-using Agent", "Evaluated AI Product"], 75, "Advanced")
+      ]
+    },
+    dataAnalysis: {
+      label: "Data Analysis",
+      title: "Data Analyst Roadmap",
+      description: "Turn raw business data into trustworthy reports, clear dashboards, and decisions stakeholders can act on.",
+      icon: "ph-chart-bar",
+      aliases: ["data analysis", "data analytics", "data analyst", "business intelligence analyst"],
+      docs: "https://pandas.pydata.org/docs/user_guide/",
+      nodes: [
+        stage("Analytics Foundations", ["Business Questions", "Metrics", "Data Types", "Analytical Thinking", "Data Ethics"], 20),
+        stage("Spreadsheets", ["Excel", "Google Sheets", "Formulas", "Pivot Tables", "Lookups", "Data Validation"], 36),
+        stage("SQL for Analysis", ["SELECT", "Filtering", "Joins", "Aggregations", "CTEs", "Window Functions"], 45, "Intermediate"),
+        stage("Cleaning Data", ["Missing Values", "Duplicates", "Outliers", "Text Cleaning", "Quality Checks"], 30, "Intermediate"),
+        stage("Python Analytics", ["Python", "NumPy", "Pandas", "Jupyter", "Automation"], 42, "Intermediate"),
+        stage("Statistics for Decisions", ["Descriptive Statistics", "Sampling", "Confidence Intervals", "Hypothesis Testing", "A/B Testing"], 40, "Intermediate"),
+        stage("Visualization & Dashboards", ["Matplotlib", "Seaborn", "Power BI", "Tableau", "Dashboard Design"], 46, "Intermediate"),
+        stage("Business Intelligence", ["KPI Design", "Data Modeling", "DAX", "Storytelling", "Stakeholder Communication"], 38, "Advanced"),
+        stage("Data Analyst Portfolio", ["Sales Dashboard", "Customer Analysis", "A/B Test Report", "Executive Presentation"], 60, "Advanced")
       ]
     },
     cybersecurity: {
@@ -167,6 +224,7 @@
   const state = {
     key: "frontend",
     roadmap: ROADMAPS.frontend,
+    pendingKey: null,
     selectedNode: null,
     store: loadStore()
   };
@@ -233,18 +291,20 @@
     const query = filter.toLowerCase().trim();
     const matches = Object.entries(ROADMAPS).filter(([, item]) => !query || item.label.toLowerCase().includes(query) || item.aliases.some(alias => alias.includes(query)));
     elements.chips.innerHTML = matches.length
-      ? matches.map(([key, item]) => `<button type="button" data-roadmap="${key}" class="${key === state.key ? "active" : ""}">${escapeHtml(item.label)}</button>`).join("")
+      ? matches.map(([key, item]) => `<button type="button" data-roadmap="${key}" class="${key === state.pendingKey ? "active" : ""}">${escapeHtml(item.label)}</button>`).join("")
       : `<span class="no-match">Press Generate Roadmap to build a custom path</span>`;
   }
 
   function setRoadmap(key, roadmap, { scroll = true } = {}) {
     state.key = key;
     state.roadmap = roadmap;
+    state.pendingKey = key;
     state.selectedNode = null;
     localStorage.setItem(LAST_ROADMAP_KEY, JSON.stringify({ key, topic: roadmap.custom ? roadmap.label : "" }));
     elements.input.value = roadmap.custom ? roadmap.label : "";
     elements.title.textContent = roadmap.title;
     elements.description.textContent = roadmap.description;
+    elements.workspace.hidden = false;
     renderChips();
     renderFlow();
     updateProgress();
@@ -316,7 +376,7 @@
 
   function codeExample(node) {
     const title = node.title.toLowerCase();
-    if (state.key === "python" || state.key === "aiml") return `# Practice: ${node.title}\ndef learn(concept):\n    return f"Practising {concept}"\n\nfor topic in ${JSON.stringify(node.items.slice(0, 3))}:\n    print(learn(topic))`;
+    if (["python", "dataScience", "machineLearning", "artificialIntelligence", "dataAnalysis"].includes(state.key)) return `# Practice: ${node.title}\ndef learn(concept):\n    return f"Practising {concept}"\n\nfor topic in ${JSON.stringify(node.items.slice(0, 3))}:\n    print(learn(topic))`;
     if (state.key === "java") return `// Practice: ${node.title}\npublic class LearningPath {\n  public static void main(String[] args) {\n    System.out.println("Build, test, improve");\n  }\n}`;
     if (state.key === "uiux") return `DESIGN CHECKLIST\n• Define the user's goal\n• Create a clear visual hierarchy\n• Test one realistic task\n• Record evidence and iterate`;
     if (state.key === "cybersecurity") return `# Run only inside your own practice lab\nnmap -sV 192.168.56.101\n# Record exposed services, assess risk, then recommend fixes.`;
@@ -463,12 +523,10 @@
       setRoadmap(found?.[0] || `custom-${slug(queryTopic)}`, found?.[1] || createCustomRoadmap(queryTopic), { scroll: false });
       return;
     }
-    try {
-      const last = JSON.parse(localStorage.getItem(LAST_ROADMAP_KEY));
-      if (last?.key && ROADMAPS[last.key]) setRoadmap(last.key, ROADMAPS[last.key], { scroll: false });
-      else if (last?.topic) setRoadmap(last.key, createCustomRoadmap(last.topic), { scroll: false });
-      else setRoadmap("frontend", ROADMAPS.frontend, { scroll: false });
-    } catch { setRoadmap("frontend", ROADMAPS.frontend, { scroll: false }); }
+    elements.workspace.hidden = true;
+    elements.input.value = "";
+    state.pendingKey = null;
+    renderChips();
   }
 
   function cacheElements() {
@@ -484,11 +542,17 @@
 
   function bindEvents(setSidebarOpen) {
     elements.form.addEventListener("submit", handleGenerate);
-    elements.input.addEventListener("input", event => renderChips(event.target.value));
+    elements.input.addEventListener("input", event => {
+      state.pendingKey = null;
+      renderChips(event.target.value);
+    });
     elements.chips.addEventListener("click", event => {
       const button = event.target.closest("[data-roadmap]");
       if (!button) return;
-      setRoadmap(button.dataset.roadmap, ROADMAPS[button.dataset.roadmap]);
+      state.pendingKey = button.dataset.roadmap;
+      elements.input.value = ROADMAPS[state.pendingKey].label;
+      renderChips();
+      elements.input.focus();
     });
     elements.flow.addEventListener("click", event => {
       const node = event.target.closest("[data-node]");
