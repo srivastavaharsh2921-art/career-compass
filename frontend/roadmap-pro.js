@@ -275,6 +275,10 @@
     return { node, previous, next, index };
   }
 
+  function codingLanguages(node) {
+    return window.CareerCompassLanguageGuide?.get(state.roadmap, node) || ["Python", "JavaScript", "SQL"];
+  }
+
   function outcomeList(node) {
     return node.topics.slice(0, 5).map(topic => `Use ${topic} confidently in a realistic ${state.roadmap.label} task`);
   }
@@ -282,6 +286,7 @@
   function learnContent() {
     const { node, previous, next, index } = nodeContext();
     const opportunities = unique([state.roadmap.role, `${node.title} Specialist`, "Software Engineer", "Technical Consultant"]);
+    const languages = codingLanguages(node);
     return `<div class="detail-hero"><div class="detail-meta"><span><i class="ph ph-gauge"></i>${escapeHtml(node.difficulty)}</span><span><i class="ph ph-clock"></i>${node.time} hours</span><span><i class="ph ph-trend-up"></i>${escapeHtml(state.roadmap.demand)}</span></div><p>${escapeHtml(node.title)} is the ${index ? "next" : "starting"} capability in your ${state.roadmap.role} path. It combines ${escapeHtml(node.topics.slice(0, 3).join(", "))} into practical, transferable skill.</p></div>
       ${!isUnlocked(index) ? `<div class="locked-notice"><i class="ph ph-lock-key"></i><span><b>Preview mode</b>Complete ${escapeHtml(previous.title)} to unlock completion and rewards.</span></div>` : ""}
       <section class="detail-section"><h3><i class="ph ph-lightbulb"></i>Why learn this</h3><p>This milestone removes the gap between understanding terminology and making sound implementation decisions. It prepares you for ${escapeHtml(next?.title || "portfolio-quality delivery")} and appears frequently in real project reviews and interviews.</p></section>
@@ -289,6 +294,7 @@
       <section class="detail-section"><h3><i class="ph ph-target"></i>Learning outcomes</h3><ul class="check-list">${outcomeList(node).map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul></section>
       <section class="detail-section"><h3><i class="ph ph-stairs"></i>Prerequisites</h3><p>${previous ? `Complete <strong>${escapeHtml(previous.title)}</strong> and be able to explain its core decisions without notes.` : "No prior professional experience is required. Basic computer literacy, curiosity, and a consistent practice routine are enough."}</p></section>
       <section class="detail-section"><h3><i class="ph ph-list-bullets"></i>Topics covered</h3><div class="concept-grid">${node.topics.map(item => `<span>${escapeHtml(item)}</span>`).join("")}</div></section>
+      <section class="detail-section language-suggestion"><div class="language-heading"><div><span class="view-eyebrow">Recommended for this section</span><h3><i class="ph ph-code"></i>Coding languages to learn</h3></div><span>${index === 0 ? "Start with the first language" : "Use these in practice and projects"}</span></div><div class="language-grid">${languages.map((language, languageIndex) => `<article><i class="ph ph-code-block"></i><div><b>${escapeHtml(language)}</b><span>${languageIndex === 0 ? "Primary language" : "Supporting language"} for ${escapeHtml(node.title)}</span></div></article>`).join("")}</div></section>
       <section class="detail-section two-column-detail"><div><h3><i class="ph ph-warning"></i>Common mistakes</h3><ul><li>Learning syntax without building a small output</li><li>Copying solutions before defining the problem</li><li>Skipping testing, edge cases, and documentation</li><li>Optimizing before measuring the real bottleneck</li></ul></div><div><h3><i class="ph ph-checks"></i>Best practices</h3><ul><li>Work in small testable increments</li><li>Explain each decision in plain language</li><li>Use official documentation as your source of truth</li><li>Keep a decision log and weekly retrospective</li></ul></div></section>
       <section class="detail-section"><h3><i class="ph ph-currency-dollar"></i>Career and salary impact</h3><p>Demonstrating ${escapeHtml(node.title)} strengthens your evidence for ${escapeHtml(state.roadmap.role)} roles. The full path currently shows indicative ranges of <strong>${escapeHtml(state.roadmap.salaryIndia)}</strong> in India, <strong>${escapeHtml(state.roadmap.salaryUsa)}</strong> in the USA, and <strong>${escapeHtml(state.roadmap.salaryRemote)}</strong> for remote roles; actual offers vary by experience and location.</p></section>`;
   }

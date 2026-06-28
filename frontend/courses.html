@@ -688,6 +688,7 @@
                         <div class="card-tags">
                             ${tagsHTML}
                         </div>
+                        ${course.languages?.length ? `<div class="card-language-suggestions"><span><i class="fa-solid fa-code"></i> Coding languages</span><div>${course.languages.map(language => `<em>${escapeHTML(language)}</em>`).join('')}</div></div>` : ''}
                         <div class="card-footer">
                             <div class="course-price">
                                 <span class="price-label">Price Model</span>
@@ -984,6 +985,7 @@
             if (event.key === 'Escape') setSidebarOpen(false);
         });
     </script>
+    <script src="language-guide.js"></script>
     <script src="courses-roadmap.js"></script>
 </body>
 

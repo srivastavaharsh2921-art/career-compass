@@ -55,6 +55,7 @@
             price: "Free",
             isFree: true,
             skills: [...new Set(group.nodes.flatMap(node => node.topics))].slice(0, 7),
+            languages: [...new Set(group.nodes.flatMap(node => window.CareerCompassLanguageGuide.get(career, node)))].slice(0, 5),
             image: `https://images.unsplash.com/photo-${index === 0 ? "1516321318423-f06f85e504b3" : index === 1 ? "1517694712202-14dd9538aa97" : "1552664730-d307ca884978"}?auto=format&fit=crop&w=600&q=80`,
             careerId: career.id,
             roadmapNode: index === 0 ? 0 : index === 1 ? 3 : 6,
@@ -76,6 +77,7 @@
                     <h3>${escapeHtml(course.title.replace(`${career.label}: `, ""))}</h3>
                     <p>${course.phaseNodes.map(node => escapeHtml(node.title)).join(" → ")}</p>
                     <div>${course.skills.slice(0, 4).map(skill => `<em>${escapeHtml(skill)}</em>`).join("")}</div>
+                    <section class="course-language-suggestions"><strong><i class="fa-solid fa-code"></i> Coding languages to learn</strong><div>${course.languages.map(language => `<span>${escapeHtml(language)}</span>`).join("")}</div></section>
                 </div>
                 <button type="button" data-open-course="${course.id}">${index ? "Continue phase" : "Start from zero"}<i class="fa-solid fa-arrow-right"></i></button>
             </article>
@@ -89,6 +91,11 @@
             careers = (await response.json()).roadmaps;
             const generated = careers.flatMap(splitIntoCourses);
             COURSES_DATABASE.push(...generated);
+            COURSES_DATABASE.forEach(course => {
+                if (course.languages?.length) return;
+                const fallback = course.category === "Data & AI" ? ["Python", "SQL"] : course.category === "Design" ? ["HTML", "CSS", "JavaScript"] : course.category === "Marketing" ? ["SQL", "Python", "JavaScript"] : ["Python", "JavaScript", "SQL"];
+                course.languages = window.CareerCompassLanguageGuide.fromText(`${course.title} ${course.skills.join(" ")}`, fallback).slice(0, 5);
+            });
             select.innerHTML = careers.map(career => `<option value="${escapeHtml(career.id)}">${escapeHtml(career.role)}</option>`).join("");
             const requested = new URLSearchParams(location.search).get("career");
             renderPath(careers.some(item => item.id === requested) ? requested : careers[0].id);
