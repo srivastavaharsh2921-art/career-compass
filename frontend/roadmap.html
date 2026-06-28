@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Build a step-by-step career roadmap, track progress, and unlock practical projects with Career Compass Pro.">
-    <title>Career Compass Pro — Roadmap Generator</title>
+    <title>Career Compass Pro — AI Learning Ecosystem</title>
 
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -116,44 +116,69 @@
     <section class="roadmap-hero">
         <div class="container hero-content">
             <div class="eyebrow"><i class="ph-fill ph-sparkle"></i> Career Compass Pro</div>
-            <h1>Turn any ambition into a<br><span class="gradient-text">roadmap you can follow.</span></h1>
-            <p>Choose a career path, learn in the right order, and unlock the next milestone as you make real progress.</p>
+            <h1>From “what should I learn?” to<br><span class="gradient-text">job-ready, one milestone at a time.</span></h1>
+            <p>Choose a role or technology. Career Compass builds an adaptive roadmap, weekly plan, practice system, portfolio, and interview path around your goal.</p>
             <form class="roadmap-search" id="roadmapForm" role="search">
                 <label class="sr-only" for="roadmapInput">Roadmap topic</label>
-                <div class="search-field"><i class="ph ph-magnifying-glass"></i><input type="search" id="roadmapInput" autocomplete="off" placeholder="Enter a topic (e.g. SaaS Programming, Java, UI/UX Design)"></div>
+                <div class="search-field"><i class="ph ph-magnifying-glass"></i><input type="search" id="roadmapInput" autocomplete="off" aria-controls="searchSuggestions" aria-expanded="false" placeholder="Enter a career or topic — Frontend, AI Engineer, Python…"></div>
                 <button class="btn-purple" type="submit"><i class="ph-bold ph-path"></i><span>Generate Roadmap</span></button>
+                <div class="search-suggestions" id="searchSuggestions" role="listbox" hidden></div>
             </form>
+            <div class="generator-options" aria-label="Roadmap preferences">
+                <label><span>Starting level</span><select id="levelSelect"><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Expert</option></select></label>
+                <label><span>Learning duration</span><select id="durationSelect"><option value="30">30 Days</option><option value="60">60 Days</option><option value="90" selected>90 Days</option><option value="180">6 Months</option><option value="365">1 Year</option></select></label>
+                <label><span>Weekly commitment</span><select id="hoursSelect"><option value="5">5 hours</option><option value="10" selected>10 hours</option><option value="15">15 hours</option><option value="20">20 hours</option></select></label>
+            </div>
             <div class="topic-chips" id="topicChips" aria-label="Popular roadmap categories"></div>
+            <div class="trust-strip"><span><b id="catalogCount">43</b> expert roadmaps</span><i></i><span><b>10+</b> practice modes</span><i></i><span><b>100%</b> progress saved</span><i></i><span><b>1</b> connected career system</span></div>
         </div>
+    </section>
+
+    <section class="container discovery-section" id="discoverySection">
+        <div class="section-heading"><div><div class="section-kicker">Explore career paths</div><h2>Find your next unfair advantage.</h2><p>Browse role-based and skill-based paths, then personalize one around your experience and schedule.</p></div><div class="catalog-search"><i class="ph ph-funnel"></i><select id="categoryFilter"><option value="All">All categories</option></select><select id="sortFilter"><option value="popular">Most popular</option><option value="trending">Trending</option><option value="salary">Highest salary</option><option value="beginner">Beginner friendly</option><option value="duration">Shortest duration</option><option value="rating">Highest rated</option></select></div></div>
+        <div class="roadmap-catalog" id="roadmapCatalog" aria-live="polite"></div>
     </section>
 
     <section class="container roadmap-section" id="roadmapWorkspace" aria-live="polite" hidden>
         <div class="workspace-header">
-            <div><div class="section-kicker">Your learning path</div><h2 id="roadmapTitle">Frontend Developer Roadmap</h2><p id="roadmapDescription">A beginner-friendly path from web fundamentals to production-ready applications.</p></div>
-            <div class="workspace-actions"><button class="secondary-button" id="continueButton" type="button"><i class="ph-bold ph-play"></i> Continue learning</button><button class="icon-button" id="resetButton" type="button" aria-label="Reset roadmap progress" title="Reset progress"><i class="ph ph-arrow-counter-clockwise"></i></button></div>
+            <div><div class="section-kicker" id="roadmapRole">Your learning path</div><h2 id="roadmapTitle">Career Roadmap</h2><p id="roadmapDescription"></p><div class="roadmap-tags" id="roadmapTags"></div></div>
+            <div class="workspace-actions"><button class="secondary-button" id="continueButton" type="button"><i class="ph-bold ph-play"></i> Continue learning</button><button class="secondary-button certificate-button" id="certificateButton" type="button"><i class="ph ph-certificate"></i> Certificate</button><button class="icon-button" id="resetButton" type="button" aria-label="Reset roadmap progress" title="Reset progress"><i class="ph ph-arrow-counter-clockwise"></i></button></div>
         </div>
+        <div class="player-bar"><div class="player-level"><span class="avatar-ring"><i class="ph-fill ph-user"></i></span><div><span id="learnerLevel">Level 1 · Explorer</span><div class="xp-track"><i id="xpBar"></i></div></div></div><div class="player-stat"><i class="ph-fill ph-lightning"></i><span><b id="xpStat">0</b> XP</span></div><div class="player-stat"><i class="ph-fill ph-coin"></i><span><b id="coinStat">0</b> coins</span></div><div class="player-stat"><i class="ph-fill ph-fire"></i><span><b id="streakStat">1</b> day streak</span></div><button class="mission-button" id="missionButton" type="button"><i class="ph ph-target"></i><span>Daily mission</span><b id="missionProgress">0/1</b></button></div>
+        <nav class="workspace-tabs" id="workspaceTabs" aria-label="Learning workspace"><button class="active" data-view="roadmap"><i class="ph ph-path"></i>Roadmap</button><button data-view="study"><i class="ph ph-calendar-check"></i>Study plan</button><button data-view="progress"><i class="ph ph-chart-line-up"></i>Progress</button><button data-view="career"><i class="ph ph-briefcase"></i>Career</button><button data-view="portfolio"><i class="ph ph-folder-open"></i>Portfolio & resume</button><button data-view="playground"><i class="ph ph-code"></i>Playground</button><button data-view="community"><i class="ph ph-users-three"></i>Community</button></nav>
+        <div id="roadmapCoreView" class="workspace-view active" data-view-panel="roadmap">
         <div class="progress-card">
             <div class="progress-copy"><div class="progress-ring" id="progressRing" style="--progress: 0"><span id="progressPercent">0%</span></div><div><strong id="progressMessage">Start your first milestone</strong><span id="progressCount">0 of 0 completed</span></div></div>
             <div class="progress-track" role="progressbar" aria-label="Roadmap completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progressBar"></span></div>
             <div class="progress-stats"><span><i class="ph-fill ph-check-circle"></i><b id="completedStat">0</b> completed</span><span><i class="ph-fill ph-lock-key"></i><b id="lockedStat">0</b> locked</span><span><i class="ph-fill ph-clock"></i><b id="timeStat">0h</b> remaining</span></div>
         </div>
-        <div class="roadmap-preview">
+        <div class="roadmap-preview" id="roadmapPreview">
             <div class="flowchart-toolbar">
                 <div class="legend" aria-label="Roadmap status legend"><span><i class="legend-dot unlocked"></i>Unlocked</span><span><i class="legend-dot completed"></i>Completed</span><span><i class="legend-dot locked"></i>Locked</span></div>
-                <p><i class="ph ph-cursor-click"></i> Select a node to view its learning guide</p>
+                <div class="flow-controls"><button data-flow="vertical" class="active" title="Vertical flow"><i class="ph ph-flow-arrow"></i></button><button data-flow="tree" title="Tree flow"><i class="ph ph-tree-structure"></i></button><button data-flow="horizontal" title="Horizontal flow"><i class="ph ph-arrows-out-line-horizontal"></i></button></div>
             </div>
             <div class="roadmap-flow" id="roadmapFlow"></div>
         </div>
+        </div>
+        <div class="workspace-view" data-view-panel="study" id="studyView"></div>
+        <div class="workspace-view" data-view-panel="progress" id="progressView"></div>
+        <div class="workspace-view" data-view-panel="career" id="careerView"></div>
+        <div class="workspace-view" data-view-panel="portfolio" id="portfolioView"></div>
+        <div class="workspace-view" data-view-panel="playground" id="playgroundView"></div>
+        <div class="workspace-view" data-view-panel="community" id="communityView"></div>
     </section>
 
     <div class="panel-backdrop" id="panelBackdrop"></div>
     <aside class="detail-panel" id="detailPanel" aria-hidden="true" aria-labelledby="detailTitle">
         <div class="panel-header"><div><span class="panel-step" id="panelStep">Milestone 1</span><h2 id="detailTitle">Topic details</h2></div><button class="panel-close" id="panelClose" type="button" aria-label="Close topic details"><i class="ph ph-x"></i></button></div>
+        <nav class="panel-tabs" id="panelTabs"><button class="active" data-panel-tab="learn">Learn</button><button data-panel-tab="resources">Resources</button><button data-panel-tab="practice">Practice</button><button data-panel-tab="projects">Projects</button><button data-panel-tab="quiz">Quiz</button><button data-panel-tab="mentor">AI Mentor</button></nav>
         <div class="panel-body" id="panelBody"></div><div class="panel-footer" id="panelFooter"></div>
     </aside>
     <div class="confirm-dialog" id="resetDialog" role="dialog" aria-modal="true" aria-labelledby="resetTitle" aria-hidden="true"><div class="confirm-card"><div class="confirm-icon"><i class="ph ph-arrow-counter-clockwise"></i></div><h2 id="resetTitle">Reset this roadmap?</h2><p>Your completed milestones and quiz answers for this path will be cleared.</p><div><button type="button" class="secondary-button" id="cancelReset">Keep progress</button><button type="button" class="danger-button" id="confirmReset">Reset</button></div></div></div>
+    <div class="certificate-modal" id="certificateModal" aria-hidden="true"><div class="certificate-shell"><button class="panel-close" id="closeCertificate"><i class="ph ph-x"></i></button><div class="certificate-mark"><i class="ph-fill ph-seal-check"></i></div><span>Career Compass Pro</span><h2>Certificate of Completion</h2><p>This certifies that</p><h3 id="certificateName">Career Compass Learner</h3><p>has successfully completed the</p><h4 id="certificateRoadmap">Career Roadmap</h4><div class="certificate-meta"><span id="certificateDate"></span><span id="certificateId"></span></div><div class="certificate-actions"><button class="secondary-button" id="printCertificate"><i class="ph ph-printer"></i> Print / Save PDF</button><button class="primary-small" id="shareCertificate"><i class="ph ph-share-network"></i> Share credential</button></div></div></div>
+    <div class="reward-overlay" id="rewardOverlay" aria-hidden="true"><div class="reward-card"><i class="ph-fill ph-confetti"></i><span>Achievement unlocked</span><h2 id="rewardTitle">First milestone</h2><p id="rewardMessage">You earned 100 XP and 25 coins.</p><button class="primary-small" id="closeReward">Keep going</button></div></div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="roadmap.js"></script>
+    <script src="roadmap-pro.js"></script>
 </body>
 
 </html>

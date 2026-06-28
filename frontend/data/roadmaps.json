@@ -1,0 +1,490 @@
+{
+  "version": 2,
+  "updated": "2026-06-28",
+  "roadmaps": [
+    {
+      "id": "frontend", "label": "Frontend", "role": "Frontend Developer", "category": "Web Development", "icon": "ph-browser", "popularity": 99, "growth": 86, "rating": 4.9, "salaryIndia": "₹5L–₹18L", "salaryUsa": "$75K–$145K", "salaryRemote": "$55K–$130K", "demand": "Very high", "aliases": ["front end", "web development", "frontend developer"], "description": "Build accessible, responsive, high-performance interfaces and production web applications.", "docs": "https://developer.mozilla.org/en-US/docs/Learn_web_development", "companies": ["Google", "Microsoft", "Adobe", "Shopify", "Atlassian"],
+      "nodes": [
+        {"title":"Web Foundations","difficulty":"Beginner","time":18,"topics":["Internet","HTTP","DNS","Browsers","Git basics"]},
+        {"title":"Semantic HTML","difficulty":"Beginner","time":22,"topics":["HTML5","Forms","Semantic elements","SEO basics","Accessibility"]},
+        {"title":"CSS & Responsive Design","difficulty":"Beginner","time":40,"topics":["Cascade","Flexbox","Grid","Media queries","Animations"]},
+        {"title":"Modern JavaScript","difficulty":"Intermediate","time":55,"topics":["ES6+","DOM","Async JavaScript","Fetch API","Testing"]},
+        {"title":"React Ecosystem","difficulty":"Intermediate","time":60,"topics":["Components","Hooks","Routing","State management","TypeScript"]},
+        {"title":"Production Frontend","difficulty":"Advanced","time":48,"topics":["Performance","Security","Testing","CI/CD","Deployment"],"branch":"Production"},
+        {"title":"Frontend Portfolio","difficulty":"Advanced","time":70,"topics":["Design system","Dashboard","E-commerce","PWA","Case studies"]}
+      ]
+    },
+    {
+      "id":"backend","label":"Backend","role":"Backend Developer","category":"Web Development","icon":"ph-database","popularity":97,"growth":88,"rating":4.9,"salaryIndia":"₹6L–₹22L","salaryUsa":"$85K–$160K","salaryRemote":"$65K–$145K","demand":"Very high","aliases":["back end","server development","backend developer"],"description":"Design secure APIs, reliable services, databases, and observable production systems.","docs":"https://nodejs.org/docs/latest/api/","companies":["Amazon","Netflix","Stripe","Uber","Razorpay"],
+      "nodes":[
+        {"title":"Programming & Web Protocols","difficulty":"Beginner","time":30,"topics":["JavaScript","HTTP","REST","JSON","Git"]},
+        {"title":"Node.js Services","difficulty":"Beginner","time":38,"topics":["Node.js","Modules","Async I/O","Express","Validation"]},
+        {"title":"Databases","difficulty":"Intermediate","time":48,"topics":["SQL","PostgreSQL","MongoDB","Data modeling","Indexes"]},
+        {"title":"API Security","difficulty":"Intermediate","time":40,"topics":["Authentication","Authorization","JWT","OWASP","Rate limiting"]},
+        {"title":"Architecture & Testing","difficulty":"Advanced","time":52,"topics":["Clean architecture","Caching","Queues","Unit tests","Integration tests"]},
+        {"title":"Production Operations","difficulty":"Advanced","time":46,"topics":["Docker","CI/CD","Logging","Monitoring","Cloud deployment"]},
+        {"title":"Backend Portfolio","difficulty":"Advanced","time":72,"topics":["Commerce API","Realtime service","SaaS backend","Documentation","Load testing"]}
+      ]
+    },
+    {
+      "id":"fullstack","label":"Full Stack","role":"Full Stack Developer","category":"Web Development","icon":"ph-stack","popularity":98,"growth":89,"rating":4.9,"salaryIndia":"₹6L–₹24L","salaryUsa":"$82K–$155K","salaryRemote":"$65K–$145K","demand":"Very high","aliases":["full stack","fullstack developer","mern stack"],"description":"Own complete products from interface and API design to data, testing, and cloud delivery.","docs":"https://developer.mozilla.org/en-US/docs/Learn_web_development","companies":["Microsoft","Amazon","Zoho","Freshworks","GitLab"],
+      "nodes":[
+        {"title":"Web & Programming Foundations","difficulty":"Beginner","time":38,"topics":["HTML","CSS","JavaScript","Git","HTTP"]},
+        {"title":"Frontend Applications","difficulty":"Intermediate","time":58,"topics":["React","TypeScript","Routing","State","Accessibility"]},
+        {"title":"Backend APIs","difficulty":"Intermediate","time":52,"topics":["Node.js","Express","REST","Authentication","Testing"]},
+        {"title":"Data Layer","difficulty":"Intermediate","time":46,"topics":["SQL","MongoDB","Schema design","ORMs","Caching"]},
+        {"title":"Product Architecture","difficulty":"Advanced","time":52,"topics":["System design","Security","Queues","File storage","Payments"]},
+        {"title":"Cloud Delivery","difficulty":"Advanced","time":44,"topics":["Docker","CI/CD","Cloud","Observability","Performance"]},
+        {"title":"Full Stack Portfolio","difficulty":"Advanced","time":90,"topics":["SaaS product","Marketplace","Realtime app","Tests","Case study"]}
+      ]
+    },
+    {
+      "id":"python","label":"Python","role":"Python Developer","category":"Programming Languages","icon":"ph-file-py","popularity":98,"growth":91,"rating":4.9,"salaryIndia":"₹5L–₹20L","salaryUsa":"$78K–$150K","salaryRemote":"$60K–$135K","demand":"Very high","aliases":["python programming","python developer","django"],"description":"Master Python from syntax and automation to APIs, data work, testing, and production projects.","docs":"https://docs.python.org/3/tutorial/","companies":["Google","Meta","Dropbox","Spotify","JPMorgan"],
+      "nodes":[
+        {"title":"Python Fundamentals","difficulty":"Beginner","time":28,"topics":["Syntax","Types","Control flow","Functions","Collections"]},
+        {"title":"Pythonic Programming","difficulty":"Beginner","time":32,"topics":["Comprehensions","Modules","Errors","Files","Virtual environments"]},
+        {"title":"Object-Oriented Python","difficulty":"Intermediate","time":34,"topics":["Classes","Inheritance","Protocols","Dataclasses","Type hints"]},
+        {"title":"Testing & Automation","difficulty":"Intermediate","time":34,"topics":["Pytest","Automation","CLI apps","Logging","Packaging"]},
+        {"title":"Web & Data Branches","difficulty":"Intermediate","time":52,"topics":["FastAPI","Django","Pandas","SQL","Asyncio"],"branch":"Choose specialization"},
+        {"title":"Production Python","difficulty":"Advanced","time":48,"topics":["Architecture","Performance","Security","Docker","CI/CD"]},
+        {"title":"Python Portfolio","difficulty":"Advanced","time":65,"topics":["Automation tool","Data app","REST API","Package","Documentation"]}
+      ]
+    },
+    {
+      "id":"java","label":"Java","role":"Java Developer","category":"Programming Languages","icon":"ph-coffee","popularity":94,"growth":78,"rating":4.8,"salaryIndia":"₹6L–₹22L","salaryUsa":"$82K–$155K","salaryRemote":"$60K–$138K","demand":"High","aliases":["java programming","java developer","spring boot"],"description":"Build robust object-oriented applications and scalable Spring Boot services.","docs":"https://dev.java/learn/","companies":["Oracle","Amazon","Infosys","Walmart","Goldman Sachs"],
+      "nodes":[
+        {"title":"Java Platform & Syntax","difficulty":"Beginner","time":30,"topics":["JDK","JVM","Types","Control flow","Methods"]},
+        {"title":"Object-Oriented Java","difficulty":"Beginner","time":42,"topics":["Classes","Interfaces","Inheritance","Polymorphism","Encapsulation"]},
+        {"title":"Core Java APIs","difficulty":"Intermediate","time":44,"topics":["Collections","Generics","Streams","Exceptions","File I/O"]},
+        {"title":"Concurrency & Testing","difficulty":"Intermediate","time":40,"topics":["Threads","Executors","CompletableFuture","JUnit","Mockito"]},
+        {"title":"Data & Spring Boot","difficulty":"Advanced","time":62,"topics":["SQL","JPA","Spring Boot","REST","Security"]},
+        {"title":"Enterprise Production","difficulty":"Advanced","time":52,"topics":["Microservices","Messaging","Docker","Observability","CI/CD"]},
+        {"title":"Java Portfolio","difficulty":"Advanced","time":76,"topics":["Banking app","REST platform","Event service","Tests","Architecture record"]}
+      ]
+    },
+    {
+      "id":"c","label":"C","role":"C Developer","category":"Programming Languages","icon":"ph-code","popularity":82,"growth":63,"rating":4.7,"salaryIndia":"₹5L–₹18L","salaryUsa":"$78K–$145K","salaryRemote":"$55K–$125K","demand":"Stable","aliases":["c programming","c language","systems c"],"description":"Understand memory, low-level programming, systems fundamentals, and reliable C software.","docs":"https://en.cppreference.com/w/c","companies":["Intel","Qualcomm","NVIDIA","Bosch","Siemens"],
+      "nodes":[
+        {"title":"C Syntax & Toolchain","difficulty":"Beginner","time":28,"topics":["Compiler","Types","Operators","Control flow","Functions"]},
+        {"title":"Arrays, Strings & Pointers","difficulty":"Beginner","time":42,"topics":["Arrays","Strings","Pointers","Pointer arithmetic","Memory layout"]},
+        {"title":"Data Structures in C","difficulty":"Intermediate","time":46,"topics":["Structs","Linked lists","Stacks","Queues","Hash tables"]},
+        {"title":"Memory & File Systems","difficulty":"Intermediate","time":42,"topics":["Heap","Stack","malloc","Files","Binary data"]},
+        {"title":"Systems Programming","difficulty":"Advanced","time":58,"topics":["Processes","Threads","Sockets","Signals","POSIX"]},
+        {"title":"Safe Production C","difficulty":"Advanced","time":42,"topics":["Debugging","GDB","Valgrind","Testing","Secure coding"]},
+        {"title":"C Portfolio","difficulty":"Advanced","time":68,"topics":["Shell","HTTP server","Database engine","Embedded driver","Documentation"]}
+      ]
+    },
+    {
+      "id":"cpp","label":"C++","role":"C++ Developer","category":"Programming Languages","icon":"ph-code-block","popularity":88,"growth":71,"rating":4.8,"salaryIndia":"₹7L–₹25L","salaryUsa":"$90K–$170K","salaryRemote":"$70K–$150K","demand":"High","aliases":["c plus plus","cpp","c++ programming"],"description":"Create high-performance software with modern C++, strong ownership, and systems design.","docs":"https://en.cppreference.com/w/cpp","companies":["NVIDIA","Microsoft","Epic Games","Bloomberg","Adobe"],
+      "nodes":[
+        {"title":"Modern C++ Foundations","difficulty":"Beginner","time":34,"topics":["Types","Functions","References","Namespaces","Build tools"]},
+        {"title":"Object-Oriented C++","difficulty":"Beginner","time":42,"topics":["Classes","RAII","Inheritance","Polymorphism","Operator overloading"]},
+        {"title":"STL & Generic Programming","difficulty":"Intermediate","time":48,"topics":["Containers","Algorithms","Iterators","Templates","Lambdas"]},
+        {"title":"Memory & Concurrency","difficulty":"Intermediate","time":52,"topics":["Smart pointers","Move semantics","Threads","Locks","Atomics"]},
+        {"title":"Performance Engineering","difficulty":"Advanced","time":48,"topics":["Profiling","Cache behavior","Optimization","SIMD","Benchmarking"]},
+        {"title":"Production C++","difficulty":"Advanced","time":44,"topics":["CMake","Testing","Debugging","Static analysis","Packaging"]},
+        {"title":"C++ Portfolio","difficulty":"Advanced","time":80,"topics":["Game engine module","Trading simulator","Renderer","Network service","Benchmarks"]}
+      ]
+    },
+    {
+      "id":"javascript","label":"JavaScript","role":"JavaScript Developer","category":"Programming Languages","icon":"ph-brackets-curly","popularity":99,"growth":84,"rating":4.9,"salaryIndia":"₹5L–₹20L","salaryUsa":"$78K–$150K","salaryRemote":"$60K–$140K","demand":"Very high","aliases":["js","javascript programming","ecmascript"],"description":"Master the language of the web from fundamentals to asynchronous and production-grade applications.","docs":"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide","companies":["Google","Meta","Netflix","Airbnb","Shopify"],
+      "nodes":[
+        {"title":"Language Fundamentals","difficulty":"Beginner","time":30,"topics":["Types","Variables","Functions","Control flow","Scope"]},
+        {"title":"Objects & Collections","difficulty":"Beginner","time":34,"topics":["Objects","Arrays","Maps","Sets","Destructuring"]},
+        {"title":"DOM & Browser APIs","difficulty":"Intermediate","time":38,"topics":["DOM","Events","Forms","Storage","Accessibility"]},
+        {"title":"Asynchronous JavaScript","difficulty":"Intermediate","time":42,"topics":["Promises","Async await","Fetch","Event loop","WebSockets"]},
+        {"title":"Advanced JavaScript","difficulty":"Advanced","time":48,"topics":["Closures","Prototypes","Modules","Functional patterns","Performance"]},
+        {"title":"Engineering Quality","difficulty":"Advanced","time":38,"topics":["TypeScript","Testing","Linting","Bundlers","Security"]},
+        {"title":"JavaScript Portfolio","difficulty":"Advanced","time":70,"topics":["SPA","Node API","Realtime app","Library","Open source"]}
+      ]
+    },
+    {
+      "id":"react","label":"React","role":"React Developer","category":"Web Development","icon":"ph-atom","popularity":98,"growth":87,"rating":4.9,"salaryIndia":"₹6L–₹22L","salaryUsa":"$82K–$155K","salaryRemote":"$65K–$145K","demand":"Very high","aliases":["reactjs","react.js","react developer"],"description":"Build accessible, testable React applications with modern state, data, and performance patterns.","docs":"https://react.dev/learn","companies":["Meta","Netflix","Uber","Atlassian","Swiggy"],
+      "nodes":[
+        {"title":"React Foundations","difficulty":"Beginner","time":28,"topics":["JSX","Components","Props","State","Events"]},
+        {"title":"Hooks & Composition","difficulty":"Beginner","time":36,"topics":["Hooks","Effects","Refs","Custom hooks","Composition"]},
+        {"title":"Routing & Data","difficulty":"Intermediate","time":40,"topics":["React Router","Fetching","Forms","Validation","Error states"]},
+        {"title":"State Architecture","difficulty":"Intermediate","time":42,"topics":["Context","Redux Toolkit","Server state","Caching","Optimistic UI"]},
+        {"title":"Testing & Accessibility","difficulty":"Intermediate","time":34,"topics":["Testing Library","Vitest","E2E","ARIA","Keyboard UX"]},
+        {"title":"Performance & Production","difficulty":"Advanced","time":42,"topics":["Profiling","Memoization","Code splitting","Security","Deployment"]},
+        {"title":"React Portfolio","difficulty":"Advanced","time":72,"topics":["Dashboard","Commerce UI","Collaboration app","Design system","Case study"]}
+      ]
+    },
+    {
+      "id":"nextjs","label":"Next.js","role":"Next.js Developer","category":"Web Development","icon":"ph-globe","popularity":93,"growth":94,"rating":4.8,"salaryIndia":"₹7L–₹24L","salaryUsa":"$90K–$165K","salaryRemote":"$70K–$150K","demand":"Fast growing","aliases":["next js","next.js developer","react full stack"],"description":"Ship full-stack React products with routing, server rendering, data, auth, and deployment.","docs":"https://nextjs.org/docs","companies":["Vercel","Netflix","TikTok","Twitch","Sonos"],
+      "nodes":[
+        {"title":"Next.js Foundations","difficulty":"Beginner","time":26,"topics":["App Router","Layouts","Pages","Navigation","Metadata"]},
+        {"title":"Rendering & Data","difficulty":"Intermediate","time":40,"topics":["Server components","Client components","Fetching","Caching","Streaming"]},
+        {"title":"Full-stack Features","difficulty":"Intermediate","time":42,"topics":["Route handlers","Server actions","Forms","Validation","File uploads"]},
+        {"title":"Auth & Data Stores","difficulty":"Intermediate","time":38,"topics":["Authentication","Authorization","PostgreSQL","ORM","Sessions"]},
+        {"title":"Performance & SEO","difficulty":"Advanced","time":34,"topics":["Images","Fonts","Core Web Vitals","SEO","Analytics"]},
+        {"title":"Production Delivery","difficulty":"Advanced","time":36,"topics":["Testing","Security","Edge runtime","Observability","Vercel"]},
+        {"title":"Next.js SaaS Project","difficulty":"Advanced","time":80,"topics":["Subscriptions","Teams","Dashboard","Emails","Launch"]}
+      ]
+    },
+    {
+      "id":"nodejs","label":"Node.js","role":"Node.js Developer","category":"Backend & Data","icon":"ph-hexagon","popularity":95,"growth":85,"rating":4.8,"salaryIndia":"₹6L–₹22L","salaryUsa":"$82K–$155K","salaryRemote":"$65K–$145K","demand":"Very high","aliases":["node","node js","node.js developer"],"description":"Build scalable JavaScript services using Node's runtime, streams, workers, and ecosystem.","docs":"https://nodejs.org/docs/latest/api/","companies":["Netflix","PayPal","Uber","LinkedIn","Walmart"],
+      "nodes":[
+        {"title":"Runtime Foundations","difficulty":"Beginner","time":28,"topics":["Node runtime","Modules","npm","Filesystem","Environment"]},
+        {"title":"Async I/O & Networking","difficulty":"Intermediate","time":40,"topics":["Event loop","Promises","Streams","Buffers","HTTP"]},
+        {"title":"API Development","difficulty":"Intermediate","time":44,"topics":["Express","REST","Validation","Errors","OpenAPI"]},
+        {"title":"Data & Security","difficulty":"Intermediate","time":42,"topics":["SQL","MongoDB","Auth","OWASP","Secrets"]},
+        {"title":"Scalable Node","difficulty":"Advanced","time":48,"topics":["Workers","Queues","Caching","WebSockets","Microservices"]},
+        {"title":"Quality & Operations","difficulty":"Advanced","time":42,"topics":["Testing","Profiling","Logging","Docker","Monitoring"]},
+        {"title":"Node.js Portfolio","difficulty":"Advanced","time":70,"topics":["API platform","Realtime service","Worker system","CLI","Package"]}
+      ]
+    },
+    {
+      "id":"express","label":"Express.js","role":"Express.js Developer","category":"Backend & Data","icon":"ph-arrows-left-right","popularity":86,"growth":72,"rating":4.7,"salaryIndia":"₹5L–₹20L","salaryUsa":"$78K–$148K","salaryRemote":"$58K–$135K","demand":"High","aliases":["express","express js","express api"],"description":"Create secure, maintainable Express APIs with validation, testing, and production operations.","docs":"https://expressjs.com/en/guide/routing.html","companies":["IBM","Uber","Accenture","PayPal","GoDaddy"],
+      "nodes":[
+        {"title":"Express Foundations","difficulty":"Beginner","time":22,"topics":["Routing","Middleware","Requests","Responses","Configuration"]},
+        {"title":"REST API Design","difficulty":"Beginner","time":32,"topics":["Resources","HTTP methods","Status codes","Pagination","OpenAPI"]},
+        {"title":"Persistence Layer","difficulty":"Intermediate","time":38,"topics":["PostgreSQL","MongoDB","Repositories","Migrations","Transactions"]},
+        {"title":"Security & Validation","difficulty":"Intermediate","time":36,"topics":["Validation","JWT","Sessions","CORS","Rate limits"]},
+        {"title":"Testing & Reliability","difficulty":"Advanced","time":34,"topics":["Unit tests","Integration tests","Errors","Logging","Health checks"]},
+        {"title":"Production Express","difficulty":"Advanced","time":38,"topics":["Performance","Caching","Docker","CI/CD","Monitoring"]},
+        {"title":"Express Portfolio API","difficulty":"Advanced","time":58,"topics":["Commerce API","RBAC","Payments","Docs","Load tests"]}
+      ]
+    },
+    {
+      "id":"mongodb","label":"MongoDB","role":"MongoDB Developer","category":"Backend & Data","icon":"ph-leaf","popularity":87,"growth":75,"rating":4.7,"salaryIndia":"₹6L–₹21L","salaryUsa":"$82K–$152K","salaryRemote":"$60K–$138K","demand":"High","aliases":["mongo","mongodb database","nosql"],"description":"Model, query, secure, and operate document databases for modern applications.","docs":"https://www.mongodb.com/docs/manual/","companies":["Adobe","EA","Coinbase","Toyota", "SEGA"],
+      "nodes":[
+        {"title":"Document Database Basics","difficulty":"Beginner","time":24,"topics":["Documents","Collections","BSON","Atlas","mongosh"]},
+        {"title":"CRUD & Querying","difficulty":"Beginner","time":32,"topics":["CRUD","Filters","Projection","Updates","Operators"]},
+        {"title":"Data Modeling","difficulty":"Intermediate","time":38,"topics":["Embedding","References","Schema validation","Patterns","Tradeoffs"]},
+        {"title":"Aggregation & Indexes","difficulty":"Intermediate","time":42,"topics":["Aggregation pipeline","Indexes","Explain plans","Search","Geospatial"]},
+        {"title":"Transactions & Security","difficulty":"Advanced","time":34,"topics":["Transactions","RBAC","Encryption","Backups","Auditing"]},
+        {"title":"Scale & Operations","difficulty":"Advanced","time":42,"topics":["Replication","Sharding","Monitoring","Performance","Recovery"]},
+        {"title":"MongoDB Portfolio","difficulty":"Advanced","time":55,"topics":["Catalog","Analytics pipeline","Search app","Migration","Runbook"]}
+      ]
+    },
+    {
+      "id":"sql","label":"SQL","role":"SQL Developer","category":"Backend & Data","icon":"ph-table","popularity":96,"growth":82,"rating":4.9,"salaryIndia":"₹5L–₹19L","salaryUsa":"$72K–$140K","salaryRemote":"$52K–$125K","demand":"Very high","aliases":["database sql","postgresql","mysql"],"description":"Query, model, tune, and protect relational data for analytics and production systems.","docs":"https://www.postgresql.org/docs/current/tutorial.html","companies":["Oracle","Amazon","Microsoft","Snowflake","Deloitte"],
+      "nodes":[
+        {"title":"Relational Foundations","difficulty":"Beginner","time":24,"topics":["Tables","Rows","Keys","Types","SELECT"]},
+        {"title":"Filtering & Aggregation","difficulty":"Beginner","time":30,"topics":["WHERE","GROUP BY","HAVING","Functions","NULL"]},
+        {"title":"Joins & Subqueries","difficulty":"Intermediate","time":36,"topics":["Joins","Subqueries","CTEs","Set operations","Views"]},
+        {"title":"Advanced Analytics SQL","difficulty":"Intermediate","time":42,"topics":["Window functions","Cohorts","Funnels","Time series","Pivoting"]},
+        {"title":"Data Modeling & Transactions","difficulty":"Advanced","time":38,"topics":["Normalization","Constraints","Transactions","Isolation","Migrations"]},
+        {"title":"Performance & Security","difficulty":"Advanced","time":40,"topics":["Indexes","Explain","Query tuning","Roles","Backups"]},
+        {"title":"SQL Portfolio","difficulty":"Advanced","time":52,"topics":["Warehouse model","Analytics report","Performance audit","Data quality","Documentation"]}
+      ]
+    },
+    {
+      "id":"data-analytics","label":"Data Analytics","role":"Data Analyst","category":"Data & AI","icon":"ph-chart-bar","popularity":96,"growth":93,"rating":4.9,"salaryIndia":"₹5L–₹18L","salaryUsa":"$68K–$125K","salaryRemote":"$50K–$115K","demand":"Fast growing","aliases":["data analysis","data analyst","business analytics"],"description":"Turn messy business data into reliable analysis, dashboards, experiments, and decisions.","docs":"https://pandas.pydata.org/docs/user_guide/","companies":["Google","Amazon","Deloitte","Accenture","Flipkart"],
+      "nodes":[
+        {"title":"Analytical Thinking","difficulty":"Beginner","time":22,"topics":["Business questions","Metrics","Data types","Ethics","Spreadsheets"]},
+        {"title":"SQL Analysis","difficulty":"Beginner","time":42,"topics":["Queries","Joins","CTEs","Window functions","Data quality"]},
+        {"title":"Python for Analytics","difficulty":"Intermediate","time":44,"topics":["Python","Pandas","NumPy","Jupyter","Automation"]},
+        {"title":"Statistics & Experiments","difficulty":"Intermediate","time":40,"topics":["Sampling","Confidence intervals","Hypothesis tests","A/B tests","Correlation"]},
+        {"title":"Visualization & BI","difficulty":"Intermediate","time":46,"topics":["Tableau","Power BI","Dashboards","DAX","Storytelling"]},
+        {"title":"Advanced Business Analytics","difficulty":"Advanced","time":44,"topics":["Funnels","Cohorts","Forecasting","Segmentation","Stakeholders"]},
+        {"title":"Analyst Portfolio","difficulty":"Advanced","time":64,"topics":["Sales dashboard","Experiment report","Customer analysis","Executive deck","Case study"]}
+      ]
+    },
+    {
+      "id":"data-science","label":"Data Science","role":"Data Scientist","category":"Data & AI","icon":"ph-chart-scatter","popularity":97,"growth":95,"rating":4.9,"salaryIndia":"₹8L–₹28L","salaryUsa":"$95K–$175K","salaryRemote":"$75K–$160K","demand":"Fast growing","aliases":["data scientist","data science career","applied data science"],"description":"Investigate data, run experiments, build predictive models, and deliver trusted data products.","docs":"https://scikit-learn.org/stable/user_guide.html","companies":["Google","Netflix","Airbnb","Walmart Labs","Fractal"],
+      "nodes":[
+        {"title":"Python, SQL & Math","difficulty":"Beginner","time":55,"topics":["Python","SQL","Linear algebra","Probability","Statistics"]},
+        {"title":"Data Wrangling","difficulty":"Beginner","time":42,"topics":["Pandas","NumPy","Cleaning","Missing data","Data validation"]},
+        {"title":"Exploratory Analysis","difficulty":"Intermediate","time":40,"topics":["Visualization","Distributions","Correlation","Segmentation","Storytelling"]},
+        {"title":"Machine Learning","difficulty":"Intermediate","time":60,"topics":["Regression","Classification","Clustering","Evaluation","Feature engineering"]},
+        {"title":"Specialized Modeling","difficulty":"Advanced","time":58,"topics":["Time series","NLP","Recommendation","Causal inference","Explainability"],"branch":"Specialization"},
+        {"title":"Data Products & MLOps","difficulty":"Advanced","time":48,"topics":["APIs","Streamlit","Experiment tracking","Docker","Monitoring"]},
+        {"title":"Data Science Portfolio","difficulty":"Advanced","time":82,"topics":["Business study","Prediction service","Experiment","Data product","Technical report"]}
+      ]
+    },
+    {
+      "id":"machine-learning","label":"Machine Learning","role":"Machine Learning Engineer","category":"Data & AI","icon":"ph-function","popularity":97,"growth":98,"rating":4.9,"salaryIndia":"₹9L–₹32L","salaryUsa":"$110K–$190K","salaryRemote":"$85K–$175K","demand":"Exceptional","aliases":["ml","ml engineer","machine learning engineer"],"description":"Develop, evaluate, deploy, and monitor reliable machine learning systems.","docs":"https://scikit-learn.org/stable/user_guide.html","companies":["Google","OpenAI","Microsoft","NVIDIA","Uber"],
+      "nodes":[
+        {"title":"Python & Mathematical Foundations","difficulty":"Beginner","time":65,"topics":["Python","Linear algebra","Calculus","Probability","Optimization"]},
+        {"title":"Data Preparation","difficulty":"Beginner","time":38,"topics":["Cleaning","Encoding","Scaling","Feature engineering","Splitting"]},
+        {"title":"Supervised Learning","difficulty":"Intermediate","time":56,"topics":["Regression","Classification","Trees","Ensembles","SVMs"]},
+        {"title":"Unsupervised Learning","difficulty":"Intermediate","time":42,"topics":["Clustering","PCA","Anomaly detection","Recommendations","Evaluation"]},
+        {"title":"Deep Learning Foundations","difficulty":"Advanced","time":64,"topics":["Neural networks","PyTorch","CNNs","Transformers","Training"]},
+        {"title":"Production ML","difficulty":"Advanced","time":58,"topics":["Serving","Pipelines","Feature stores","Drift","Monitoring"]},
+        {"title":"ML Engineering Portfolio","difficulty":"Advanced","time":88,"topics":["Recommendation engine","Forecast service","Vision model","MLOps pipeline","Model card"]}
+      ]
+    },
+    {
+      "id":"artificial-intelligence","label":"Artificial Intelligence","role":"AI Engineer","category":"Data & AI","icon":"ph-brain","popularity":99,"growth":100,"rating":4.9,"salaryIndia":"₹10L–₹35L","salaryUsa":"$115K–$205K","salaryRemote":"$90K–$190K","demand":"Exceptional","aliases":["ai","ai engineer","generative ai"],"description":"Build useful and responsible intelligent products with ML, language models, retrieval, and agents.","docs":"https://pytorch.org/docs/stable/index.html","companies":["OpenAI","Google DeepMind","Microsoft","Anthropic","NVIDIA"],
+      "nodes":[
+        {"title":"AI & Programming Foundations","difficulty":"Beginner","time":54,"topics":["Python","Algorithms","Data structures","AI history","Problem framing"]},
+        {"title":"Machine Learning Core","difficulty":"Intermediate","time":62,"topics":["Supervised learning","Unsupervised learning","Evaluation","Features","Ethics"]},
+        {"title":"Deep Learning","difficulty":"Intermediate","time":68,"topics":["Neural networks","PyTorch","CNNs","Sequence models","Transformers"]},
+        {"title":"Language & Vision Systems","difficulty":"Advanced","time":58,"topics":["NLP","Computer vision","Embeddings","Multimodal models","Evaluation"]},
+        {"title":"Generative AI & RAG","difficulty":"Advanced","time":62,"topics":["LLMs","Prompt engineering","Vector databases","RAG","Fine-tuning"]},
+        {"title":"Agents & Responsible AI","difficulty":"Advanced","time":54,"topics":["Tool use","Agent workflows","Guardrails","Safety","Observability"],"branch":"Applied AI"},
+        {"title":"AI Product Portfolio","difficulty":"Advanced","time":92,"topics":["RAG assistant","Vision app","AI agent","Evaluation suite","Product case study"]}
+      ]
+    },
+    {
+      "id":"deep-learning","label":"Deep Learning","role":"Deep Learning Engineer","category":"Data & AI","icon":"ph-circles-three-plus","popularity":91,"growth":97,"rating":4.8,"salaryIndia":"₹10L–₹36L","salaryUsa":"$120K–$210K","salaryRemote":"$95K–$190K","demand":"Exceptional","aliases":["neural networks","deep learning engineer","pytorch"],"description":"Train, optimize, evaluate, and deploy neural networks for language, vision, and multimodal tasks.","docs":"https://pytorch.org/tutorials/","companies":["NVIDIA","Google DeepMind","Meta AI","Tesla","OpenAI"],
+      "nodes":[
+        {"title":"Math & ML Prerequisites","difficulty":"Beginner","time":62,"topics":["Linear algebra","Calculus","Probability","Optimization","Classical ML"]},
+        {"title":"Neural Network Foundations","difficulty":"Intermediate","time":48,"topics":["Perceptrons","Backpropagation","Losses","Activations","Regularization"]},
+        {"title":"PyTorch Engineering","difficulty":"Intermediate","time":46,"topics":["Tensors","Autograd","Datasets","Training loops","GPU"]},
+        {"title":"Computer Vision","difficulty":"Advanced","time":58,"topics":["CNNs","Transfer learning","Detection","Segmentation","Augmentation"]},
+        {"title":"NLP & Transformers","difficulty":"Advanced","time":64,"topics":["Embeddings","Attention","Transformers","Fine-tuning","LLMs"]},
+        {"title":"Efficient Production DL","difficulty":"Advanced","time":54,"topics":["Distributed training","Quantization","Serving","Monitoring","Evaluation"]},
+        {"title":"Deep Learning Portfolio","difficulty":"Advanced","time":90,"topics":["Vision system","Transformer app","Research reproduction","Model API","Model card"]}
+      ]
+    },
+    {
+      "id":"cyber-security","label":"Cyber Security","role":"Cyber Security Engineer","category":"Security & Cloud","icon":"ph-shield-check","popularity":95,"growth":95,"rating":4.9,"salaryIndia":"₹7L–₹26L","salaryUsa":"$95K–$175K","salaryRemote":"$72K–$160K","demand":"Critical","aliases":["cybersecurity","ethical hacking","security engineer"],"description":"Defend systems through networking, secure design, ethical testing, detection, and incident response.","docs":"https://owasp.org/www-project-web-security-testing-guide/","companies":["CrowdStrike","Palo Alto Networks","Microsoft","Cisco","Deloitte"],
+      "nodes":[
+        {"title":"Systems & Network Foundations","difficulty":"Beginner","time":52,"topics":["Linux","Windows","TCP/IP","DNS","HTTP"]},
+        {"title":"Security Fundamentals","difficulty":"Beginner","time":42,"topics":["CIA triad","Threat modeling","Cryptography","IAM","Risk"]},
+        {"title":"Web & Application Security","difficulty":"Intermediate","time":58,"topics":["OWASP Top 10","Burp Suite","Secure coding","APIs","Authentication"]},
+        {"title":"Network & Cloud Defense","difficulty":"Intermediate","time":54,"topics":["Firewalls","IDS","Cloud IAM","Zero trust","Hardening"]},
+        {"title":"Detection & Incident Response","difficulty":"Advanced","time":56,"topics":["SIEM","Logs","Threat hunting","Forensics","Response"]},
+        {"title":"Ethical Security Testing","difficulty":"Advanced","time":62,"topics":["Reconnaissance","Nmap","Exploitation labs","Reporting","Remediation"],"branch":"Authorized labs only"},
+        {"title":"Security Portfolio","difficulty":"Advanced","time":78,"topics":["Home lab","Threat model","Audit report","Detection rules","Secure application"]}
+      ]
+    },
+    {
+      "id":"cloud-computing","label":"Cloud Computing","role":"Cloud Engineer","category":"Security & Cloud","icon":"ph-cloud","popularity":95,"growth":93,"rating":4.8,"salaryIndia":"₹8L–₹28L","salaryUsa":"$100K–$180K","salaryRemote":"$78K–$165K","demand":"Very high","aliases":["cloud","cloud engineer","cloud architecture"],"description":"Design secure, resilient, cost-aware systems across compute, storage, networking, and managed services.","docs":"https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html","companies":["AWS","Microsoft","Google","IBM","Accenture"],
+      "nodes":[
+        {"title":"Cloud & Networking Foundations","difficulty":"Beginner","time":40,"topics":["Regions","Availability zones","VPC","DNS","Shared responsibility"]},
+        {"title":"Compute & Storage","difficulty":"Beginner","time":38,"topics":["VMs","Containers","Object storage","Block storage","Autoscaling"]},
+        {"title":"Data & Managed Services","difficulty":"Intermediate","time":44,"topics":["Managed databases","Queues","Caches","Serverless","CDN"]},
+        {"title":"Security & Governance","difficulty":"Intermediate","time":44,"topics":["IAM","Encryption","Policies","Secrets","Compliance"]},
+        {"title":"Infrastructure as Code","difficulty":"Advanced","time":48,"topics":["Terraform","Modules","State","GitOps","Policy as code"]},
+        {"title":"Reliability & FinOps","difficulty":"Advanced","time":46,"topics":["Observability","Disaster recovery","SRE","Cost optimization","Well-architected"]},
+        {"title":"Cloud Portfolio","difficulty":"Advanced","time":72,"topics":["Three-tier platform","Serverless API","IaC modules","DR plan","Cost review"]}
+      ]
+    },
+    {
+      "id":"aws","label":"AWS","role":"AWS Cloud Engineer","category":"Security & Cloud","icon":"ph-cloud-arrow-up","popularity":96,"growth":91,"rating":4.9,"salaryIndia":"₹8L–₹30L","salaryUsa":"$105K–$185K","salaryRemote":"$80K–$170K","demand":"Very high","aliases":["amazon web services","aws cloud","aws architect"],"description":"Build and operate secure, resilient AWS architectures with automation and cost control.","docs":"https://docs.aws.amazon.com/","companies":["Amazon","Netflix","Airbnb","Capital One","Tata Consultancy Services"],
+      "nodes":[
+        {"title":"AWS Foundations","difficulty":"Beginner","time":34,"topics":["IAM","Regions","VPC","EC2","S3"]},
+        {"title":"Application Services","difficulty":"Intermediate","time":44,"topics":["RDS","DynamoDB","Lambda","API Gateway","SQS"]},
+        {"title":"Networking & Delivery","difficulty":"Intermediate","time":42,"topics":["Subnets","Load balancers","Route 53","CloudFront","PrivateLink"]},
+        {"title":"Security & Governance","difficulty":"Intermediate","time":40,"topics":["KMS","Organizations","CloudTrail","Config","GuardDuty"]},
+        {"title":"Automation & Containers","difficulty":"Advanced","time":48,"topics":["CloudFormation","Terraform","ECS","EKS","CodePipeline"]},
+        {"title":"AWS Reliability & Cost","difficulty":"Advanced","time":44,"topics":["CloudWatch","Backups","Multi-AZ","Well-Architected","FinOps"]},
+        {"title":"AWS Portfolio","difficulty":"Advanced","time":72,"topics":["Serverless product","Container platform","Secure VPC","IaC","Architecture review"]}
+      ]
+    },
+    {
+      "id":"azure","label":"Azure","role":"Azure Cloud Engineer","category":"Security & Cloud","icon":"ph-cloud-check","popularity":90,"growth":89,"rating":4.8,"salaryIndia":"₹8L–₹29L","salaryUsa":"$100K–$180K","salaryRemote":"$78K–$165K","demand":"Very high","aliases":["microsoft azure","azure cloud","azure architect"],"description":"Deliver enterprise cloud systems on Azure with identity, networking, automation, and observability.","docs":"https://learn.microsoft.com/en-us/azure/","companies":["Microsoft","Accenture","KPMG","Wipro","Capgemini"],
+      "nodes":[
+        {"title":"Azure Foundations","difficulty":"Beginner","time":34,"topics":["Subscriptions","Resource groups","Entra ID","VNets","Storage"]},
+        {"title":"Compute & Applications","difficulty":"Intermediate","time":42,"topics":["Virtual Machines","App Service","Functions","Container Apps","AKS"]},
+        {"title":"Data Services","difficulty":"Intermediate","time":40,"topics":["Azure SQL","Cosmos DB","Storage","Service Bus","Redis"]},
+        {"title":"Identity & Security","difficulty":"Intermediate","time":42,"topics":["RBAC","Key Vault","Defender","Policies","Private endpoints"]},
+        {"title":"IaC & DevOps","difficulty":"Advanced","time":48,"topics":["Bicep","Terraform","Azure DevOps","GitHub Actions","Release gates"]},
+        {"title":"Operations & Architecture","difficulty":"Advanced","time":44,"topics":["Azure Monitor","Backup","Resilience","Cost management","Well-Architected"]},
+        {"title":"Azure Portfolio","difficulty":"Advanced","time":70,"topics":["Enterprise app","Data platform","Secure landing zone","IaC","Operations guide"]}
+      ]
+    },
+    {
+      "id":"devops","label":"DevOps","role":"DevOps Engineer","category":"Security & Cloud","icon":"ph-infinity","popularity":97,"growth":94,"rating":4.9,"salaryIndia":"₹8L–₹30L","salaryUsa":"$105K–$185K","salaryRemote":"$82K–$170K","demand":"Very high","aliases":["devops engineer","platform engineer","ci cd"],"description":"Automate delivery, infrastructure, reliability, and feedback loops across software teams.","docs":"https://docs.github.com/en/actions","companies":["Google","Amazon","GitLab","Atlassian","Thoughtworks"],
+      "nodes":[
+        {"title":"Linux, Networks & Git","difficulty":"Beginner","time":48,"topics":["Linux","Shell","Networking","Git","Processes"]},
+        {"title":"Continuous Integration","difficulty":"Beginner","time":38,"topics":["CI pipelines","Testing","Artifacts","Quality gates","GitHub Actions"]},
+        {"title":"Containers","difficulty":"Intermediate","time":44,"topics":["Docker","Images","Compose","Registries","Security"]},
+        {"title":"Infrastructure as Code","difficulty":"Intermediate","time":48,"topics":["Terraform","Ansible","Cloud","Secrets","Policy"]},
+        {"title":"Kubernetes & GitOps","difficulty":"Advanced","time":62,"topics":["Kubernetes","Helm","Argo CD","Ingress","Autoscaling"]},
+        {"title":"SRE & Observability","difficulty":"Advanced","time":56,"topics":["Metrics","Logs","Traces","SLOs","Incident response"]},
+        {"title":"DevOps Portfolio","difficulty":"Advanced","time":78,"topics":["Delivery platform","Kubernetes app","IaC library","Dashboards","Runbooks"]}
+      ]
+    },
+    {
+      "id":"docker","label":"Docker","role":"Container Engineer","category":"Security & Cloud","icon":"ph-package","popularity":94,"growth":84,"rating":4.8,"salaryIndia":"₹7L–₹25L","salaryUsa":"$95K–$170K","salaryRemote":"$72K–$155K","demand":"Very high","aliases":["containers","docker engineer","containerization"],"description":"Package, secure, network, and operate reproducible containerized applications.","docs":"https://docs.docker.com/get-started/","companies":["Docker","Red Hat","AWS","Microsoft","Spotify"],
+      "nodes":[
+        {"title":"Container Foundations","difficulty":"Beginner","time":22,"topics":["Images","Containers","Registries","Layers","CLI"]},
+        {"title":"Writing Dockerfiles","difficulty":"Beginner","time":28,"topics":["Dockerfile","Build context","Caching","Multi-stage builds","Entrypoints"]},
+        {"title":"Storage & Networking","difficulty":"Intermediate","time":30,"topics":["Volumes","Bind mounts","Networks","DNS","Ports"]},
+        {"title":"Docker Compose","difficulty":"Intermediate","time":30,"topics":["Services","Dependencies","Health checks","Profiles","Environments"]},
+        {"title":"Security & Optimization","difficulty":"Advanced","time":34,"topics":["Rootless","Scanning","Secrets","SBOM","Image size"]},
+        {"title":"Production Containers","difficulty":"Advanced","time":36,"topics":["Registries","CI/CD","Logging","Orchestration","Troubleshooting"]},
+        {"title":"Docker Portfolio","difficulty":"Advanced","time":48,"topics":["Multi-service app","Secure image","CI pipeline","Dev environment","Operations guide"]}
+      ]
+    },
+    {
+      "id":"kubernetes","label":"Kubernetes","role":"Kubernetes Engineer","category":"Security & Cloud","icon":"ph-wheel","popularity":92,"growth":92,"rating":4.8,"salaryIndia":"₹10L–₹34L","salaryUsa":"$115K–$195K","salaryRemote":"$90K–$180K","demand":"Exceptional","aliases":["k8s","container orchestration","kubernetes administrator"],"description":"Deploy and operate resilient container platforms with secure, observable Kubernetes workloads.","docs":"https://kubernetes.io/docs/tutorials/","companies":["Google","Red Hat","Spotify","Adobe","VMware"],
+      "nodes":[
+        {"title":"Kubernetes Foundations","difficulty":"Beginner","time":32,"topics":["Architecture","Pods","Deployments","Services","kubectl"]},
+        {"title":"Configuration & Storage","difficulty":"Intermediate","time":38,"topics":["ConfigMaps","Secrets","Volumes","StatefulSets","Storage classes"]},
+        {"title":"Networking & Access","difficulty":"Intermediate","time":42,"topics":["Ingress","DNS","Network policies","RBAC","Service accounts"]},
+        {"title":"Packaging & Delivery","difficulty":"Intermediate","time":40,"topics":["Helm","Kustomize","GitOps","Argo CD","Progressive delivery"]},
+        {"title":"Scaling & Reliability","difficulty":"Advanced","time":48,"topics":["Autoscaling","Probes","Scheduling","Disruption budgets","Backups"]},
+        {"title":"Security & Observability","difficulty":"Advanced","time":48,"topics":["Pod security","Scanning","Metrics","Logs","Tracing"]},
+        {"title":"Kubernetes Portfolio","difficulty":"Advanced","time":74,"topics":["Production cluster","GitOps platform","Secure workload","Dashboards","Runbooks"]}
+      ]
+    },
+    {
+      "id":"uiux","label":"UI/UX","role":"Product Designer","category":"Design & Product","icon":"ph-bezier-curve","popularity":91,"growth":81,"rating":4.8,"salaryIndia":"₹5L–₹20L","salaryUsa":"$75K–$145K","salaryRemote":"$55K–$130K","demand":"High","aliases":["ui ux","product design","ux design"],"description":"Research, structure, prototype, validate, and communicate inclusive digital product experiences.","docs":"https://m3.material.io/foundations","companies":["Apple","Google","Microsoft","Airbnb","Swiggy"],
+      "nodes":[
+        {"title":"Design Foundations","difficulty":"Beginner","time":30,"topics":["Visual hierarchy","Color","Typography","Layout","Design critique"]},
+        {"title":"User Research","difficulty":"Beginner","time":36,"topics":["Interviews","Surveys","Personas","Journey maps","Problem statements"]},
+        {"title":"Information Architecture","difficulty":"Intermediate","time":32,"topics":["User flows","Sitemaps","Wireframes","Content design","Navigation"]},
+        {"title":"Interaction & Prototyping","difficulty":"Intermediate","time":42,"topics":["Figma","Components","Prototypes","Microinteractions","Responsive design"]},
+        {"title":"Testing & Accessibility","difficulty":"Intermediate","time":34,"topics":["Usability tests","Heuristics","WCAG","Inclusive design","Iteration"]},
+        {"title":"Design Systems & Handoff","difficulty":"Advanced","time":42,"topics":["Tokens","Patterns","Documentation","Developer handoff","Governance"]},
+        {"title":"Product Design Portfolio","difficulty":"Advanced","time":72,"topics":["Mobile case study","SaaS redesign","Research report","Design system","Portfolio"]}
+      ]
+    },
+    {
+      "id":"figma","label":"Figma","role":"Figma UI Designer","category":"Design & Product","icon":"ph-figma-logo","popularity":90,"growth":83,"rating":4.8,"salaryIndia":"₹4L–₹17L","salaryUsa":"$68K–$130K","salaryRemote":"$50K–$115K","demand":"High","aliases":["figma design","figma ui","prototyping"],"description":"Create responsive interfaces, prototypes, component systems, and developer-ready design handoffs.","docs":"https://help.figma.com/hc/en-us/categories/360002051613","companies":["Figma","Microsoft","Spotify","Notion","Canva"],
+      "nodes":[
+        {"title":"Figma Workspace","difficulty":"Beginner","time":18,"topics":["Frames","Layers","Shapes","Text","Constraints"]},
+        {"title":"Layout & Visual Design","difficulty":"Beginner","time":28,"topics":["Auto layout","Grids","Color styles","Typography","Images"]},
+        {"title":"Components & Variables","difficulty":"Intermediate","time":34,"topics":["Components","Variants","Properties","Variables","Modes"]},
+        {"title":"Responsive Prototyping","difficulty":"Intermediate","time":34,"topics":["Prototypes","Interactions","Overlays","Responsive behavior","Animations"]},
+        {"title":"Design Systems","difficulty":"Advanced","time":40,"topics":["Tokens","Libraries","Patterns","Documentation","Governance"]},
+        {"title":"Handoff & Collaboration","difficulty":"Advanced","time":30,"topics":["Dev Mode","Specs","Assets","Feedback","Version history"]},
+        {"title":"Figma Portfolio","difficulty":"Advanced","time":58,"topics":["Mobile app","Dashboard","Prototype","Component library","Case study"]}
+      ]
+    },
+    {
+      "id":"android","label":"Android","role":"Android Developer","category":"Mobile & Emerging","icon":"ph-android-logo","popularity":90,"growth":80,"rating":4.8,"salaryIndia":"₹6L–₹22L","salaryUsa":"$85K–$158K","salaryRemote":"$62K–$142K","demand":"High","aliases":["android development","kotlin android","android developer"],"description":"Build modern native Android applications with Kotlin, Compose, architecture, testing, and release workflows.","docs":"https://developer.android.com/courses","companies":["Google","Samsung","Uber","Spotify","Flipkart"],
+      "nodes":[
+        {"title":"Kotlin Foundations","difficulty":"Beginner","time":38,"topics":["Kotlin","Types","Functions","Classes","Coroutines"]},
+        {"title":"Android Platform","difficulty":"Beginner","time":36,"topics":["Lifecycle","Activities","Intents","Resources","Permissions"]},
+        {"title":"Jetpack Compose","difficulty":"Intermediate","time":50,"topics":["Composables","State","Layouts","Navigation","Material 3"]},
+        {"title":"Data & Networking","difficulty":"Intermediate","time":44,"topics":["Room","Retrofit","Serialization","Offline first","WorkManager"]},
+        {"title":"Architecture & Testing","difficulty":"Advanced","time":46,"topics":["MVVM","Repositories","Dependency injection","Unit tests","UI tests"]},
+        {"title":"Performance & Release","difficulty":"Advanced","time":38,"topics":["Profiling","Security","Accessibility","Play Console","CI/CD"]},
+        {"title":"Android Portfolio","difficulty":"Advanced","time":78,"topics":["Offline app","Media app","Commerce app","Tests","Store release"]}
+      ]
+    },
+    {
+      "id":"flutter","label":"Flutter","role":"Flutter Developer","category":"Mobile & Emerging","icon":"ph-device-mobile","popularity":88,"growth":88,"rating":4.8,"salaryIndia":"₹5L–₹20L","salaryUsa":"$78K–$145K","salaryRemote":"$58K–$132K","demand":"Fast growing","aliases":["dart flutter","flutter app","flutter developer"],"description":"Create polished cross-platform apps with Dart, Flutter widgets, robust state, and native integrations.","docs":"https://docs.flutter.dev/get-started/learn-flutter","companies":["Google","BMW","eBay","Nubank","Alibaba"],
+      "nodes":[
+        {"title":"Dart Foundations","difficulty":"Beginner","time":30,"topics":["Dart","Types","Functions","Classes","Async"]},
+        {"title":"Flutter UI","difficulty":"Beginner","time":40,"topics":["Widgets","Layouts","Themes","Navigation","Forms"]},
+        {"title":"State & Architecture","difficulty":"Intermediate","time":42,"topics":["State lifecycle","Riverpod","BLoC","Repositories","Dependency injection"]},
+        {"title":"Data & Device Features","difficulty":"Intermediate","time":44,"topics":["REST","Persistence","Firebase","Camera","Notifications"]},
+        {"title":"Quality & Performance","difficulty":"Advanced","time":38,"topics":["Testing","Profiling","Animations","Accessibility","Localization"]},
+        {"title":"Release Engineering","difficulty":"Advanced","time":34,"topics":["Signing","App stores","CI/CD","Crash reporting","Analytics"]},
+        {"title":"Flutter Portfolio","difficulty":"Advanced","time":74,"topics":["Finance app","Realtime app","Offline app","Packages","Store release"]}
+      ]
+    },
+    {
+      "id":"react-native","label":"React Native","role":"React Native Developer","category":"Mobile & Emerging","icon":"ph-atom","popularity":87,"growth":82,"rating":4.7,"salaryIndia":"₹6L–₹21L","salaryUsa":"$82K–$150K","salaryRemote":"$62K–$138K","demand":"High","aliases":["react native app","cross platform react","expo"],"description":"Build maintainable iOS and Android applications with React Native, Expo, and native capabilities.","docs":"https://reactnative.dev/docs/getting-started","companies":["Meta","Microsoft","Shopify","Discord","Pinterest"],
+      "nodes":[
+        {"title":"React Native Foundations","difficulty":"Beginner","time":32,"topics":["React","Components","Core APIs","Styling","Expo"]},
+        {"title":"Navigation & State","difficulty":"Intermediate","time":38,"topics":["Navigation","Hooks","State management","Forms","Deep links"]},
+        {"title":"Data & Persistence","difficulty":"Intermediate","time":40,"topics":["REST","React Query","Storage","SQLite","Offline sync"]},
+        {"title":"Native Capabilities","difficulty":"Intermediate","time":42,"topics":["Camera","Location","Notifications","Permissions","Native modules"]},
+        {"title":"Testing & Performance","difficulty":"Advanced","time":40,"topics":["Jest","E2E","Profiling","Lists","Animations"]},
+        {"title":"Release & Operations","difficulty":"Advanced","time":36,"topics":["EAS Build","Signing","Stores","OTA updates","Monitoring"]},
+        {"title":"React Native Portfolio","difficulty":"Advanced","time":72,"topics":["Social app","Commerce app","Offline app","Native integration","Release"]}
+      ]
+    },
+    {
+      "id":"game-development","label":"Game Development","role":"Game Developer","category":"Mobile & Emerging","icon":"ph-game-controller","popularity":85,"growth":74,"rating":4.8,"salaryIndia":"₹5L–₹22L","salaryUsa":"$75K–$145K","salaryRemote":"$55K–$130K","demand":"High","aliases":["game dev","unity","unreal engine"],"description":"Design and ship engaging games with gameplay programming, physics, assets, optimization, and publishing.","docs":"https://docs.unity3d.com/Manual/index.html","companies":["Epic Games","Ubisoft","Electronic Arts","Rockstar Games","Supercell"],
+      "nodes":[
+        {"title":"Game Design & Programming","difficulty":"Beginner","time":42,"topics":["Game loops","C# or C++","Vectors","Input","Design documents"]},
+        {"title":"Engine Foundations","difficulty":"Beginner","time":44,"topics":["Unity or Unreal","Scenes","Entities","Prefabs","Assets"]},
+        {"title":"Gameplay Systems","difficulty":"Intermediate","time":50,"topics":["Movement","Combat","AI","Inventory","Save systems"]},
+        {"title":"Physics, Audio & UI","difficulty":"Intermediate","time":44,"topics":["Physics","Animation","Audio","Menus","Feedback"]},
+        {"title":"Multiplayer & Tools","difficulty":"Advanced","time":58,"topics":["Networking","Replication","Level tools","Editor scripting","Analytics"],"branch":"Specialization"},
+        {"title":"Optimization & Publishing","difficulty":"Advanced","time":46,"topics":["Profiling","Memory","Builds","Stores","Live operations"]},
+        {"title":"Game Portfolio","difficulty":"Advanced","time":100,"topics":["2D game","3D vertical slice","Multiplayer prototype","Trailer","Postmortem"]}
+      ]
+    },
+    {
+      "id":"blockchain","label":"Blockchain","role":"Blockchain Developer","category":"Mobile & Emerging","icon":"ph-cube-transparent","popularity":78,"growth":72,"rating":4.6,"salaryIndia":"₹8L–₹30L","salaryUsa":"$95K–$185K","salaryRemote":"$75K–$170K","demand":"Specialized","aliases":["web3","smart contracts","solidity"],"description":"Build secure decentralized applications with cryptography, smart contracts, testing, and protocol awareness.","docs":"https://ethereum.org/en/developers/docs/","companies":["Coinbase","Polygon Labs","Chainlink Labs","ConsenSys","Ripple"],
+      "nodes":[
+        {"title":"Distributed Systems & Cryptography","difficulty":"Beginner","time":48,"topics":["Hashes","Signatures","Consensus","Ledgers","Wallets"]},
+        {"title":"Ethereum & Solidity","difficulty":"Intermediate","time":52,"topics":["EVM","Solidity","Transactions","Gas","Events"]},
+        {"title":"Smart Contract Engineering","difficulty":"Intermediate","time":48,"topics":["Testing","Deployment","Upgrade patterns","Standards","Tooling"]},
+        {"title":"dApp Development","difficulty":"Intermediate","time":44,"topics":["ethers.js","Wallet connection","Indexing","Frontend","Storage"]},
+        {"title":"Protocol Security","difficulty":"Advanced","time":58,"topics":["Reentrancy","Access control","Oracles","Auditing","Formal methods"]},
+        {"title":"Scaling & Ecosystems","difficulty":"Advanced","time":48,"topics":["Layer 2","Bridges","DeFi","DAOs","Governance"]},
+        {"title":"Blockchain Portfolio","difficulty":"Advanced","time":82,"topics":["Token contract","DAO","DeFi prototype","Security report","dApp"]}
+      ]
+    },
+    {
+      "id":"saas-development","label":"SaaS Development","role":"SaaS Product Engineer","category":"Web Development","icon":"ph-rocket-launch","popularity":92,"growth":90,"rating":4.8,"salaryIndia":"₹7L–₹26L","salaryUsa":"$90K–$170K","salaryRemote":"$70K–$158K","demand":"Fast growing","aliases":["saas","saas programming","software as a service"],"description":"Validate, build, monetize, operate, and grow a secure multi-tenant software product.","docs":"https://nextjs.org/docs","companies":["Salesforce","HubSpot","Atlassian","Zoho","Freshworks"],
+      "nodes":[
+        {"title":"Problem & Product Validation","difficulty":"Beginner","time":28,"topics":["Customer discovery","ICP","Problem interviews","MVP scope","Metrics"]},
+        {"title":"SaaS Application Stack","difficulty":"Intermediate","time":60,"topics":["Next.js","APIs","Database","Authentication","Authorization"]},
+        {"title":"Multi-tenancy & Billing","difficulty":"Intermediate","time":48,"topics":["Tenants","Roles","Stripe","Subscriptions","Webhooks"]},
+        {"title":"Product Operations","difficulty":"Advanced","time":42,"topics":["Emails","Jobs","Storage","Analytics","Feature flags"]},
+        {"title":"Security & Reliability","difficulty":"Advanced","time":46,"topics":["OWASP","Backups","Observability","Privacy","Incidents"]},
+        {"title":"Growth & Scale","difficulty":"Advanced","time":44,"topics":["Onboarding","SEO","Experiments","Support","Cost control"]},
+        {"title":"Launch a SaaS","difficulty":"Advanced","time":96,"topics":["Production product","Pricing","Documentation","Launch plan","Customer feedback"]}
+      ]
+    },
+    {
+      "id":"product-management","label":"Product Management","role":"Product Manager","category":"Design & Product","icon":"ph-kanban","popularity":90,"growth":87,"rating":4.8,"salaryIndia":"₹8L–₹30L","salaryUsa":"$95K–$175K","salaryRemote":"$72K–$160K","demand":"Very high","aliases":["product manager","pm roadmap","product strategy"],"description":"Discover valuable problems, align teams, make evidence-based decisions, and deliver measurable outcomes.","docs":"https://www.atlassian.com/agile/product-management","companies":["Google","Microsoft","Amazon","Atlassian","Razorpay"],
+      "nodes":[
+        {"title":"Product Thinking","difficulty":"Beginner","time":28,"topics":["User value","Business models","Outcomes","Product lifecycle","Ethics"]},
+        {"title":"Discovery & Research","difficulty":"Beginner","time":36,"topics":["Interviews","Market research","Personas","Jobs to be done","Validation"]},
+        {"title":"Strategy & Prioritization","difficulty":"Intermediate","time":38,"topics":["Vision","Positioning","Roadmaps","RICE","OKRs"]},
+        {"title":"Execution & Collaboration","difficulty":"Intermediate","time":42,"topics":["PRDs","Agile","Design partnership","Engineering tradeoffs","Launches"]},
+        {"title":"Metrics & Experimentation","difficulty":"Advanced","time":40,"topics":["North star metrics","Funnels","Retention","A/B tests","Analytics"]},
+        {"title":"Leadership & Growth","difficulty":"Advanced","time":38,"topics":["Stakeholders","Storytelling","Risk","Pricing","Growth loops"]},
+        {"title":"PM Portfolio","difficulty":"Advanced","time":62,"topics":["Product teardown","Research study","PRD","Experiment plan","Launch retrospective"]}
+      ]
+    },
+    {
+      "id":"digital-marketing","label":"Digital Marketing","role":"Digital Marketing Manager","category":"Business & Growth","icon":"ph-megaphone","popularity":87,"growth":84,"rating":4.7,"salaryIndia":"₹4L–₹18L","salaryUsa":"$62K–$125K","salaryRemote":"$45K–$115K","demand":"High","aliases":["online marketing","growth marketing","performance marketing"],"description":"Acquire, convert, and retain audiences using content, search, paid media, analytics, and experimentation.","docs":"https://developers.google.com/search/docs/fundamentals/seo-starter-guide","companies":["Google","Meta","HubSpot","Ogilvy","Dentsu"],
+      "nodes":[
+        {"title":"Marketing Foundations","difficulty":"Beginner","time":28,"topics":["Funnels","Personas","Positioning","Channels","Brand"]},
+        {"title":"Content & Social","difficulty":"Beginner","time":34,"topics":["Content strategy","Copywriting","Social media","Community","Editorial calendar"]},
+        {"title":"SEO & Web Analytics","difficulty":"Intermediate","time":42,"topics":["Technical SEO","Keywords","Content SEO","GA4","Search Console"]},
+        {"title":"Paid Acquisition","difficulty":"Intermediate","time":42,"topics":["Google Ads","Meta Ads","Creative tests","Bidding","Attribution"]},
+        {"title":"Lifecycle & Automation","difficulty":"Advanced","time":36,"topics":["Email","CRM","Segmentation","Automation","Retention"]},
+        {"title":"Growth Strategy","difficulty":"Advanced","time":40,"topics":["Experiments","CRO","Unit economics","Dashboards","Privacy"]},
+        {"title":"Marketing Portfolio","difficulty":"Advanced","time":58,"topics":["Campaign plan","SEO audit","Ad experiment","Analytics dashboard","Growth case study"]}
+      ]
+    },
+    {
+      "id":"system-design","label":"System Design","role":"Software Architect","category":"Computer Science","icon":"ph-tree-structure","popularity":95,"growth":91,"rating":4.9,"salaryIndia":"₹15L–₹50L","salaryUsa":"$140K–$240K","salaryRemote":"$105K–$220K","demand":"Exceptional","aliases":["software architecture","distributed systems","system design interview"],"description":"Reason about scalable, reliable distributed systems and communicate explicit engineering tradeoffs.","docs":"https://aws.amazon.com/architecture/well-architected/","companies":["Google","Amazon","Microsoft","Uber","Netflix"],
+      "nodes":[
+        {"title":"Architecture Foundations","difficulty":"Beginner","time":34,"topics":["Requirements","Capacity estimates","Latency","Throughput","Tradeoffs"]},
+        {"title":"Data & Caching","difficulty":"Intermediate","time":48,"topics":["SQL","NoSQL","Indexes","Caching","Consistency"]},
+        {"title":"Distributed Communication","difficulty":"Intermediate","time":48,"topics":["APIs","Queues","Events","Load balancing","Service discovery"]},
+        {"title":"Reliability & Scale","difficulty":"Advanced","time":54,"topics":["Replication","Sharding","Fault tolerance","Rate limits","Backpressure"]},
+        {"title":"Security & Observability","difficulty":"Advanced","time":42,"topics":["Threat modeling","IAM","Logs","Metrics","Tracing"]},
+        {"title":"Architecture Patterns","difficulty":"Advanced","time":52,"topics":["Microservices","Event sourcing","CQRS","Sagas","Multi-region"]},
+        {"title":"System Design Portfolio","difficulty":"Advanced","time":72,"topics":["URL shortener","Chat system","Video platform","Payments","Architecture documents"]}
+      ]
+    },
+    {
+      "id":"dsa","label":"DSA","role":"Software Engineer","category":"Computer Science","icon":"ph-graph","popularity":98,"growth":85,"rating":4.9,"salaryIndia":"₹6L–₹35L","salaryUsa":"$90K–$190K","salaryRemote":"$68K–$170K","demand":"Core skill","aliases":["data structures and algorithms","algorithms","coding interview"],"description":"Solve problems systematically with efficient data structures, algorithms, and complexity analysis.","docs":"https://cp-algorithms.com/","companies":["Google","Amazon","Microsoft","Meta","Adobe"],
+      "nodes":[
+        {"title":"Complexity & Problem Solving","difficulty":"Beginner","time":30,"topics":["Big O","Recursion","Math","Patterns","Testing"]},
+        {"title":"Linear Data Structures","difficulty":"Beginner","time":44,"topics":["Arrays","Strings","Linked lists","Stacks","Queues"]},
+        {"title":"Hashing, Trees & Heaps","difficulty":"Intermediate","time":52,"topics":["Hash maps","Trees","BSTs","Tries","Heaps"]},
+        {"title":"Graphs & Traversal","difficulty":"Intermediate","time":52,"topics":["Graphs","BFS","DFS","Shortest paths","Union find"]},
+        {"title":"Algorithmic Techniques","difficulty":"Advanced","time":60,"topics":["Sorting","Binary search","Greedy","Backtracking","Divide and conquer"]},
+        {"title":"Dynamic Programming","difficulty":"Advanced","time":62,"topics":["Memoization","Tabulation","Knapsack","Sequences","State design"]},
+        {"title":"Interview Mastery","difficulty":"Advanced","time":80,"topics":["Timed sets","Mock interviews","Communication","Company patterns","Review system"]}
+      ]
+    },
+    {
+      "id":"competitive-programming","label":"Competitive Programming","role":"Competitive Programmer","category":"Computer Science","icon":"ph-trophy","popularity":80,"growth":68,"rating":4.8,"salaryIndia":"Skill multiplier","salaryUsa":"Skill multiplier","salaryRemote":"Skill multiplier","demand":"Specialized","aliases":["cp","programming contests","codeforces"],"description":"Build speed, precision, and algorithmic depth for contests and advanced technical interviews.","docs":"https://cp-algorithms.com/","companies":["Google","Meta","Jane Street","Microsoft","Amazon"],
+      "nodes":[
+        {"title":"Contest Foundations","difficulty":"Beginner","time":34,"topics":["Fast I/O","Complexity","STL","Debugging","Contest workflow"]},
+        {"title":"Core Patterns","difficulty":"Beginner","time":48,"topics":["Two pointers","Prefix sums","Binary search","Sorting","Greedy"]},
+        {"title":"Trees & Graphs","difficulty":"Intermediate","time":60,"topics":["DFS","BFS","Shortest paths","MST","LCA"]},
+        {"title":"Dynamic Programming","difficulty":"Intermediate","time":64,"topics":["1D DP","2D DP","Digit DP","Tree DP","Optimization"]},
+        {"title":"Advanced Structures","difficulty":"Advanced","time":68,"topics":["Segment trees","Fenwick trees","DSU","Tries","Sparse tables"]},
+        {"title":"Number Theory & Strings","difficulty":"Advanced","time":62,"topics":["Primes","Modular arithmetic","Combinatorics","KMP","Hashing"]},
+        {"title":"Contest Mastery","difficulty":"Advanced","time":100,"topics":["Virtual contests","Upsolving","Templates","Ratings plan","Team contests"]}
+      ]
+    },
+    {
+      "id":"ios","label":"iOS","role":"iOS Developer","category":"Mobile & Emerging","icon":"ph-apple-logo","popularity":86,"growth":79,"rating":4.8,"salaryIndia":"₹7L–₹25L","salaryUsa":"$90K–$170K","salaryRemote":"$68K–$152K","demand":"High","aliases":["ios development","swift developer","iphone apps"],"description":"Build polished native Apple applications with Swift, SwiftUI, structured data, testing, and App Store delivery.","docs":"https://developer.apple.com/tutorials/swiftui","companies":["Apple","Airbnb","Uber","Spotify","Swiggy"],
+      "nodes":[{"title":"Swift Foundations","difficulty":"Beginner","time":38,"topics":["Swift","Types","Functions","Protocols","Concurrency"]},{"title":"iOS Platform","difficulty":"Beginner","time":36,"topics":["Xcode","Lifecycle","Navigation","Resources","Permissions"]},{"title":"SwiftUI Interfaces","difficulty":"Intermediate","time":48,"topics":["Views","State","Layout","NavigationStack","Accessibility"]},{"title":"Data & Networking","difficulty":"Intermediate","time":44,"topics":["URLSession","Codable","SwiftData","Caching","Offline mode"]},{"title":"Architecture & Testing","difficulty":"Advanced","time":44,"topics":["MVVM","Dependency injection","Unit tests","UI tests","Modularity"]},{"title":"Performance & App Store","difficulty":"Advanced","time":38,"topics":["Instruments","Security","Signing","TestFlight","App Store Connect"]},{"title":"iOS Portfolio","difficulty":"Advanced","time":78,"topics":["Offline app","Media app","Commerce app","Widgets","Store release"]}]
+    },
+    {
+      "id":"ar-vr","label":"AR/VR","role":"XR Developer","category":"Mobile & Emerging","icon":"ph-virtual-reality","popularity":74,"growth":86,"rating":4.7,"salaryIndia":"₹7L–₹26L","salaryUsa":"$90K–$175K","salaryRemote":"$68K–$158K","demand":"Fast growing","aliases":["xr","augmented reality","virtual reality","spatial computing"],"description":"Create immersive spatial experiences with 3D interaction, tracking, performance, and human-centered XR design.","docs":"https://docs.unity3d.com/Manual/XR.html","companies":["Meta","Apple","Microsoft","Unity","NVIDIA"],
+      "nodes":[{"title":"XR & 3D Foundations","difficulty":"Beginner","time":42,"topics":["Vectors","Transforms","3D scenes","XR hardware","Comfort"]},{"title":"Unity XR Toolkit","difficulty":"Beginner","time":44,"topics":["Unity","XR Interaction Toolkit","Input","Locomotion","Prefabs"]},{"title":"Spatial Interaction","difficulty":"Intermediate","time":48,"topics":["Tracking","Anchors","Gestures","Ray interaction","Spatial audio"]},{"title":"AR Development","difficulty":"Intermediate","time":46,"topics":["AR Foundation","Planes","Images","Occlusion","Lighting"]},{"title":"VR Systems","difficulty":"Advanced","time":50,"topics":["Immersion","Physics","Haptics","Multiplayer","Accessibility"]},{"title":"Performance & Publishing","difficulty":"Advanced","time":42,"topics":["Profiling","Rendering","Thermals","Device testing","Stores"]},{"title":"XR Portfolio","difficulty":"Advanced","time":84,"topics":["AR utility","VR training","Spatial prototype","Usability study","Demo reel"]}]
+    },
+    {
+      "id":"embedded-systems","label":"Embedded Systems","role":"Embedded Systems Engineer","category":"Mobile & Emerging","icon":"ph-cpu","popularity":80,"growth":82,"rating":4.8,"salaryIndia":"₹6L–₹24L","salaryUsa":"$88K–$165K","salaryRemote":"$62K–$145K","demand":"High","aliases":["embedded engineer","firmware","microcontrollers","iot"],"description":"Engineer reliable firmware and connected devices from electronics and C to RTOS, protocols, testing, and production.","docs":"https://docs.zephyrproject.org/latest/develop/getting_started/index.html","companies":["Intel","Qualcomm","Bosch","Texas Instruments","Siemens"],
+      "nodes":[{"title":"Electronics & C Foundations","difficulty":"Beginner","time":52,"topics":["Digital electronics","C","Bits","Memory","Toolchains"]},{"title":"Microcontrollers","difficulty":"Beginner","time":46,"topics":["GPIO","Timers","Interrupts","ADC","PWM"]},{"title":"Device Communication","difficulty":"Intermediate","time":44,"topics":["UART","I2C","SPI","CAN","Sensors"]},{"title":"Real-time Systems","difficulty":"Intermediate","time":52,"topics":["RTOS","Tasks","Scheduling","Synchronization","Timing"]},{"title":"Firmware Architecture","difficulty":"Advanced","time":48,"topics":["Drivers","State machines","Bootloaders","Power","Reliability"]},{"title":"Testing & Connected Devices","difficulty":"Advanced","time":46,"topics":["Debugging","Hardware-in-loop","IoT","Security","OTA updates"]},{"title":"Embedded Portfolio","difficulty":"Advanced","time":82,"topics":["Sensor node","RTOS device","Protocol driver","IoT product","Test report"]}]
+    },
+    {
+      "id":"qa-engineering","label":"QA Engineering","role":"QA Engineer","category":"Computer Science","icon":"ph-bug-beetle","popularity":84,"growth":78,"rating":4.7,"salaryIndia":"₹5L–₹20L","salaryUsa":"$72K–$140K","salaryRemote":"$52K–$128K","demand":"High","aliases":["quality assurance","software tester","test automation","sdet"],"description":"Build confidence in software through risk-based testing, automation, performance checks, and quality engineering.","docs":"https://playwright.dev/docs/intro","companies":["Microsoft","Adobe","Atlassian","BrowserStack","Accenture"],
+      "nodes":[{"title":"Testing Foundations","difficulty":"Beginner","time":30,"topics":["Test strategy","Test cases","Defects","Risk","SDLC"]},{"title":"Web & API Testing","difficulty":"Beginner","time":38,"topics":["Browser DevTools","HTTP","REST","Postman","SQL"]},{"title":"Test Automation","difficulty":"Intermediate","time":48,"topics":["JavaScript","Playwright","Selectors","Assertions","Page objects"]},{"title":"Quality Architecture","difficulty":"Intermediate","time":42,"topics":["Test pyramid","Contract tests","Data strategy","CI","Flaky tests"]},{"title":"Performance & Security Testing","difficulty":"Advanced","time":42,"topics":["Load tests","Profiling","OWASP","Accessibility","Reliability"]},{"title":"SDET Practices","difficulty":"Advanced","time":44,"topics":["Framework design","Reporting","Parallelism","Observability","Quality metrics"]},{"title":"QA Portfolio","difficulty":"Advanced","time":64,"topics":["Test strategy","Automation suite","API tests","Load report","Quality dashboard"]}]
+    }
+  ]
+}
