@@ -233,6 +233,18 @@
 
             <!-- COURSES LIST CONTAINER -->
             <div class="courses-container">
+
+                <section class="career-course-planner" id="careerCoursePlanner" aria-labelledby="careerPlannerTitle">
+                    <div class="planner-heading">
+                        <div>
+                            <span class="planner-eyebrow">ZERO TO JOB-READY</span>
+                            <h2 id="careerPlannerTitle">Course roadmap for every career</h2>
+                            <p>Pick a career to see its courses in the exact order you should take them.</p>
+                        </div>
+                        <label class="career-picker"><span>Choose a career</span><select id="careerCourseSelect"><option value="">Loading career paths...</option></select></label>
+                    </div>
+                    <div class="course-path" id="careerCoursePath" aria-live="polite"></div>
+                </section>
                 
                 <!-- Search & Sort Topbar -->
                 <div class="search-sort-bar">
@@ -765,6 +777,10 @@
         // Mock Enrollment action
         window.enrollMock = function(id) {
             const course = COURSES_DATABASE.find(c => c.id === id);
+            if (course && course.careerId) {
+                window.location.href = `roadmap.html?topic=${encodeURIComponent(course.careerId)}&node=${course.roadmapNode || 0}&tab=resources`;
+                return;
+            }
             alert(`Redirecting you to ${course.platform} for the course:\n"${course.title}"!`);
         };
 
@@ -968,6 +984,7 @@
             if (event.key === 'Escape') setSidebarOpen(false);
         });
     </script>
+    <script src="courses-roadmap.js"></script>
 </body>
 
 </html>

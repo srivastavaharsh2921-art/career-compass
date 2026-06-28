@@ -5,7 +5,7 @@
   "use strict";
 
   const DATA_URL = "data/roadmaps.json";
-  const STORE_KEY = "careerCompassLearningOS_v3";
+  const STORE_KEY = "careerCompassLearningOS_v4";
   const LEVEL_RANK = { Beginner: 0, Intermediate: 1, Advanced: 2, Expert: 3 };
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -35,6 +35,33 @@
   function formatHours(hours) { return hours >= 100 ? `${Math.round(hours / 10) * 10}h` : `${hours}h`; }
   function unique(values) { return [...new Set(values)]; }
   function roadmapById(id) { return state.catalog.find(item => item.id === id); }
+
+  const ZERO_STARTERS = {
+    "Web Development": ["Using a computer and browser", "Files and folders", "Typing and shortcuts", "How websites work", "Install a code editor", "Learning how to learn"],
+    "Programming Languages": ["Using a computer", "Files and folders", "Logical thinking", "Terminal basics", "Install an editor and runtime", "Reading error messages"],
+    "Backend & Data": ["Computer and operating-system basics", "Files and folders", "Terminal basics", "How the internet works", "Data and databases explained", "Install the required tools"],
+    "Data & AI": ["Computer and file basics", "Spreadsheets from scratch", "Numbers and basic algebra", "Charts and data questions", "Install Python and an editor", "Responsible use of data"],
+    "Security & Cloud": ["Computer and operating-system basics", "Files, users and permissions", "Internet and network basics", "Terminal basics", "Digital safety", "Build a safe practice lab"],
+    "Design & Product": ["Computer and browser basics", "Files and image formats", "Visual observation", "Everyday product thinking", "Install and navigate design tools", "Give and receive feedback"],
+    "Mobile & Emerging": ["Computer and smartphone basics", "Files and folders", "Logical thinking", "Install an editor and SDK", "Run a first sample", "Debugging without fear"],
+    "Business & Growth": ["Computer and browser basics", "Documents and spreadsheets", "Clear written communication", "Customer and business basics", "Digital research", "Set a measurable learning goal"],
+    "Computer Science": ["Using a computer", "Files and folders", "Logical problem solving", "Basic mathematics", "Terminal and editor basics", "How programs execute"]
+  };
+
+  function addZeroStartingPoint(item) {
+    if (item.nodes[0]?.zeroStart) return item;
+    const topics = ZERO_STARTERS[item.category] || ZERO_STARTERS["Computer Science"];
+    return {
+      ...item,
+      nodes: [{
+        title: "Start Here: Absolute Beginner",
+        difficulty: "Beginner",
+        time: 12,
+        zeroStart: true,
+        topics
+      }, ...item.nodes]
+    };
+  }
   function currentSaved() {
     if (!state.store.roadmaps[state.key]) state.store.roadmaps[state.key] = { completed: [], notes: {}, quizzes: {}, projects: {}, practice: {}, hours: 0, startedAt: new Date().toISOString() };
     return state.store.roadmaps[state.key];
@@ -73,7 +100,7 @@
     const response = await fetch(DATA_URL, { cache: "no-cache" });
     if (!response.ok) throw new Error(`Roadmap catalog failed to load (${response.status})`);
     const data = await response.json();
-    state.catalog = data.roadmaps;
+    state.catalog = data.roadmaps.map(addZeroStartingPoint);
     elements.catalogCount.textContent = state.catalog.length;
     populateCategories();
     renderChips();
@@ -274,6 +301,7 @@
     const { node } = nodeContext();
     const query = encodeURIComponent(`${node.title} ${state.roadmap.label}`);
     return `<div class="panel-intro"><span class="view-eyebrow">Curated learning stack</span><h3>Learn from primary sources, then practise.</h3><p>Use the official reference first, one structured course second, and active recall or a project third.</p></div><div class="resource-list">
+      ${resourceLink("ph-path", `${state.roadmap.label} course roadmap`, "Follow the complete beginner-to-job-ready course sequence", `courses.html?career=${encodeURIComponent(state.roadmap.id)}`, "course-roadmap")}
       ${resourceLink("ph-file-text", "Official documentation", "Primary technical reference", state.roadmap.docs)}
       ${resourceLink("ph-youtube-logo", "YouTube playlists", "Focused video explanations and walkthroughs", `https://www.youtube.com/results?search_query=${query}+playlist`, "youtube")}
       ${resourceLink("ph-graduation-cap", "Best free courses", "Search freeCodeCamp's long-form curriculum", `https://www.youtube.com/@freecodecamp/search?query=${query}`)}
