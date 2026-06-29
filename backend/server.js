@@ -278,16 +278,7 @@ async function getActor(req, body = {}) {
     if (user) return { db, type: "user", record: user };
   }
 
-  const guestId = getGuestId(req, body);
-  if (!guestId) return { db, type: "guest", record: null };
-
-  let guest = db.guests.find(item => item.id === guestId);
-  if (!guest) {
-    guest = { id: guestId, quiz: {}, createdAt: nowIso(), updatedAt: nowIso() };
-    db.guests.push(guest);
-  }
-
-  return { db, type: "guest", record: guest };
+  return { db, type: "anonymous", record: null };
 }
 
 function requireUser(req, res, db) {
@@ -592,6 +583,7 @@ async function handleApi(req, res, url) {
 
   if ((req.method === "GET" || req.method === "POST") && url.pathname === "/api/results") {
     const actor = await getActor(req, body);
+    if (!actor.record) return sendError(res, 401, "Please log in first");
     const quiz = body.quiz || actor.record?.quiz || {};
     const matches = careerMatches(quiz);
     sendJson(res, 200, {
@@ -608,6 +600,7 @@ async function handleApi(req, res, url) {
 
     const roadmap = buildRoadmap(topic);
     const actor = await getActor(req, body);
+    if (!actor.record) return sendError(res, 401, "Please log in first");
     roadmap.ownerType = actor.record ? actor.type : "anonymous";
     roadmap.ownerId = actor.record?.id || null;
 
@@ -619,6 +612,7 @@ async function handleApi(req, res, url) {
 
   if (req.method === "GET" && url.pathname === "/api/roadmaps") {
     const actor = await getActor(req);
+    if (!actor.record) return sendError(res, 401, "Please log in first");
     const roadmaps = actor.record
       ? actor.db.roadmaps.filter(item => item.ownerId === actor.record.id)
       : [];
@@ -640,6 +634,8 @@ async function handleApi(req, res, url) {
   }
 
   if (req.method === "POST" && url.pathname === "/api/mentor") {
+    const db = await readDb();
+    if (!requireUser(req, res, db)) return;
     const reply = mentorReply(body.message || body.prompt || body.query);
     sendJson(res, 200, { success: true, ...reply });
     return;

@@ -23,7 +23,7 @@ async function run() {
 
   const email = `smoke-${Date.now()}@example.com`;
   await request("/health");
-  await request("/auth/signup", {
+  const session = await request("/auth/signup", {
     method: "POST",
     body: JSON.stringify({ name: "Smoke Test", email, password: "secret123" })
   });
@@ -33,18 +33,22 @@ async function run() {
   });
   await request("/quiz/interests", {
     method: "POST",
+    headers: { Authorization: `Bearer ${session.token}` },
     body: JSON.stringify({ selections: ["Technology"], other: "AI" })
   });
   await request("/results", {
     method: "POST",
+    headers: { Authorization: `Bearer ${session.token}` },
     body: JSON.stringify({ quiz: { interests: { selections: ["Technology"] } } })
   });
   await request("/roadmaps", {
     method: "POST",
+    headers: { Authorization: `Bearer ${session.token}` },
     body: JSON.stringify({ topic: "Backend Development" })
   });
   await request("/mentor", {
     method: "POST",
+    headers: { Authorization: `Bearer ${session.token}` },
     body: JSON.stringify({ message: "How do I learn backend?" })
   });
   await request("/contact", {
