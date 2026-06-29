@@ -753,6 +753,36 @@
             font-size: 14px;
         }
 
+        .auth-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            color: #93c5fd;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .auth-trust-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 24px;
+            padding: 13px 14px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 10px;
+            background: rgba(59, 130, 246, 0.07);
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .auth-trust-note i {
+            margin-top: 2px;
+            color: #60a5fa;
+        }
+
         .login-form {
             display: flex;
             flex-direction: column;

@@ -17,22 +17,23 @@
     <section class="login-section" style="margin-bottom: 0;">
       <div class="login-card">
         <div class="login-header">
+          <div class="auth-brand"><i class="fa-regular fa-compass"></i> Career Compass</div>
           <h1>Login</h1>
-          <p>Login to continue your career journey</p>
+          <p>Sign in to your Career Compass account</p>
         </div>
         <form class="login-form">
           <div class="input-group">
             <label for="email">Email Address</label>
             <div class="input-wrapper">
               <i class="fa-regular fa-envelope input-icon"></i>
-              <input type="email" id="email" placeholder="Enter your email" required>
+              <input type="email" id="email" name="email" autocomplete="username" placeholder="Enter your email" required>
             </div>
           </div>
           <div class="input-group">
             <label for="password">Password</label>
             <div class="input-wrapper">
               <i class="fa-solid fa-lock input-icon"></i>
-              <input type="password" id="password" placeholder="Enter your password" required>
+              <input type="password" id="password" name="password" autocomplete="current-password" minlength="6" placeholder="Enter your password" required>
               <i class="fa-regular fa-eye-slash toggle-password"></i>
             </div>
           </div>
@@ -42,24 +43,14 @@
               <span class="checkmark"></span>
               Remember me
             </label>
-            <a href="#" class="forgot-password">Forgot Password?</a>
           </div>
           <button type="submit" class="btn-submit">
             Login <i class="fa-solid fa-arrow-right"></i>
           </button>
         </form>
-        <div class="divider">
-          <span>or continue with</span>
-        </div>
-        <div class="social-logins">
-          <button class="btn-social">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/960px-Google_%22G%22_logo.svg.png" alt="Google Logo" class="social-icon">
-            Continue with Google
-          </button>
-          <button class="btn-social">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo" class="social-icon">
-            Continue with LinkedIn
-          </button>
+        <div class="auth-trust-note">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <span>This form accepts Career Compass account credentials only. We never ask for your Google or LinkedIn password.</span>
         </div>
         <div class="login-footer">
           Don't have an account? <a href="signup.html">Sign Up</a>
