@@ -16,6 +16,10 @@
   ]);
 
   const page = location.pathname.split("/").pop() || "index.html";
+  if (page === "mentor.html") {
+    location.replace("index.html");
+    return;
+  }
   if (!protectedPages.has(page)) return;
   if (localStorage.getItem("careerCompassToken")) return;
 

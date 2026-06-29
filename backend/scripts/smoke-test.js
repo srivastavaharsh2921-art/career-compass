@@ -46,11 +46,6 @@ async function run() {
     headers: { Authorization: `Bearer ${session.token}` },
     body: JSON.stringify({ topic: "Backend Development" })
   });
-  await request("/mentor", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${session.token}` },
-    body: JSON.stringify({ message: "How do I learn backend?" })
-  });
   await request("/contact", {
     method: "POST",
     body: JSON.stringify({ name: "Smoke Test", email, message: "Hello" })
