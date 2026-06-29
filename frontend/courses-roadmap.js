@@ -77,7 +77,7 @@
                     <h3>${escapeHtml(course.title.replace(`${career.label}: `, ""))}</h3>
                     <p>${course.phaseNodes.map(node => escapeHtml(node.title)).join(" → ")}</p>
                     <div>${course.skills.slice(0, 4).map(skill => `<em>${escapeHtml(skill)}</em>`).join("")}</div>
-                    <section class="course-language-suggestions"><strong><i class="fa-solid fa-code"></i> Coding languages to learn</strong><div>${course.languages.map(language => `<span>${escapeHtml(language)}</span>`).join("")}</div></section>
+                    ${course.languages.length ? `<section class="course-language-suggestions"><strong><i class="fa-solid fa-code"></i> Languages to learn</strong><div>${course.languages.map(language => `<span>${escapeHtml(language)}</span>`).join("")}</div></section>` : ""}
                 </div>
                 <button type="button" data-open-course="${course.id}">${index ? "Continue phase" : "Start from zero"}<i class="fa-solid fa-arrow-right"></i></button>
             </article>
@@ -92,9 +92,8 @@
             const generated = careers.flatMap(splitIntoCourses);
             COURSES_DATABASE.push(...generated);
             COURSES_DATABASE.forEach(course => {
-                if (course.languages?.length) return;
-                const fallback = course.category === "Data & AI" ? ["Python", "SQL"] : course.category === "Design" ? ["HTML", "CSS", "JavaScript"] : course.category === "Marketing" ? ["SQL", "Python", "JavaScript"] : ["Python", "JavaScript", "SQL"];
-                course.languages = window.CareerCompassLanguageGuide.fromText(`${course.title} ${course.skills.join(" ")}`, fallback).slice(0, 5);
+                if (Array.isArray(course.languages)) return;
+                course.languages = window.CareerCompassLanguageGuide.fromText(`${course.title} ${course.skills.join(" ")}`).slice(0, 5);
             });
             select.innerHTML = careers.map(career => `<option value="${escapeHtml(career.id)}">${escapeHtml(career.role)}</option>`).join("");
             const requested = new URLSearchParams(location.search).get("career");

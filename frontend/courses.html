@@ -377,6 +377,7 @@
                 price: "Free Audit",
                 isFree: true,
                 skills: ["Figma", "User Research", "Wireframing", "Prototyping"],
+                languages: [],
                 image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -393,6 +394,7 @@
                 price: "Free",
                 isFree: true,
                 skills: ["C Programming", "Python", "SQL", "Algorithms", "Data Structures"],
+                languages: ["C", "Python", "SQL"],
                 image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -409,6 +411,7 @@
                 price: "Paid",
                 isFree: false,
                 skills: ["React", "Redux", "Webpack", "Middleware", "TDD"],
+                languages: ["JavaScript", "TypeScript", "JSX", "HTML", "CSS"],
                 image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -425,6 +428,7 @@
                 price: "Paid",
                 isFree: false,
                 skills: ["Python", "Supervised Learning", "Regression", "Neural Networks"],
+                languages: ["Python"],
                 image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -441,6 +445,7 @@
                 price: "Paid",
                 isFree: false,
                 skills: ["Figma", "UI Design", "Responsive Layouts", "Prototyping"],
+                languages: [],
                 image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -457,6 +462,7 @@
                 price: "Free Audit",
                 isFree: true,
                 skills: ["AI Strategy", "Machine Learning Basics", "AI Ethics"],
+                languages: [],
                 image: "https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -473,6 +479,7 @@
                 price: "Paid",
                 isFree: false,
                 skills: ["SEO", "Facebook Ads", "Instagram Growth", "Copywriting"],
+                languages: [],
                 image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -489,6 +496,7 @@
                 price: "Paid",
                 isFree: false,
                 skills: ["Accounting", "Financial Statements", "Bookkeeping"],
+                languages: [],
                 image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -505,6 +513,7 @@
                 price: "Free Audit",
                 isFree: true,
                 skills: ["Python", "SQL", "Pandas", "Data Visualization", "Machine Learning"],
+                languages: ["Python", "SQL"],
                 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -521,6 +530,7 @@
                 price: "Paid",
                 isFree: false,
                 skills: ["MLOps", "Model Deployment", "Data Pipelines", "Model Monitoring", "TensorFlow"],
+                languages: ["Python", "YAML"],
                 image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -537,6 +547,7 @@
                 price: "Paid",
                 isFree: false,
                 skills: ["Generative AI", "Large Language Models", "Transformers", "Prompt Engineering", "Responsible AI"],
+                languages: ["Python"],
                 image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=600&q=80"
             },
             {
@@ -553,6 +564,7 @@
                 price: "Free Audit",
                 isFree: true,
                 skills: ["Spreadsheets", "SQL", "Data Cleaning", "Tableau", "Business Analytics"],
+                languages: ["SQL"],
                 image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?auto=format&fit=crop&w=600&q=80"
             }
         ];
@@ -689,7 +701,7 @@
                         <div class="card-tags">
                             ${tagsHTML}
                         </div>
-                        ${course.languages?.length ? `<div class="card-language-suggestions"><span><i class="fa-solid fa-code"></i> Coding languages</span><div>${course.languages.map(language => `<em>${escapeHTML(language)}</em>`).join('')}</div></div>` : ''}
+                        ${course.languages?.length ? `<div class="card-language-suggestions"><span><i class="fa-solid fa-code"></i> Languages</span><div>${course.languages.map(language => `<em>${escapeHTML(language)}</em>`).join('')}</div></div>` : ''}
                         <div class="card-footer">
                             <div class="course-price">
                                 <span class="price-label">Price Model</span>
