@@ -377,6 +377,12 @@
     return `<div class="panel-intro"><span class="view-eyebrow">Knowledge check</span><h3>10 questions · 70% to pass</h3><p>Answers and explanations appear after submission. Your best score is saved.</p></div><form id="nodeQuiz">${questions.map((question, qIndex) => `<fieldset class="quiz-question"><legend>${qIndex + 1}. ${escapeHtml(question.q)}</legend>${question.options.map((option, optionIndex) => `<label class="quiz-option"><input type="radio" name="q${qIndex}" value="${optionIndex}" required><span>${escapeHtml(option)}</span></label>`).join("")}<input type="hidden" name="a${qIndex}" value="${question.answer}"></fieldset>`).join("")}<button class="quiz-submit" type="submit">Submit knowledge check</button><span class="quiz-result" id="quizResult">${savedScore !== undefined ? `Best: ${savedScore}/10` : ""}</span><div class="answer-review" id="answerReview"></div></form>`;
   }
 
+  function mentorContent() {
+    const { node } = nodeContext();
+    const actions = ["Explain like I'm 10", "Explain with an example", "Generate notes", "Generate cheat sheet", "Explain an error", "Generate flashcards", "Interview questions", "Coding problems", "Project ideas", "Review my approach"];
+    return `<div class="mentor-panel"><div class="mentor-orb"><i class="ph-fill ph-sparkle"></i></div><span class="view-eyebrow">Context-aware AI mentor</span><h3>Ask about ${escapeHtml(node.title)}</h3><p>Your mentor knows the current milestone, topics, level, roadmap, and progress.</p><div class="mentor-actions">${actions.map(action => `<button type="button" data-mentor-action="${escapeHtml(action)}">${escapeHtml(action)}</button>`).join("")}</div><div class="mentor-chat" id="mentorChat"><div class="mentor-message"><i class="ph-fill ph-robot"></i><p>What would make this milestone click for you right now?</p></div></div><form class="mentor-form" id="mentorForm"><textarea id="mentorInput" required placeholder="Ask a question, paste an error, or share code for review…"></textarea><button type="submit"><i class="ph-fill ph-paper-plane-tilt"></i></button></form></div>`;
+  }
+
   function renderPanel(index = state.selectedNode, tab = state.panelTab) {
     if (index === null || !state.roadmap.nodes[index]) return;
     state.selectedNode = index;
@@ -385,7 +391,7 @@
     elements.panelStep.textContent = `Milestone ${index + 1} of ${state.roadmap.nodes.length} · ${node.difficulty}`;
     elements.detailTitle.textContent = node.title;
     $$("[data-panel-tab]", elements.panelTabs).forEach(button => button.classList.toggle("active", button.dataset.panelTab === tab));
-    const renderers = { learn: learnContent, resources: resourcesContent, practice: practiceContent, projects: projectsContent, quiz: quizContent };
+    const renderers = { learn: learnContent, resources: resourcesContent, practice: practiceContent, projects: projectsContent, quiz: quizContent, mentor: mentorContent };
     elements.panelBody.innerHTML = renderers[tab]();
     const completed = isCompleted(index), unlocked = isUnlocked(index);
     elements.panelFooter.innerHTML = completed ? `<button class="complete-button completed" disabled><i class="ph-fill ph-check-circle"></i> Milestone completed · rewards earned</button>` : `<button class="complete-button" id="completeNode" ${unlocked ? "" : "disabled"}><i class="ph-bold ${unlocked ? "ph-check" : "ph-lock-key"}"></i>${unlocked ? "Mark milestone complete" : "Complete the previous milestone first"}</button>`;
@@ -567,6 +573,26 @@
     URL.revokeObjectURL(link.href);
   }
 
+  async function askMentor(message) {
+    const chat = $("#mentorChat");
+    if (!chat) return;
+    chat.insertAdjacentHTML("beforeend", `<div class="mentor-message user"><i class="ph-fill ph-user"></i><p>${escapeHtml(message)}</p></div><div class="mentor-message loading" id="mentorLoading"><i class="ph-fill ph-sparkle"></i><p>Thinking with your roadmap context…</p></div>`);
+    chat.scrollTop = chat.scrollHeight;
+    const { node } = nodeContext();
+    const contextualPrompt = `${message}. Current roadmap: ${state.roadmap.label}; role: ${state.roadmap.role}; milestone: ${node.title}; topics: ${node.topics.join(", ")}; learner level: ${state.preferences.level}.`;
+    let reply;
+    try {
+      const response = await fetch("/api/mentor", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: contextualPrompt }) });
+      if (!response.ok) throw new Error("Mentor unavailable");
+      reply = (await response.json()).reply;
+    } catch {
+      reply = `${node.title} becomes easier when you connect it to one output. Start with ${node.topics[0]}, build the smallest working example, then explain where ${node.topics[1] || node.topics[0]} changes the result. Add one test and write down the mistake you made—that mistake becomes your best revision note.`;
+    }
+    $("#mentorLoading")?.remove();
+    chat.insertAdjacentHTML("beforeend", `<div class="mentor-message"><i class="ph-fill ph-robot"></i><p>${escapeHtml(reply)}</p></div>`);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
   function submitQuiz(form) {
     const data = new FormData(form);
     const questions = quizQuestions(nodeContext().node);
@@ -698,13 +724,14 @@
       const flashcard = event.target.closest(".flashcard"); if (flashcard) flashcard.classList.toggle("revealed");
       if (event.target.closest("[data-download-notes]")) downloadNotes();
       if (event.target.closest("[data-open-playground]")) { closePanel(); switchView("playground"); elements.workspace.scrollIntoView({ behavior: "smooth" }); }
+      const action = event.target.closest("[data-mentor-action]"); if (action) askMentor(action.dataset.mentorAction);
     });
     elements.panelBody.addEventListener("input", event => { if (event.target.id === "nodeNotes") { currentSaved().notes[state.selectedNode] = event.target.value; saveStore(); } });
     elements.panelBody.addEventListener("change", event => {
       if (event.target.matches("[data-project]")) { const was = currentSaved().projects[event.target.dataset.project]; currentSaved().projects[event.target.dataset.project] = event.target.checked; saveStore(); if (event.target.checked && !was) addReward(75, 20, "Project shipped", "Proof of skill added to your portfolio."); }
       if (event.target.matches("[data-practice-complete]")) { const key = event.target.dataset.practiceComplete; const was = currentSaved().practice[key]; currentSaved().practice[key] = event.target.checked; saveStore(); if (event.target.checked && !was) addReward(40, 10, "Practice complete", "Active recall strengthens this milestone."); }
     });
-    elements.panelBody.addEventListener("submit", event => { if (event.target.id === "nodeQuiz") { event.preventDefault(); submitQuiz(event.target); } });
+    elements.panelBody.addEventListener("submit", event => { if (event.target.id === "nodeQuiz") { event.preventDefault(); submitQuiz(event.target); } if (event.target.id === "mentorForm") { event.preventDefault(); const input = $("#mentorInput"); askMentor(input.value.trim()); input.value = ""; } });
     elements.panelFooter.addEventListener("click", event => { if (event.target.closest("#completeNode")) completeSelectedNode(); });
 
     elements.workspace.addEventListener("click", event => {
@@ -745,7 +772,7 @@
           selectRoadmap(match.id);
           generateRoadmap(match.id, { noScroll: true });
           const requestedNode = Number(params.get("node"));
-          const requestedTab = ["learn", "resources", "practice", "projects", "quiz"].includes(params.get("tab")) ? params.get("tab") : "learn";
+          const requestedTab = ["learn", "resources", "practice", "projects", "quiz", "mentor"].includes(params.get("tab")) ? params.get("tab") : "learn";
           if (params.has("node") && Number.isInteger(requestedNode) && requestedNode >= 0 && requestedNode < state.roadmap.nodes.length) renderPanel(requestedNode, requestedTab);
         }
       }

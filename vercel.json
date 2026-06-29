@@ -13,13 +13,6 @@
       ]
     }
   ],
-  "redirects": [
-    {
-      "source": "/mentor.html",
-      "destination": "/",
-      "permanent": false
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/:path*",

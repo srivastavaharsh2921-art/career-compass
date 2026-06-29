@@ -55,15 +55,6 @@
   display: none;
 }
 
-/* AI Mentor is temporarily disabled. Keep the markup hidden for an easy restore. */
-a[href="mentor.html"],
-a[href$="/mentor.html"],
-.ai-box,
-.feature-card[onclick*="mentor.html"],
-[data-panel-tab="mentor"] {
-  display: none !important;
-}
-
 .sidebar-toggle {
   position: fixed;
   top: 18px;

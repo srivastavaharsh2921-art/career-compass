@@ -634,7 +634,10 @@ async function handleApi(req, res, url) {
   }
 
   if (req.method === "POST" && url.pathname === "/api/mentor") {
-    sendError(res, 503, "AI Mentor is temporarily unavailable");
+    const db = await readDb();
+    if (!requireUser(req, res, db)) return;
+    const reply = mentorReply(body.message || body.prompt || body.query);
+    sendJson(res, 200, { success: true, ...reply });
     return;
   }
 
