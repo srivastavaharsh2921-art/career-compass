@@ -21,7 +21,7 @@
           <h1>Create Account</h1>
           <p>Sign up to start your career journey with Career Compass</p>
         </div>
-        <form class="login-form" id="signup-form">
+        <form class="login-form" id="signup-form" data-auth="signup">
           <div class="input-group">
             <label for="name">Full name</label>
             <div class="input-wrapper">
@@ -84,23 +84,6 @@
         });
       });
 
-      // Simple client-side validation for matching passwords
-      const form = document.querySelector('#signup-form');
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          const p = document.querySelector('#password');
-          const c = document.querySelector('#confirm');
-          if (p && c && p.value !== c.value) {
-            e.preventDefault();
-            alert('Passwords do not match');
-            c.focus();
-            return false;
-          }
-          // For now, prevent actual submission and show a message
-          e.preventDefault();
-          alert('Account created (mock) — implement backend to persist user');
-        });
-      }
     });
   </script>
   <script src="api.js"></script>

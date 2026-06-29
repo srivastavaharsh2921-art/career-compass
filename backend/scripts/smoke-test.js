@@ -31,6 +31,17 @@ async function run() {
     method: "POST",
     body: JSON.stringify({ email, password: "secret123" })
   });
+  await request("/auth/logout", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${session.token}` }
+  });
+  const repeatedSession = await request("/auth/login", {
+    method: "POST",
+    body: JSON.stringify({ email: email.toUpperCase(), password: "secret123" })
+  });
+  if (repeatedSession.user?.id !== session.user?.id) {
+    throw new Error("Login after logout did not restore the saved account");
+  }
   await request("/quiz/interests", {
     method: "POST",
     headers: { Authorization: `Bearer ${session.token}` },

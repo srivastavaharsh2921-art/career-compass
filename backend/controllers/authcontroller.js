@@ -24,7 +24,7 @@ exports.signup = async (req, res) => {
     }
 
     const db = await readDb();
-    if (db.users.some(user => user.email === email)) {
+    if (db.users.some(user => normalizeEmail(user.email) === email)) {
       return res.status(409).json({ success: false, message: "User already exists" });
     }
 
@@ -58,7 +58,7 @@ exports.login = async (req, res) => {
     const email = normalizeEmail(req.body?.email);
     const password = String(req.body?.password || "");
     const db = await readDb();
-    const user = db.users.find(item => item.email === email);
+    const user = db.users.find(item => normalizeEmail(item.email) === email);
 
     if (!user || !verifyPassword(password, user.passwordHash)) {
       return res.status(401).json({ success: false, message: "Invalid email or password" });

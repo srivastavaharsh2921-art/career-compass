@@ -73,6 +73,16 @@
     localStorage.removeItem(storage.user);
   }
 
+  async function logout() {
+    try {
+      if (getToken()) await request("/auth/logout", { method: "POST" });
+    } catch {
+      // Local session cleanup must still succeed if the network is unavailable.
+    } finally {
+      clearSession();
+    }
+  }
+
   function headers() {
     const token = getToken();
     return {
@@ -160,8 +170,9 @@
     if (!form) return;
 
     const page = location.pathname.split("/").pop();
-    const isLogin = page === "login.html";
-    const isSignup = page === "signup.html";
+    const authAction = form.dataset.auth || (page === "login.html" ? "login" : page === "signup.html" ? "signup" : "");
+    const isLogin = authAction === "login";
+    const isSignup = authAction === "signup";
     if (!isLogin && !isSignup) return;
 
     event.preventDefault();
@@ -431,11 +442,11 @@
   document.addEventListener("click", handleQuizNext, true);
   document.addEventListener("click", handleResultRoadmap);
   document.addEventListener("click", handleProtectedLink, true);
-  document.addEventListener("click", event => {
+  document.addEventListener("click", async event => {
     if (event.target.closest("[data-cc-logout]")) {
       event.preventDefault();
-      clearSession();
-      window.location.href = "index.html";
+      await logout();
+      window.location.replace("index.html");
     }
   });
 
@@ -453,7 +464,7 @@
     generateRoadmap,
     selectTopic,
     askMentor,
-    logout: clearSession
+    logout
   };
   window.generateRoadmap = generateRoadmap;
   window.selectTopic = selectTopic;

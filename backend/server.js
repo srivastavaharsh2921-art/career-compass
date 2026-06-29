@@ -217,9 +217,11 @@ function hashPassword(password, salt = crypto.randomBytes(16).toString("hex")) {
 }
 
 function verifyPassword(password, storedHash) {
-  const [salt] = String(storedHash || "").split(":");
+  const saved = String(storedHash || "");
+  const [salt, hash] = saved.split(":");
+  if (!salt || !hash || !/^[a-f0-9]{32}$/i.test(salt) || !/^[a-f0-9]{128}$/i.test(hash)) return false;
   const attempted = hashPassword(password, salt);
-  return crypto.timingSafeEqual(Buffer.from(attempted), Buffer.from(storedHash));
+  return crypto.timingSafeEqual(Buffer.from(attempted), Buffer.from(saved));
 }
 
 function base64Url(input) {
@@ -479,7 +481,7 @@ async function handleApi(req, res, url) {
     if (password.length < 6) return sendError(res, 400, "Password must be at least 6 characters");
 
     const db = await readDb();
-    if (db.users.some(user => user.email === email)) return sendError(res, 409, "User already exists");
+    if (db.users.some(user => normalizeEmail(user.email) === email)) return sendError(res, 409, "User already exists");
 
     const user = {
       id: crypto.randomUUID(),
@@ -508,7 +510,7 @@ async function handleApi(req, res, url) {
     const email = normalizeEmail(body.email);
     const password = String(body.password || "");
     const db = await readDb();
-    const user = db.users.find(item => item.email === email);
+    const user = db.users.find(item => normalizeEmail(item.email) === email);
 
     if (!user || !verifyPassword(password, user.passwordHash)) return sendError(res, 401, "Invalid email or password");
 
