@@ -43,6 +43,7 @@
               <span class="checkmark"></span>
               Remember me
             </label>
+            <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
           </div>
           <button type="submit" class="btn-submit">
             Login <i class="fa-solid fa-arrow-right"></i>
@@ -60,6 +61,9 @@
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const emailInput = document.querySelector('#email');
+      const emailFromReset = new URLSearchParams(location.search).get('email');
+      if (emailInput && emailFromReset) emailInput.value = emailFromReset;
       const passwordInput = document.querySelector('#password');
       const togglePassword = document.querySelector('.toggle-password');
       if (passwordInput && togglePassword) {

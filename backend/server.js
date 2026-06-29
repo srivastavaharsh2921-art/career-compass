@@ -228,9 +228,10 @@ function base64Url(input) {
   return Buffer.from(input).toString("base64url");
 }
 
-function signToken(userId) {
+function signToken(userId, authVersion = 0) {
   const payload = {
     sub: userId,
+    ver: Number(authVersion || 0),
     exp: Date.now() + 7 * 24 * 60 * 60 * 1000
   };
   const encoded = base64Url(JSON.stringify(payload));
@@ -277,7 +278,9 @@ async function getActor(req, body = {}) {
 
   if (tokenPayload) {
     const user = db.users.find(item => item.id === tokenPayload.sub);
-    if (user) return { db, type: "user", record: user };
+    if (user && Number(tokenPayload.ver || 0) === Number(user.authVersion || 0)) {
+      return { db, type: "user", record: user };
+    }
   }
 
   return { db, type: "anonymous", record: null };
@@ -285,7 +288,12 @@ async function getActor(req, body = {}) {
 
 function requireUser(req, res, db) {
   const payload = verifyToken(getBearerToken(req));
-  const user = payload ? db.users.find(item => item.id === payload.sub) : null;
+  const user = payload
+    ? db.users.find(item => (
+      item.id === payload.sub
+      && Number(payload.ver || 0) === Number(item.authVersion || 0)
+    ))
+    : null;
 
   if (!user) {
     sendError(res, 401, "Please log in first");
@@ -293,6 +301,51 @@ function requireUser(req, res, db) {
   }
 
   return user;
+}
+
+function resetCodeHash(code) {
+  return crypto.createHmac("sha256", TOKEN_SECRET).update(String(code)).digest("hex");
+}
+
+function secureEqual(left, right) {
+  const leftBuffer = Buffer.from(String(left || ""));
+  const rightBuffer = Buffer.from(String(right || ""));
+  return leftBuffer.length === rightBuffer.length && crypto.timingSafeEqual(leftBuffer, rightBuffer);
+}
+
+function requestOrigin(req) {
+  if (process.env.APP_URL) return process.env.APP_URL.replace(/\/$/, "");
+  const protocol = String(req.headers["x-forwarded-proto"] || "http").split(",")[0].trim();
+  return `${protocol}://${req.headers.host || `localhost:${PORT}`}`;
+}
+
+async function sendPasswordResetEmail({ email, name, code, req }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return false;
+
+  const resetUrl = new URL("/forgot-password.html", requestOrigin(req));
+  resetUrl.searchParams.set("email", email);
+  resetUrl.searchParams.set("code", code);
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from: process.env.RESET_EMAIL_FROM || "Career Compass <onboarding@resend.dev>",
+      to: [email],
+      subject: "Reset your Career Compass password",
+      html: `<p>Hello ${String(name || "there").replace(/[&<>\"']/g, "")},</p><p>Your password reset code is <strong>${code}</strong>.</p><p>This code expires in 10 minutes.</p><p><a href="${resetUrl.toString()}">Reset your password</a></p><p>If you did not request this, you can ignore this email.</p>`
+    })
+  });
+
+  if (!response.ok) {
+    const details = await response.text().catch(() => "");
+    throw new Error(`Password reset email failed (${response.status}): ${details.slice(0, 180)}`);
+  }
+  return true;
 }
 
 function pickTextArray(value) {
@@ -488,6 +541,7 @@ async function handleApi(req, res, url) {
       name,
       email,
       passwordHash: hashPassword(password),
+      authVersion: 0,
       profile: {},
       quiz: {},
       createdAt: nowIso(),
@@ -500,7 +554,7 @@ async function handleApi(req, res, url) {
     sendJson(res, 201, {
       success: true,
       message: "Account created successfully",
-      token: signToken(user.id),
+      token: signToken(user.id, user.authVersion),
       user: sanitizeUser(user)
     });
     return;
@@ -517,9 +571,90 @@ async function handleApi(req, res, url) {
     sendJson(res, 200, {
       success: true,
       message: "Logged in successfully",
-      token: signToken(user.id),
+      token: signToken(user.id, user.authVersion),
       user: sanitizeUser(user)
     });
+    return;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/auth/forgot-password") {
+    const email = normalizeEmail(body.email);
+    if (!email) return sendError(res, 400, "Email is required");
+
+    const isLocalDevelopment = !IS_SERVERLESS && process.env.NODE_ENV !== "production";
+    if (!process.env.RESEND_API_KEY && !isLocalDevelopment) {
+      return sendError(res, 503, "Password reset email is not configured yet");
+    }
+
+    const db = await readDb();
+    const user = db.users.find(item => normalizeEmail(item.email) === email);
+    let developmentCode;
+
+    if (user) {
+      const requestedAt = Date.parse(user.passwordReset?.requestedAt || "");
+      const tooSoon = Number.isFinite(requestedAt) && Date.now() - requestedAt < 60_000;
+
+      if (!tooSoon || (isLocalDevelopment && !process.env.RESEND_API_KEY)) {
+        const code = String(crypto.randomInt(100000, 1000000));
+        user.passwordReset = {
+          codeHash: resetCodeHash(code),
+          expiresAt: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
+          requestedAt: nowIso(),
+          attempts: 0
+        };
+        await writeDb(db);
+
+        if (isLocalDevelopment && !process.env.RESEND_API_KEY) {
+          developmentCode = code;
+        } else {
+          try {
+            await sendPasswordResetEmail({ email, name: user.name, code, req });
+          } catch (error) {
+            console.error(error.message);
+          }
+        }
+      }
+    }
+
+    sendJson(res, 200, {
+      success: true,
+      message: "If an account exists for that email, a reset code has been sent. It expires in 10 minutes.",
+      ...(developmentCode ? { developmentCode } : {})
+    });
+    return;
+  }
+
+  if (req.method === "POST" && url.pathname === "/api/auth/reset-password") {
+    const email = normalizeEmail(body.email);
+    const code = String(body.code || "").trim();
+    const password = String(body.password || "");
+
+    if (!email || !code || !password) return sendError(res, 400, "Email, reset code, and new password are required");
+    if (!/^\d{6}$/.test(code)) return sendError(res, 400, "Enter the 6-digit reset code");
+    if (password.length < 6) return sendError(res, 400, "Password must be at least 6 characters");
+
+    const db = await readDb();
+    const user = db.users.find(item => normalizeEmail(item.email) === email);
+    const reset = user?.passwordReset;
+    const isExpired = !reset?.expiresAt || Date.parse(reset.expiresAt) < Date.now();
+    const tooManyAttempts = Number(reset?.attempts || 0) >= 5;
+    const isValid = !isExpired && !tooManyAttempts && secureEqual(resetCodeHash(code), reset?.codeHash);
+
+    if (!user || !isValid) {
+      if (user && reset && !isExpired && !tooManyAttempts) {
+        reset.attempts = Number(reset.attempts || 0) + 1;
+        await writeDb(db);
+      }
+      return sendError(res, 400, "The reset code is invalid or has expired");
+    }
+
+    user.passwordHash = hashPassword(password);
+    user.authVersion = Number(user.authVersion || 0) + 1;
+    user.updatedAt = nowIso();
+    delete user.passwordReset;
+    await writeDb(db);
+
+    sendJson(res, 200, { success: true, message: "Password reset successfully. You can now log in." });
     return;
   }
 

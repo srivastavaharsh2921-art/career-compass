@@ -18,6 +18,20 @@ async function request(path, options = {}) {
   return data;
 }
 
+async function expectFailure(path, options, expectedStatus) {
+  const response = await fetch(`${baseUrl}${path}`, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      "X-Guest-Id": "smoke-test-guest",
+      ...(options.headers || {})
+    }
+  });
+  if (response.status !== expectedStatus) {
+    throw new Error(`${path} returned ${response.status}; expected ${expectedStatus}`);
+  }
+}
+
 async function run() {
   await startServer();
 
@@ -66,6 +80,30 @@ async function run() {
     method: "POST",
     body: JSON.stringify({ name: "Smoke Test", email, message: "Hello" })
   });
+
+  const resetRequest = await request("/auth/forgot-password", {
+    method: "POST",
+    body: JSON.stringify({ email })
+  });
+  if (!/^\d{6}$/.test(resetRequest.developmentCode || "")) {
+    throw new Error("Local password reset did not return a development code");
+  }
+  await request("/auth/reset-password", {
+    method: "POST",
+    body: JSON.stringify({ email, code: resetRequest.developmentCode, password: "changed123" })
+  });
+  await expectFailure("/auth/login", {
+    method: "POST",
+    body: JSON.stringify({ email, password: "secret123" })
+  }, 401);
+  await request("/auth/login", {
+    method: "POST",
+    body: JSON.stringify({ email, password: "changed123" })
+  });
+  await expectFailure("/auth/me", {
+    method: "GET",
+    headers: { Authorization: `Bearer ${session.token}` }
+  }, 401);
 
   console.log("Backend smoke test passed");
 }

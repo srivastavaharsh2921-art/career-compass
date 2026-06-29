@@ -173,7 +173,9 @@
     const authAction = form.dataset.auth || (page === "login.html" ? "login" : page === "signup.html" ? "signup" : "");
     const isLogin = authAction === "login";
     const isSignup = authAction === "signup";
-    if (!isLogin && !isSignup) return;
+    const isForgotPassword = authAction === "forgot-password";
+    const isResetPassword = authAction === "reset-password";
+    if (!isLogin && !isSignup && !isForgotPassword && !isResetPassword) return;
 
     event.preventDefault();
     event.stopImmediatePropagation();
@@ -184,13 +186,53 @@
     const password = form.querySelector("#password")?.value || "";
     const confirm = form.querySelector("#confirm")?.value || "";
 
-    if (isSignup && password !== confirm) {
+    if ((isSignup || isResetPassword) && password !== confirm) {
       notice("Passwords do not match", "error");
       form.querySelector("#confirm")?.focus();
       return;
     }
 
     try {
+      if (isForgotPassword) {
+        setButtonLoading(submit, true, "Sending code...");
+        const data = await request("/auth/forgot-password", {
+          method: "POST",
+          body: JSON.stringify({ email })
+        });
+        const resetForm = document.querySelector('[data-auth="reset-password"]');
+        const resetEmail = resetForm?.querySelector('[name="email"]');
+        const resetCode = resetForm?.querySelector('[name="code"]');
+        const status = document.querySelector("#reset-status");
+        if (resetEmail) resetEmail.value = email;
+        if (data.developmentCode && resetCode) resetCode.value = data.developmentCode;
+        if (resetForm) resetForm.hidden = false;
+        if (status) {
+          status.hidden = false;
+          status.textContent = data.developmentCode
+            ? `Local development code: ${data.developmentCode}`
+            : data.message;
+        }
+        notice(data.message, "success");
+        (resetCode || resetForm?.querySelector("input"))?.focus();
+        return;
+      }
+
+      if (isResetPassword) {
+        setButtonLoading(submit, true, "Resetting password...");
+        const code = form.querySelector('[name="code"]')?.value.trim() || "";
+        const resetEmail = form.querySelector('[name="email"]')?.value.trim() || email;
+        const data = await request("/auth/reset-password", {
+          method: "POST",
+          body: JSON.stringify({ email: resetEmail, code, password })
+        });
+        clearSession();
+        notice(data.message, "success");
+        window.setTimeout(() => {
+          window.location.href = `login.html?email=${encodeURIComponent(resetEmail)}`;
+        }, 700);
+        return;
+      }
+
       setButtonLoading(submit, true, isLogin ? "Logging in..." : "Creating...");
       const data = await request(isLogin ? "/auth/login" : "/auth/signup", {
         method: "POST",

@@ -912,6 +912,34 @@
             text-decoration: underline;
         }
 
+        .reset-status {
+            margin-top: 20px;
+            padding: 13px 14px;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 10px;
+            background: rgba(59, 130, 246, 0.1);
+            color: #bfdbfe;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .reset-divider {
+            height: 1px;
+            margin: 28px 0;
+            border: 0;
+            background: #1c2042;
+        }
+
+        .reset-subheading {
+            margin-bottom: 20px;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
         .btn-submit {
             background: linear-gradient(90deg, #0062ff 0%, #6a32f7 100%);
             border: none;
