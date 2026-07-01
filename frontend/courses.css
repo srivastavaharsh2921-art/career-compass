@@ -1443,3 +1443,6 @@ p {
         justify-content: space-between;
     }
 }
+/* Career field gateway: tech stays in the existing catalog; non-tech opens its curriculum engine. */
+.field-choice-bar{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:22px;padding:22px 24px;border:1px solid rgba(139,92,246,.24);border-radius:18px;background:linear-gradient(120deg,rgba(124,58,237,.1),rgba(37,99,235,.08))}.field-choice-bar h2{margin:5px 0 0;font-size:22px}.field-choice-buttons{display:flex;gap:10px}.field-choice{min-width:170px;display:flex;align-items:center;gap:11px;text-align:left;text-decoration:none;padding:12px 15px;border:1px solid rgba(255,255,255,.12);border-radius:12px;background:rgba(12,14,28,.7);color:#d9dbea;cursor:pointer}.field-choice.active{border-color:#8b5cf6;background:rgba(124,58,237,.2);box-shadow:0 0 0 2px rgba(139,92,246,.08)}.field-choice i{font-size:19px;color:#a78bfa}.field-choice span,.field-choice small{display:block}.field-choice small{margin-top:2px;color:#9297ab;font-size:11px}.field-choice:hover{border-color:#8b5cf6;transform:translateY(-1px)}
+@media(max-width:700px){.field-choice-bar{align-items:flex-start;flex-direction:column}.field-choice-buttons{width:100%}.field-choice{min-width:0;flex:1;padding:11px}.field-choice-bar h2{font-size:19px}}

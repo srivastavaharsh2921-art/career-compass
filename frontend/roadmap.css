@@ -854,3 +854,4 @@ button.resource-card { width: 100%; }
   .certificate-shell { width: 100%; min-height: 95vh; box-shadow: none; }
   .certificate-actions, .certificate-shell > .panel-close { display: none !important; }
 }
+.career-field-switch{display:inline-flex;gap:6px;margin:18px auto 0;padding:6px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(9,11,23,.72);backdrop-filter:blur(12px)}.career-field-switch button,.career-field-switch a{display:flex;align-items:center;gap:7px;border:0;border-radius:9px;padding:10px 14px;color:#9da3b8;background:transparent;text-decoration:none;font:600 13px Inter,sans-serif;cursor:pointer}.career-field-switch .active{color:#fff;background:linear-gradient(135deg,#7c3aed,#4f6ee8);box-shadow:0 6px 18px rgba(99,70,210,.26)}.career-field-switch a:hover{color:#fff;background:rgba(255,255,255,.06)}
