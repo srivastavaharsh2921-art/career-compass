@@ -1,3 +1,5 @@
+process.env.DISABLE_RESET_EMAIL = "true";
+
 const { server, startServer } = require("../server");
 
 const baseUrl = `http://localhost:${process.env.PORT || 5000}/api`;

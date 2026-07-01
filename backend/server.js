@@ -7,17 +7,19 @@ const path = require("path");
 const { URL } = require("url");
 
 function loadEnv() {
-  const envPath = path.join(__dirname, ".env");
-  if (!fsSync.existsSync(envPath)) return;
+  [".env.local", ".env"].forEach(filename => {
+    const envPath = path.join(__dirname, filename);
+    if (!fsSync.existsSync(envPath)) return;
 
-  const raw = fsSync.readFileSync(envPath, "utf8");
-  raw.split(/\r?\n/).forEach(line => {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) return;
-    const [key, ...valueParts] = trimmed.split("=");
-    const value = valueParts.join("=").trim();
-    const unquoted = value.replace(/^(['"])(.*)\1$/, "$2");
-    if (!process.env[key]) process.env[key] = unquoted;
+    const raw = fsSync.readFileSync(envPath, "utf8");
+    raw.split(/\r?\n/).forEach(line => {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) return;
+      const [key, ...valueParts] = trimmed.split("=");
+      const value = valueParts.join("=").trim();
+      const unquoted = value.replace(/^(['"])(.*)\1$/, "$2");
+      if (!process.env[key]) process.env[key] = unquoted;
+    });
   });
 }
 
@@ -319,13 +321,59 @@ function requestOrigin(req) {
   return `${protocol}://${req.headers.host || `localhost:${PORT}`}`;
 }
 
-async function sendPasswordResetEmail({ email, name, code, req }) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return false;
+function passwordResetEmailProvider() {
+  if (process.env.DISABLE_RESET_EMAIL === "true") return "";
+  if (process.env.RESEND_API_KEY) return "resend";
 
+  const user = process.env.SMTP_USER || process.env.GMAIL_USER;
+  const pass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
+  if (user && pass) return "smtp";
+
+  return "";
+}
+
+function escapeHtml(value) {
+  return String(value || "").replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "\"": "&quot;",
+    "'": "&#039;"
+  }[character]));
+}
+
+async function sendPasswordResetEmail({ email, name, code, req }) {
   const resetUrl = new URL("/forgot-password.html", requestOrigin(req));
   resetUrl.searchParams.set("email", email);
   resetUrl.searchParams.set("code", code);
+  const from = process.env.RESET_EMAIL_FROM
+    || process.env.EMAIL_FROM
+    || `Career Compass <${process.env.SMTP_USER || process.env.GMAIL_USER}>`;
+  const subject = "Reset your Career Compass password";
+  const text = `Hello ${name || "there"},\n\nYour Career Compass password reset code is ${code}. It expires in 10 minutes.\n\nReset your password: ${resetUrl}\n\nIf you did not request this, you can ignore this email.`;
+  const html = `<p>Hello ${escapeHtml(name || "there")},</p><p>Your password reset code is <strong>${code}</strong>.</p><p>This code expires in 10 minutes.</p><p><a href="${escapeHtml(resetUrl.toString())}">Reset your password</a></p><p>If you did not request this, you can ignore this email.</p>`;
+
+  if (passwordResetEmailProvider() === "smtp") {
+    const nodemailer = require("nodemailer");
+    const port = Number(process.env.SMTP_PORT || 465);
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST || "smtp.gmail.com",
+      port,
+      secure: process.env.SMTP_SECURE
+        ? process.env.SMTP_SECURE === "true"
+        : port === 465,
+      auth: {
+        user: process.env.SMTP_USER || process.env.GMAIL_USER,
+        pass: process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD
+      }
+    });
+
+    await transporter.sendMail({ from, to: email, subject, text, html });
+    return "smtp";
+  }
+
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) throw new Error("Password reset email provider is not configured");
 
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -336,8 +384,9 @@ async function sendPasswordResetEmail({ email, name, code, req }) {
     body: JSON.stringify({
       from: process.env.RESET_EMAIL_FROM || "Career Compass <onboarding@resend.dev>",
       to: [email],
-      subject: "Reset your Career Compass password",
-      html: `<p>Hello ${String(name || "there").replace(/[&<>\"']/g, "")},</p><p>Your password reset code is <strong>${code}</strong>.</p><p>This code expires in 10 minutes.</p><p><a href="${resetUrl.toString()}">Reset your password</a></p><p>If you did not request this, you can ignore this email.</p>`
+      subject,
+      text,
+      html
     })
   });
 
@@ -345,7 +394,7 @@ async function sendPasswordResetEmail({ email, name, code, req }) {
     const details = await response.text().catch(() => "");
     throw new Error(`Password reset email failed (${response.status}): ${details.slice(0, 180)}`);
   }
-  return true;
+  return "resend";
 }
 
 function pickTextArray(value) {
@@ -582,7 +631,8 @@ async function handleApi(req, res, url) {
     if (!email) return sendError(res, 400, "Email is required");
 
     const isLocalDevelopment = !IS_SERVERLESS && process.env.NODE_ENV !== "production";
-    if (!process.env.RESEND_API_KEY && !isLocalDevelopment) {
+    const emailProvider = passwordResetEmailProvider();
+    if (!emailProvider && !isLocalDevelopment) {
       return sendError(res, 503, "Password reset email is not configured yet");
     }
 
@@ -594,25 +644,28 @@ async function handleApi(req, res, url) {
       const requestedAt = Date.parse(user.passwordReset?.requestedAt || "");
       const tooSoon = Number.isFinite(requestedAt) && Date.now() - requestedAt < 60_000;
 
-      if (!tooSoon || (isLocalDevelopment && !process.env.RESEND_API_KEY)) {
+      if (!tooSoon || (isLocalDevelopment && !emailProvider)) {
         const code = String(crypto.randomInt(100000, 1000000));
-        user.passwordReset = {
+        const passwordReset = {
           codeHash: resetCodeHash(code),
           expiresAt: new Date(Date.now() + 10 * 60 * 1000).toISOString(),
           requestedAt: nowIso(),
           attempts: 0
         };
-        await writeDb(db);
 
-        if (isLocalDevelopment && !process.env.RESEND_API_KEY) {
+        if (isLocalDevelopment && !emailProvider) {
           developmentCode = code;
         } else {
           try {
             await sendPasswordResetEmail({ email, name: user.name, code, req });
           } catch (error) {
             console.error(error.message);
+            return sendError(res, 502, "We couldn't send the reset email. Please try again shortly.");
           }
         }
+
+        user.passwordReset = passwordReset;
+        await writeDb(db);
       }
     }
 

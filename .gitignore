@@ -1,4 +1,6 @@
 backend/data/
 backend/.env
+backend/.env.local
 backend/debug.log
 backend/node_modules/
+node_modules/

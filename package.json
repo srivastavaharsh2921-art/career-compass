@@ -7,6 +7,7 @@
     "smoke": "node backend/scripts/smoke-test.js"
   },
   "dependencies": {
-    "mongoose": "^8.16.0"
+    "mongoose": "^8.16.0",
+    "nodemailer": "^9.0.3"
   }
 }
