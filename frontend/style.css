@@ -1049,3 +1049,4 @@
                 padding: 40px 16px;
             }
         }
+.auth-brand{display:flex!important;align-items:center;justify-content:center;gap:10px}.auth-brand-logo{width:42px;height:42px;border-radius:12px;object-fit:cover;display:block;box-shadow:0 0 20px rgba(59,130,246,.35)}
