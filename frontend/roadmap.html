@@ -23,7 +23,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
-<body>
+<body class="field-choice-pending">
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
     <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
@@ -114,12 +114,32 @@
         </div>
     </header>
 
+    <section class="roadmap-field-gate" id="roadmapFieldGate" aria-labelledby="fieldGateTitle">
+        <div class="container">
+            <div class="field-gate-copy">
+                <span><i class="ph-fill ph-sparkle"></i> Choose your field</span>
+                <h1 id="fieldGateTitle">What kind of roadmap do you need?</h1>
+                <p>Select a field first. We will then show the matching courses and career roadmaps.</p>
+            </div>
+            <div class="roadmap-field-options">
+                <button type="button" id="openTechCourses" class="roadmap-field-card tech-field">
+                    <i class="ph ph-code"></i>
+                    <div><small>TECH FIELD</small><h2>Tech Courses</h2><p>Programming, web development, data, AI, cloud, cybersecurity and product.</p><b>Show tech courses <i class="ph ph-arrow-right"></i></b></div>
+                </button>
+                <a href="non-tech-roadmaps.html?browse=1" class="roadmap-field-card nontech-field">
+                    <i class="ph ph-briefcase"></i>
+                    <div><small>NON-TECH FIELD</small><h2>Non-Tech Courses</h2><p>Business, finance, marketing, creative, government, healthcare and more.</p><b>Show non-tech courses <i class="ph ph-arrow-right"></i></b></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="roadmap-hero">
         <div class="container hero-content">
             <div class="eyebrow"><i class="ph-fill ph-sparkle"></i> Career Compass Pro</div>
             <div class="career-field-switch" aria-label="Choose roadmap field">
                 <button type="button" class="active"><i class="ph ph-code"></i> Tech roadmaps</button>
-                <a href="non-tech-roadmaps.html"><i class="ph ph-briefcase"></i> Non-tech roadmaps</a>
+                <a href="non-tech-roadmaps.html?browse=1"><i class="ph ph-briefcase"></i> Non-tech roadmaps</a>
             </div>
             <h1>From “what should I learn?” to<br><span class="gradient-text">job-ready, one milestone at a time.</span></h1>
             <p>Choose a role or technology. Career Compass builds an adaptive roadmap, weekly plan, practice system, portfolio, and interview path around your goal.</p>
@@ -183,6 +203,19 @@
     <div class="certificate-modal" id="certificateModal" aria-hidden="true"><div class="certificate-shell"><button class="panel-close" id="closeCertificate"><i class="ph ph-x"></i></button><div class="certificate-mark"><i class="ph-fill ph-seal-check"></i></div><span>Career Compass Pro</span><h2>Certificate of Completion</h2><p>This certifies that</p><h3 id="certificateName">Career Compass Learner</h3><p>has successfully completed the</p><h4 id="certificateRoadmap">Career Roadmap</h4><div class="certificate-meta"><span id="certificateDate"></span><span id="certificateId"></span></div><div class="certificate-actions"><button class="secondary-button" id="printCertificate"><i class="ph ph-printer"></i> Print / Save PDF</button><button class="primary-small" id="shareCertificate"><i class="ph ph-share-network"></i> Share credential</button></div></div></div>
     <div class="reward-overlay" id="rewardOverlay" aria-hidden="true"><div class="reward-card"><i class="ph-fill ph-confetti"></i><span>Achievement unlocked</span><h2 id="rewardTitle">First milestone</h2><p id="rewardMessage">You earned 100 XP and 25 coins.</p><button class="primary-small" id="closeReward">Keep going</button></div></div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script>
+        (() => {
+            const gate = document.getElementById('roadmapFieldGate');
+            const techButton = document.getElementById('openTechCourses');
+            const showTechCourses = () => {
+                document.body.classList.remove('field-choice-pending');
+                gate.hidden = true;
+                document.querySelector('.roadmap-hero')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            };
+            techButton.addEventListener('click', showTechCourses);
+            if (new URLSearchParams(location.search).has('topic')) showTechCourses();
+        })();
+    </script>
     <script src="language-guide.js"></script>
     <script src="roadmap-pro.js"></script>
     <script src="api.js"></script>

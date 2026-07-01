@@ -138,6 +138,6 @@
     document.addEventListener("submit", e => { if (e.target.id !== "careerQuiz") return; e.preventDefault(); const form = new FormData(e.target), questions = quizQuestions(); let score = 0; questions.forEach((q, i) => { if (Number(form.get(`q${i}`)) === q.answer) score++; }); const percent = Math.round(score / questions.length * 100); progress().quizzes.push({ score: percent, date: new Date().toISOString() }); save(); renderQuiz(`<div class="mission"><b>Your score: ${percent}%</b><span>${percent >= 75 ? "Strong applied understanding. Review explanations, then continue." : "Review the core modules and try again after more practice."}</span></div>`); renderDashboard(); showToast(`Quiz saved: ${percent}%`); });
     document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
   }
-  function init() { cache(); populateFilters(); renderCatalog(); bind(); const params = new URLSearchParams(location.search), id = params.get("career"); if (id && careers.some(c => c.id === id)) selectCareer(id); }
+  function init() { cache(); populateFilters(); renderCatalog(); bind(); const params = new URLSearchParams(location.search), id = params.get("career"); if (id && careers.some(c => c.id === id)) selectCareer(id); else if (params.get("browse") === "1") showCatalog(false); }
   document.addEventListener("DOMContentLoaded", init);
 })();
