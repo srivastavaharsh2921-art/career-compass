@@ -59,6 +59,7 @@ const mongoStore = {
 };
 
 let initializationPromise;
+let jsonWriteQueue = Promise.resolve();
 
 async function readJsonDbIfPresent() {
   try {
@@ -140,6 +141,7 @@ async function readDb() {
   }
 
   await ensureDb();
+  await jsonWriteQueue;
   const raw = await fs.readFile(DB_PATH, "utf8");
   return { ...defaultDb, ...JSON.parse(raw) };
 }
@@ -154,7 +156,9 @@ async function writeDb(db) {
     return;
   }
 
-  await fs.writeFile(DB_PATH, JSON.stringify(db, null, 2));
+  const write = jsonWriteQueue.then(() => fs.writeFile(DB_PATH, JSON.stringify(db, null, 2)));
+  jsonWriteQueue = write.catch(() => {});
+  await write;
 }
 
 function sendJson(res, status, body) {
@@ -283,6 +287,25 @@ async function getActor(req, body = {}) {
     if (user && Number(tokenPayload.ver || 0) === Number(user.authVersion || 0)) {
       return { db, type: "user", record: user };
     }
+  }
+
+  const guestId = getGuestId(req, body);
+  if (guestId) {
+    db.guests = Array.isArray(db.guests) ? db.guests : [];
+    let guest = db.guests.find(item => item.id === guestId);
+    if (!guest) {
+      guest = {
+        id: guestId,
+        name: "Guest User",
+        quiz: {},
+        profile: {},
+        createdAt: nowIso(),
+        updatedAt: nowIso()
+      };
+      db.guests.push(guest);
+      await writeDb(db);
+    }
+    return { db, type: "guest", record: guest };
   }
 
   return { db, type: "anonymous", record: null };
@@ -824,8 +847,8 @@ async function handleApi(req, res, url) {
   }
 
   if (req.method === "POST" && url.pathname === "/api/mentor") {
-    const db = await readDb();
-    if (!requireUser(req, res, db)) return;
+    const actor = await getActor(req, body);
+    if (!actor.record) return sendError(res, 401, "Please provide a guest id");
     const reply = mentorReply(body.message || body.prompt || body.query);
     sendJson(res, 200, { success: true, ...reply });
     return;

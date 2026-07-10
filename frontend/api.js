@@ -14,11 +14,7 @@
     quiz: "careerCompassQuiz"
   };
 
-  const protectedPages = new Set([
-    "test.html", "skills.html", "personality.html", "goals.html", "results.html",
-    "roadmap.html", "courses.html", "mentor.html", "skills-analyzer.html",
-    "stream-analyzer.html", "profile.html", "settings.html", "notifications.html"
-  ]);
+  const protectedPages = new Set();
 
   function currentPage() {
     return location.pathname.split("/").pop() || "index.html";
@@ -29,14 +25,14 @@
   }
 
   function safeReturnTo(value) {
-    if (!value) return "test.html";
+    if (!value) return "index.html";
     try {
       const url = new URL(value, location.href);
-      if (url.origin !== location.origin) return "test.html";
+      if (url.origin !== location.origin) return "index.html";
       const page = url.pathname.split("/").pop();
-      return protectedPages.has(page) ? `${page}${url.search}${url.hash}` : "test.html";
+      return page ? `${page}${url.search}${url.hash}` : "index.html";
     } catch {
-      return "test.html";
+      return "index.html";
     }
   }
 
@@ -102,11 +98,7 @@
     });
 
     const data = await response.json().catch(() => ({}));
-    if (response.status === 401 && isProtectedPage()) {
-      clearSession();
-      const destination = rememberReturnTo(`${currentPage()}${location.search}${location.hash}`);
-      location.replace(loginUrl(destination));
-    }
+    if (response.status === 401) clearSession();
     if (!response.ok) {
       throw new Error(data.message || "Request failed");
     }
@@ -433,31 +425,9 @@
   }
 
   function updateAuthNav() {
-    let user = null;
-    try {
-      user = JSON.parse(localStorage.getItem(storage.user) || "null");
-    } catch {
-      clearSession();
-    }
-    const navActions = document.querySelector(".nav-actions");
-    if (user && navActions) {
-      navActions.innerHTML = `
-        <span class="btn-login" style="cursor: default;">Hi, ${escapeHtml(user.name.split(" ")[0])}</span>
-        <a class="btn-signup" href="#" data-cc-logout>Logout</a>
-      `;
-    }
-
-    document.querySelectorAll('.nav-item.mobile-only-nav[href="login.html"], .nav-item.mobile-only-nav[href="signup.html"]')
-      .forEach(link => { link.hidden = Boolean(user); });
-
-    if (document.querySelector(".mobile-auth-actions") || ["login.html", "signup.html"].includes(currentPage())) return;
-    const mobileActions = document.createElement("div");
-    mobileActions.className = "mobile-auth-actions";
-    mobileActions.setAttribute("aria-label", "Account actions");
-    mobileActions.innerHTML = user
-      ? `<a href="profile.html">Hi, ${escapeHtml(user.name.split(" ")[0])}</a><button type="button" class="mobile-signup" data-cc-logout>Logout</button>`
-      : `<a href="login.html">Login</a><a class="mobile-signup" href="signup.html">Sign Up</a>`;
-    document.body.appendChild(mobileActions);
+    document.querySelectorAll(
+      '.nav-actions, .mobile-auth-actions, a[href="login.html"], a[href="signup.html"]'
+    ).forEach(element => element.remove());
   }
 
   function preserveAuthDestination() {
@@ -470,14 +440,7 @@
   }
 
   function handleProtectedLink(event) {
-    const link = event.target.closest("a[href]");
-    if (!link || getToken()) return;
-    const url = new URL(link.href, location.href);
-    const page = url.pathname.split("/").pop();
-    if (!protectedPages.has(page) || url.origin !== location.origin) return;
-    event.preventDefault();
-    const destination = rememberReturnTo(`${page}${url.search}${url.hash}`);
-    window.location.href = loginUrl(destination);
+    return;
   }
 
   document.addEventListener("submit", handleAuthSubmit, true);
