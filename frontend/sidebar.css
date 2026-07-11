@@ -221,7 +221,9 @@
 
 /* Avoid header overlap on narrow screens */
 @media (max-width: 1400px) {
-  header, .navbar, .nav-container {
+  body:not(.home-page) header,
+  body:not(.home-page) .navbar,
+  body:not(.home-page) .nav-container {
     padding-left: 70px !important;
   }
 }
@@ -284,11 +286,25 @@
 }
 
 @media (max-width: 430px) {
-  header,
-  .navbar,
-  .nav-container {
+  body:not(.home-page) header,
+  body:not(.home-page) .navbar,
+  body:not(.home-page) .nav-container {
     padding-top: 72px !important;
     padding-left: 0 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-page .site-header .sidebar-toggle.menu-toggle {
+    position: static;
+    top: auto;
+    left: auto;
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    align-self: center;
+    justify-self: end;
   }
 }
 .site-brand-logo{width:38px;height:38px;border-radius:10px;object-fit:cover;object-position:center;display:block;flex:0 0 auto;box-shadow:0 0 18px rgba(59,130,246,.28)}.logo-container>.site-brand-logo{width:34px;height:34px;border-radius:9px}

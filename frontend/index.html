@@ -20,10 +20,6 @@
 
     <!-- SIDEBAR NAVIGATION PANEL -->
     <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
-    <button id="sidebarToggle" class="sidebar-toggle" aria-label="Open sidebar" aria-expanded="false">
-        <span class="lines"></span>
-    </button>
-
     <aside class="sidebar" id="sidebar">
         <div>
             <div class="logo-container">
@@ -74,28 +70,25 @@
         </div>
     </aside>
 
-    <button id="hamburger" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span class="lines"></span>
-    </button>
-
-    <div class="container">
+    <div class="container page-container">
         <!-- Header -->
-        <header>
-            <a href="#" class="logo">
+        <header class="site-header">
+            <a href="index.html" class="logo">
                 <img src="careercompass-logo.png" class="header-brand-logo" alt="Career Compass logo">
                 <span class="brand-copy">
                     <span class="brand-title">Career <span>Compass</span></span>
                     <span class="brand-byline">By NexusTechs.in</span>
                 </span>
             </a>
-            <nav>
+            <button id="sidebarToggle" class="sidebar-toggle menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryNavigation">
+                <span class="lines"></span>
+            </button>
+            <nav id="primaryNavigation" aria-label="Primary navigation">
                 <a href="index.html" class="active">Home</a>
                 <a href="test.html">Career Test</a>
                 <a href="roadmap.html">Roadmaps</a>
                 <a href="courses.html">Courses</a>
-              
                 <a href="about-us.html">About Us</a>
-
             </nav>
         </header>
 
@@ -105,7 +98,7 @@
                 <div class="badge-ai">
                     <i class="ph-fill ph-sparkle"></i> AI-Powered Career Guidance
                 </div>
-                <h1>Discover Your Perfect<br><span>Career Path</span></h1>
+                <h1>Discover Your<br class="mobile-title-break"> Perfect<br><span>Career Path</span></h1>
                 <p class="hero-desc">
                     Get AI-powered career guidance, personalized roadmaps, salary insights and everything you need to
                     build a successful future.
@@ -224,47 +217,47 @@
         </section>
 
         <!-- Features Grid Header -->
-        <h2 class="section-title">Powerful <span>Features</span> For Your Career Journey</h2>
+        <h2 class="section-title">Everything You Need for Your <span>Career Journey</span></h2>
 
         <!-- Features Grid Layout -->
         <section class="features-grid">
             <div class="feature-card is-clickable" onclick="window.location.href='test.html'">
-                <div class="icon-wrapper f-quiz"><i class="ph-bold ph-brain"></i></div>
+                <div class="icon-wrapper f-quiz"><i data-lucide="brain" aria-hidden="true"></i></div>
                 <h3>Smart Career Quiz</h3>
                 <p>Discover careers that match your skills and interests</p>
             </div>
             <div class="feature-card is-clickable feature-card-featured" onclick="window.location.href='stream-analyzer.html'">
-                <div class="icon-wrapper f-stream"><i class="ph-bold ph-student"></i></div>
+                <div class="icon-wrapper f-stream"><i data-lucide="graduation-cap" aria-hidden="true"></i></div>
                 <h3>12th Stream Analyzer</h3>
                 <p>Find the best degree courses & exams based on your stream</p>
             </div>
             <div class="feature-card is-clickable" onclick="window.location.href='roadmap.html'">
-                <div class="icon-wrapper f-roadmaps"><i class="ph-bold ph-map-trifold"></i></div>
+                <div class="icon-wrapper f-roadmaps"><i data-lucide="route" aria-hidden="true"></i></div>
                 <h3>Personalized Roadmaps</h3>
                 <p>Step-by-step plan to reach your career goals</p>
             </div>
             <div class="feature-card">
-                <div class="icon-wrapper f-insights"><i class="ph-bold ph-chart-line-up"></i></div>
+                <div class="icon-wrapper f-insights"><i data-lucide="trending-up" aria-hidden="true"></i></div>
                 <h3>Salary & Growth Insights</h3>
                 <p>Real data on salary trends and future growth</p>
             </div>
             <div class="feature-card is-clickable" onclick="window.location.href='courses.html'">
-                <div class="icon-wrapper f-courses"><i class="ph-bold ph-graduation-cap"></i></div>
+                <div class="icon-wrapper f-courses"><i data-lucide="book-open" aria-hidden="true"></i></div>
                 <h3>Course Recommendations</h3>
                 <p>Top courses aligned with your career path</p>
             </div>
             <div class="feature-card">
-                <div class="icon-wrapper f-tracker"><i class="ph-bold ph-chart-bar"></i></div>
+                <div class="icon-wrapper f-tracker"><i data-lucide="target" aria-hidden="true"></i></div>
                 <h3>Progress Tracker</h3>
                 <p>Track your achievements and milestones</p>
             </div>
             <div class="feature-card is-clickable" onclick="window.location.href='mentor.html'">
-                <div class="icon-wrapper f-mentor"><i class="ph-bold ph-robot"></i></div>
+                <div class="icon-wrapper f-mentor"><i data-lucide="bot" aria-hidden="true"></i></div>
                 <h3>AI Career Mentor</h3>
                 <p>24/7 AI guidance whenever you need help</p>
             </div>
             <div class="feature-card">
-                <div class="icon-wrapper f-compare"><i class="ph-bold ph-scales"></i></div>
+                <div class="icon-wrapper f-compare"><i data-lucide="scale" aria-hidden="true"></i></div>
                 <h3>Career Compare</h3>
                 <p>Compare careers and choose the best fit for you</p>
             </div>
@@ -334,32 +327,59 @@
             lucide.createIcons();
         }
 
-        // Sidebar toggle logic
+        // Unified desktop sidebar and mobile header menu logic
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebarToggle');
         const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const siteHeader = document.querySelector('.site-header');
+        const primaryNavigation = document.getElementById('primaryNavigation');
+        const mobileNavQuery = window.matchMedia('(max-width: 900px)');
 
-        function setSidebarOpen(isOpen) {
-            if (!sidebar || !sidebarToggle || !sidebarOverlay) return;
-            sidebar.classList.toggle('open', isOpen);
-            sidebarOverlay.classList.toggle('visible', isOpen);
+        function setMenuState(isOpen) {
+            if (!sidebarToggle) return;
+            const isMobile = mobileNavQuery.matches;
+
+            if (isMobile) {
+                siteHeader?.classList.toggle('is-menu-open', isOpen);
+                document.body.classList.toggle('mobile-nav-open', isOpen);
+                sidebar?.classList.remove('open');
+                sidebarOverlay?.classList.remove('visible');
+            } else {
+                sidebar?.classList.toggle('open', isOpen);
+                sidebarOverlay?.classList.toggle('visible', isOpen);
+                siteHeader?.classList.remove('is-menu-open');
+                document.body.classList.remove('mobile-nav-open');
+            }
+
             sidebarToggle.setAttribute('aria-expanded', String(isOpen));
-            sidebarToggle.setAttribute('aria-label', isOpen ? 'Close sidebar' : 'Open sidebar');
+            sidebarToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
         }
 
         sidebarToggle?.addEventListener('click', () => {
-            const isOpen = sidebar.classList.contains('open');
-            setSidebarOpen(!isOpen);
+            const isOpen = sidebarToggle.getAttribute('aria-expanded') === 'true';
+            setMenuState(!isOpen);
         });
 
-        sidebarOverlay?.addEventListener('click', () => setSidebarOpen(false));
+        primaryNavigation?.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => setMenuState(false));
+        });
+
+        sidebar?.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => setMenuState(false));
+        });
+
+        sidebarOverlay?.addEventListener('click', () => setMenuState(false));
 
         sidebar?.addEventListener('scroll', () => {
             sidebar.classList.toggle('scrolled', sidebar.scrollTop > 0);
         });
 
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') setSidebarOpen(false);
+            if (event.key === 'Escape') setMenuState(false);
+        });
+
+        mobileNavQuery.addEventListener('change', () => {
+            setMenuState(false);
         });
     </script>
     <script src="api.js"></script>
