@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node backend/server.js",
-    "smoke": "node backend/scripts/smoke-test.js"
+    "smoke": "node backend/scripts/smoke-test.js",
+    "validate:non-tech-courses": "node scripts/validate-non-tech-courses.js"
   },
   "dependencies": {
     "mongoose": "^8.16.0",

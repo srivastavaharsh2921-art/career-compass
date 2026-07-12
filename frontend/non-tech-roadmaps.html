@@ -38,7 +38,7 @@
         <select id="difficultyFilter" aria-label="Filter by difficulty"><option value="All">All levels</option><option>Beginner friendly</option></select>
         <select id="durationFilter" aria-label="Filter by duration"><option value="All">Any duration</option><option value="short">Under 9 months</option><option value="long">9+ months</option></select>
         <select id="salaryFilter" aria-label="Filter by salary"><option value="All">Any salary potential</option><option value="high">High potential</option></select>
-        <select id="sortFilter" aria-label="Sort careers"><option value="popular">Most popular</option><option value="az">A–Z</option><option value="duration">Shortest first</option></select>
+        <select id="sortFilter" aria-label="Sort careers"><option value="popular">Most popular</option><option value="az">A-Z</option><option value="duration">Shortest first</option></select>
       </div>
       <div class="category-chips" id="categoryChips"></div>
       <div class="career-grid" id="careerGrid" aria-live="polite"></div>
@@ -53,6 +53,7 @@
 
       <nav class="workspace-tabs" id="workspaceTabs">
         <button class="active" data-view="roadmap"><i class="ph ph-git-branch"></i> Roadmap</button>
+        <button data-view="guide"><i class="ph ph-compass"></i> Career Guide</button>
         <button data-view="dashboard"><i class="ph ph-squares-four"></i> Dashboard</button>
         <button data-view="projects"><i class="ph ph-folder-open"></i> Projects</button>
         <button data-view="quiz"><i class="ph ph-exam"></i> Quiz</button>
@@ -65,6 +66,7 @@
         <div class="roadmap-toolbar"><div class="legend"><span><i class="dot unlocked"></i> Unlocked</span><span><i class="dot completed"></i> Completed</span><span><i class="dot locked"></i> Locked</span></div><div class="flow-switch"><button class="active" data-flow="vertical"><i class="ph ph-flow-arrow"></i> Vertical</button><button data-flow="branch"><i class="ph ph-git-branch"></i> Branch</button></div></div>
         <div class="flowchart" id="flowchart"></div>
       </div>
+      <div class="view" data-view-panel="guide" id="guideView"></div>
       <div class="view" data-view-panel="dashboard" id="dashboardView"></div>
       <div class="view" data-view-panel="projects" id="projectsView"></div>
       <div class="view" data-view-panel="quiz" id="quizView"></div>

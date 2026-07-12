@@ -3,20 +3,36 @@
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
   const escapeHtml = value => String(value ?? "").replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
-  const STORE_KEY = "careerCompassNonTechProgressV1";
+  const LEGACY_STORE_KEY = "careerCompassNonTechProgressV1";
+  const META_STORE_KEY = "careerCompassNonTechMetaV2";
   const careers = window.NON_TECH_ROADMAPS || [];
   const state = { career: null, module: 0, topic: 0, detailTab: "learn", flow: "vertical", filter: "All", store: loadStore() };
   const els = {};
 
   function loadStore() {
-    try { return { streak: 1, lastActive: "", careers: {}, ...JSON.parse(localStorage.getItem(STORE_KEY) || "{}") }; }
-    catch { return { streak: 1, lastActive: "", careers: {} }; }
+    let legacy = {};
+    let meta = {};
+    try { legacy = JSON.parse(localStorage.getItem(LEGACY_STORE_KEY) || "{}"); } catch { legacy = {}; }
+    try { meta = JSON.parse(localStorage.getItem(META_STORE_KEY) || "{}"); } catch { meta = {}; }
+    return { streak: meta.streak || legacy.streak || 1, lastActive: meta.lastActive || legacy.lastActive || "", careers: legacy.careers || {} };
   }
-  function save() { localStorage.setItem(STORE_KEY, JSON.stringify(state.store)); }
+  function careerStoreKey(id) { return `careerCompass_nonTech_${id}`; }
+  function defaultProgress() { return { topics: [], quizzes: [], hours: 0, projects: [], notes: {}, started: new Date().toISOString() }; }
+  function loadCareerProgress(id) {
+    try { return { ...defaultProgress(), ...JSON.parse(localStorage.getItem(careerStoreKey(id)) || "{}") }; }
+    catch { return { ...defaultProgress(), ...(state.store.careers[id] || {}) }; }
+  }
+  function save() {
+    localStorage.setItem(META_STORE_KEY, JSON.stringify({ streak: state.store.streak, lastActive: state.store.lastActive }));
+    if (state.career) localStorage.setItem(careerStoreKey(state.career.id), JSON.stringify(progress()));
+  }
   function progress() {
-    if (!state.store.careers[state.career.id]) state.store.careers[state.career.id] = { topics: [], quizzes: [], hours: 0, projects: [], started: new Date().toISOString() };
+    if (!state.store.careers[state.career.id]) state.store.careers[state.career.id] = loadCareerProgress(state.career.id);
     const current = state.store.careers[state.career.id];
     current.notes ||= {};
+    current.projects ||= [];
+    current.quizzes ||= [];
+    current.topics ||= [];
     return current;
   }
   function key(mi, ti) { return `${mi}:${ti}`; }
@@ -32,7 +48,7 @@
     state.store.streak = state.store.lastActive === yesterday ? (state.store.streak || 0) + 1 : 1; state.store.lastActive = today; save();
   }
   function cache() {
-    ["fieldGate", "chooseNonTech", "catalogSection", "careerCount", "careerSearch", "categoryFilter", "difficultyFilter", "durationFilter", "salaryFilter", "sortFilter", "categoryChips", "careerGrid", "workspace", "backToCatalog", "careerIcon", "careerCategory", "careerTitle", "careerDescription", "careerTags", "scoreRing", "roadmapPercent", "readinessScore", "workspaceTabs", "flowchart", "dashboardView", "projectsView", "quizView", "mentorView", "compareView", "certificateView", "topicDrawer", "drawerBackdrop", "closeDrawer", "drawerStage", "drawerTitle", "drawerMeta", "drawerTabs", "drawerBody", "drawerFooter", "toast", "mobileMenu"].forEach(id => els[id] = document.getElementById(id));
+    ["fieldGate", "chooseNonTech", "catalogSection", "careerCount", "careerSearch", "categoryFilter", "difficultyFilter", "durationFilter", "salaryFilter", "sortFilter", "categoryChips", "careerGrid", "workspace", "backToCatalog", "careerIcon", "careerCategory", "careerTitle", "careerDescription", "careerTags", "scoreRing", "roadmapPercent", "readinessScore", "workspaceTabs", "flowchart", "guideView", "dashboardView", "projectsView", "quizView", "mentorView", "compareView", "certificateView", "topicDrawer", "drawerBackdrop", "closeDrawer", "drawerStage", "drawerTitle", "drawerMeta", "drawerTabs", "drawerBody", "drawerFooter", "toast", "mobileMenu"].forEach(id => els[id] = document.getElementById(id));
   }
   function showToast(message) { els.toast.textContent = message; els.toast.classList.add("show"); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => els.toast.classList.remove("show"), 2400); }
   function showCatalog(scroll = true) { els.fieldGate.hidden = true; els.workspace.hidden = true; els.catalogSection.hidden = false; renderCatalog(); if (scroll) els.catalogSection.scrollIntoView({ behavior: "smooth" }); }
@@ -45,8 +61,13 @@
   function renderCatalog() {
     const query = els.careerSearch.value.trim().toLowerCase();
     let items = careers.filter(c => {
-      const text = [c.name, c.category, c.description, ...c.roles, ...c.tools, ...c.modules.flatMap(m => m.topics.map(t => t.title))].join(" ").toLowerCase();
-      const durationMonths = c.duration.includes("12–") || c.duration.includes("18") || c.duration.includes("36") ? 12 : 6;
+      const text = [
+        c.name, c.title, c.category, c.description, c.detailedDescription,
+        ...(c.roles || []), ...(c.tools || []), ...(c.skillsToLearn || []), ...(c.industries || []),
+        ...c.modules.flatMap(m => m.topics.map(t => t.title))
+      ].join(" ").toLowerCase();
+      const durationMatch = String(c.duration).match(/(\d+)(?:\s*-\s*(\d+))?/);
+      const durationMonths = durationMatch ? Number(durationMatch[2] || durationMatch[1]) : 6;
       return (state.filter === "All" || c.category === state.filter) && (!query || text.includes(query)) && (els.difficultyFilter.value === "All" || c.difficulty === els.difficultyFilter.value) && (els.durationFilter.value === "All" || (els.durationFilter.value === "short" ? durationMonths < 9 : durationMonths >= 9)) && (els.salaryFilter.value === "All" || /12|growing|high/i.test(`${c.salary} ${c.demand}`));
     });
     if (els.sortFilter.value === "popular") items.sort((a, b) => b.popularity - a.popularity); else if (els.sortFilter.value === "az") items.sort((a, b) => a.name.localeCompare(b.name)); else items.sort((a, b) => a.duration.localeCompare(b.duration));
@@ -58,10 +79,13 @@
 
   function selectCareer(id) {
     state.career = careers.find(c => c.id === id); if (!state.career) return;
+    state.store.careers[id] = loadCareerProgress(id);
     updateStreak(); localStorage.setItem("careerCompassLastNonTechCareer", id);
     els.catalogSection.hidden = true; els.fieldGate.hidden = true; els.workspace.hidden = false;
     els.careerIcon.innerHTML = `<i class="ph ${escapeHtml(state.career.icon)}"></i>`; els.careerCategory.textContent = state.career.category; els.careerTitle.textContent = `${state.career.name} Career Roadmap`; els.careerDescription.textContent = state.career.description;
-    els.careerTags.innerHTML = `<span><i class="ph ph-clock"></i> ${escapeHtml(state.career.duration)}</span><span><i class="ph ph-books"></i> ${state.career.modules.length} modules</span><span><i class="ph ph-timer"></i> ${totalHours()} guided hours</span><span><i class="ph ph-currency-inr"></i> ${escapeHtml(state.career.salary)}</span>`;
+    const firstRole = state.career.jobRoles?.[0];
+    const salarySummary = firstRole ? `${firstRole.role}: ${firstRole.fresherSalary}` : state.career.salary;
+    els.careerTags.innerHTML = `<span><i class="ph ph-clock"></i> ${escapeHtml(state.career.duration)}</span><span><i class="ph ph-books"></i> ${state.career.modules.length} modules</span><span><i class="ph ph-timer"></i> ${totalHours()} guided hours</span><span><i class="ph ph-currency-inr"></i> ${escapeHtml(salarySummary)}</span>`;
     switchView("roadmap"); renderAll(); els.workspace.scrollIntoView({ behavior: "smooth", block: "start" });
   }
   function status(mi) { return moduleDone(mi) ? ["completed", "Completed", "ph-check-circle"] : moduleUnlocked(mi) ? ["current", mi ? "Unlocked" : "Start here", "ph-play-circle"] : ["locked", "Locked", "ph-lock-key"]; }
@@ -73,7 +97,47 @@
     }).join("") + `<div class="flow-connector"></div><div class="status-pill"><i class="ph-fill ph-flag-checkered"></i> Job-ready finish line</div>`;
   }
   function updateHeader() { const p = overallPercent(); els.roadmapPercent.textContent = `${p}%`; els.scoreRing.style.setProperty("--value", p); els.readinessScore.textContent = Math.min(100, 12 + Math.round(p * .88)); }
-  function renderAll() { renderFlow(); updateHeader(); renderDashboard(); renderProjects(); renderQuiz(); renderMentor(); renderCompare(); renderCertificate(); }
+  function renderAll() { renderFlow(); updateHeader(); renderGuide(); renderDashboard(); renderProjects(); renderQuiz(); renderMentor(); renderCompare(); renderCertificate(); }
+
+  function hasItems(items) { return Array.isArray(items) && items.length > 0; }
+  function chipList(items) { return hasItems(items) ? `<div class="concepts">${items.map(item => `<span>${escapeHtml(item)}</span>`).join("")}</div>` : ""; }
+  function bulletList(items) { return hasItems(items) ? `<ul>${items.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""; }
+  function guideCard(title, body, icon = "ph-info") {
+    return body ? `<article class="guide-card"><h3><i class="ph ${icon}"></i>${escapeHtml(title)}</h3>${body}</article>` : "";
+  }
+  function renderGuide() {
+    const c = state.career;
+    const projectGroups = [
+      ["Beginner projects", c.beginnerProjects],
+      ["Intermediate projects", c.intermediateProjects],
+      ["Advanced projects", c.advancedProjects]
+    ].filter(([, items]) => hasItems(items));
+    const sections = [
+      guideCard("Course overview", `<p>${escapeHtml(c.detailedDescription || c.description)}</p><p class="salary-note">${escapeHtml(c.salary || "")}</p>`, "ph-compass"),
+      guideCard("Who should choose this career", bulletList(c.suitableFor), "ph-user-focus"),
+      guideCard("Eligibility", bulletList(c.eligibility), "ph-check-square"),
+      guideCard("Required skills", chipList(c.requiredSkills), "ph-sparkle"),
+      guideCard("Skills to learn", chipList(c.skillsToLearn), "ph-student"),
+      guideCard("Tools to practise", chipList(c.tools), "ph-toolbox"),
+      hasItems(c.roadmap) ? `<article class="guide-card guide-wide"><h3><i class="ph ph-path"></i>Step-by-step roadmap</h3><div class="phase-list">${c.roadmap.map(phase => `<section><b>Phase ${escapeHtml(phase.phase)}: ${escapeHtml(phase.title)}</b><small>${escapeHtml(phase.duration)}</small><p>${escapeHtml(phase.description)}</p>${chipList(phase.topics)}${bulletList(phase.practicalTasks)}<em>${escapeHtml(phase.milestone)}</em></section>`).join("")}</div></article>` : "",
+      projectGroups.length ? `<article class="guide-card guide-wide"><h3><i class="ph ph-folder-open"></i>Projects</h3><div class="guide-columns">${projectGroups.map(([title, items]) => `<section><h4>${escapeHtml(title)}</h4>${bulletList(items)}</section>`).join("")}</div></article>` : "",
+      guideCard("Certifications", bulletList(c.certifications), "ph-certificate"),
+      hasItems(c.jobRoles) ? `<article class="guide-card guide-wide"><h3><i class="ph ph-briefcase"></i>Job roles and salary ranges</h3><div class="job-role-grid">${c.jobRoles.map(item => `<section><h4>${escapeHtml(item.role)}</h4><p>${escapeHtml(item.description)}</p>${chipList(item.requiredSkills)}<p><b>Fresher:</b> ${escapeHtml(item.fresherSalary)}<br><b>Experienced:</b> ${escapeHtml(item.experiencedSalary)}</p></section>`).join("")}</div><p class="salary-note">Salary may vary by city, company, experience and skill level.</p></article>` : "",
+      guideCard("Industries", chipList(c.industries), "ph-buildings"),
+      guideCard("Higher study options", bulletList(c.higherStudyOptions), "ph-graduation-cap"),
+      guideCard("Freelance opportunities", bulletList(c.freelanceOpportunities), "ph-laptop"),
+      guideCard("Business opportunities", bulletList(c.businessOpportunities), "ph-storefront"),
+      guideCard("Portfolio guidance", bulletList(c.portfolioRequirements), "ph-folders"),
+      guideCard("Interview preparation", bulletList(c.interviewPreparation), "ph-chats"),
+      guideCard("Career progression", bulletList(c.careerGrowthPath), "ph-trend-up"),
+      guideCard("Advantages", bulletList(c.pros), "ph-thumbs-up"),
+      guideCard("Challenges", bulletList(c.challenges), "ph-warning"),
+      guideCard("Future scope", c.futureScope ? `<p>${escapeHtml(c.futureScope)}</p>` : "", "ph-binoculars"),
+      guideCard("Recommended resources", bulletList(c.recommendedResources), "ph-books"),
+      guideCard("Final outcome", c.finalOutcome ? `<p>${escapeHtml(c.finalOutcome)}</p>` : "", "ph-flag-checkered")
+    ].filter(Boolean);
+    els.guideView.innerHTML = sections.length ? `<div class="guide-grid">${sections.join("")}</div>` : `<div class="empty-state"><h3>No career guide is available yet</h3><p>The roadmap is still available for this course.</p></div>`;
+  }
 
   function renderDashboard() {
     const modulesDone = state.career.modules.filter((_, i) => moduleDone(i)).length, totalTopics = state.career.modules.reduce((n, m) => n + m.topics.length, 0), projectsDone = progress().projects.length, quizzes = progress().quizzes.length;
