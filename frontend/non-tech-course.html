@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="auth-guard.js"></script>
+  <meta name="description" content="Complete non-tech career curricula with connected roadmaps, projects, practice, quizzes, and job-readiness tracking.">
+  <title>Non-Tech Career Roadmaps | Career Compass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <link rel="stylesheet" href="non-tech-roadmaps.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="index.html"><img src="careercompass-logo.png" class="brand-logo-image" alt="Career Compass logo"><b>Career Compass</b></a>
+    <nav><a href="index.html">Dashboard</a><a href="courses.html">Courses</a><a href="roadmap.html">Tech roadmaps</a></nav>
+    <button class="icon-button mobile-menu" id="mobileMenu" aria-label="Toggle navigation"><i class="ph ph-list"></i></button>
+  </header>
+
+  <main>
+    <section class="field-gate" id="fieldGate">
+      <div class="gate-copy"><span class="eyebrow"><i class="ph-fill ph-sparkle"></i> Choose your universe</span><h1>Which field do you want to <span>build a career in?</span></h1><p>Choose a field first. Then pick a career curriculum and follow its connected beginner-to-job-ready path.</p></div>
+      <div class="field-options">
+        <a class="field-card tech" href="roadmap.html"><span class="field-icon"><i class="ph ph-code"></i></span><div><small>40+ PATHS</small><h2>Tech</h2><p>Software, data, AI, cloud, security, design and engineering.</p><b>Explore tech careers <i class="ph ph-arrow-up-right"></i></b></div></a>
+        <button class="field-card nontech" id="chooseNonTech" type="button"><span class="field-icon"><i class="ph ph-briefcase"></i></span><div><small>53 PATHS</small><h2>Non-Tech</h2><p>Business, finance, creative, government, health, hospitality and more.</p><b>Explore non-tech careers <i class="ph ph-arrow-down"></i></b></div></button>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalogSection" hidden>
+      <div class="section-title"><div><span class="eyebrow">Career curriculum library</span><h2>Choose your non-tech course</h2><p>Every path includes skills, projects, practice, interviews, and a job-readiness finish line.</p></div><span class="catalog-total"><b id="careerCount">0</b> complete curricula</span></div>
+      <div class="filter-bar">
+        <label class="search"><i class="ph ph-magnifying-glass"></i><input id="careerSearch" type="search" placeholder="Search careers, roles, or skills..."></label>
+        <select id="categoryFilter" aria-label="Filter by category"><option value="All">All categories</option></select>
+        <select id="difficultyFilter" aria-label="Filter by difficulty"><option value="All">All levels</option><option>Beginner friendly</option></select>
+        <select id="durationFilter" aria-label="Filter by duration"><option value="All">Any duration</option><option value="short">Under 9 months</option><option value="long">9+ months</option></select>
+        <select id="salaryFilter" aria-label="Filter by salary"><option value="All">Any salary potential</option><option value="high">High potential</option></select>
+        <select id="sortFilter" aria-label="Sort careers"><option value="popular">Most popular</option><option value="az">A-Z</option><option value="duration">Shortest first</option></select>
+      </div>
+      <div class="category-chips" id="categoryChips"></div>
+      <div class="career-grid" id="careerGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="workspace" id="workspace" hidden>
+      <button class="back-link" id="backToCatalog"><i class="ph ph-arrow-left"></i> All non-tech careers</button>
+      <div class="workspace-hero">
+        <div class="career-heading"><span class="career-icon" id="careerIcon"><i class="ph ph-briefcase"></i></span><div><span class="eyebrow" id="careerCategory"></span><h1 id="careerTitle"></h1><p id="careerDescription"></p><div class="career-tags" id="careerTags"></div></div></div>
+        <div class="hero-score"><div class="score-ring" id="scoreRing"><b id="roadmapPercent">0%</b><span>complete</span></div><div><b id="readinessScore">12</b><span>Job readiness</span></div></div>
+      </div>
+
+      <nav class="workspace-tabs" id="workspaceTabs">
+        <button class="active" data-view="roadmap"><i class="ph ph-git-branch"></i> Roadmap</button>
+        <button data-view="guide"><i class="ph ph-compass"></i> Career Guide</button>
+        <button data-view="dashboard"><i class="ph ph-squares-four"></i> Dashboard</button>
+        <button data-view="projects"><i class="ph ph-folder-open"></i> Projects</button>
+        <button data-view="quiz"><i class="ph ph-exam"></i> Quiz</button>
+        <button data-view="mentor"><i class="ph ph-robot"></i> AI Mentor</button>
+        <button data-view="compare"><i class="ph ph-arrows-left-right"></i> Compare</button>
+        <button data-view="certificate"><i class="ph ph-certificate"></i> Certificate</button>
+      </nav>
+
+      <div class="view active" data-view-panel="roadmap">
+        <div class="roadmap-toolbar"><div class="legend"><span><i class="dot unlocked"></i> Unlocked</span><span><i class="dot completed"></i> Completed</span><span><i class="dot locked"></i> Locked</span></div><div class="flow-switch"><button class="active" data-flow="vertical"><i class="ph ph-flow-arrow"></i> Vertical</button><button data-flow="branch"><i class="ph ph-git-branch"></i> Branch</button></div></div>
+        <div class="flowchart" id="flowchart"></div>
+      </div>
+      <div class="view" data-view-panel="guide" id="guideView"></div>
+      <div class="view" data-view-panel="dashboard" id="dashboardView"></div>
+      <div class="view" data-view-panel="projects" id="projectsView"></div>
+      <div class="view" data-view-panel="quiz" id="quizView"></div>
+      <div class="view" data-view-panel="mentor" id="mentorView"></div>
+      <div class="view" data-view-panel="compare" id="compareView"></div>
+      <div class="view" data-view-panel="certificate" id="certificateView"></div>
+    </section>
+  </main>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="topic-drawer" id="topicDrawer" aria-hidden="true" aria-labelledby="drawerTitle">
+    <header><div><span id="drawerStage">Topic detail</span><h2 id="drawerTitle">Topic</h2></div><button id="closeDrawer" class="icon-button" aria-label="Close topic"><i class="ph ph-x"></i></button></header>
+    <div class="drawer-meta" id="drawerMeta"></div>
+    <nav class="drawer-tabs" id="drawerTabs"><button class="active" data-detail="learn">Learn</button><button data-detail="practice">Practice</button><button data-detail="project">Project</button><button data-detail="quiz">Quiz</button><button data-detail="mentor">AI Mentor</button></nav>
+    <div class="drawer-body" id="drawerBody"></div>
+    <footer id="drawerFooter"></footer>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="non-tech-roadmaps.js"></script>
+</body>
+</html>

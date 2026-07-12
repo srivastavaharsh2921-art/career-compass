@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node backend/server.js",
     "smoke": "node backend/scripts/smoke-test.js",
-    "validate:non-tech-courses": "node scripts/validate-non-tech-courses.js"
+    "validate:non-tech-courses": "node scripts/validateNonTechCourses.mjs",
+    "validate:non-tech": "node scripts/validateNonTechCourses.mjs"
   },
   "dependencies": {
     "mongoose": "^8.16.0",
