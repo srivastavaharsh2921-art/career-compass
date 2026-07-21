@@ -426,6 +426,13 @@
     const input = document.getElementById("roadmapInput");
     if (!input) return;
 
+    const params = new URLSearchParams(location.search);
+    const queryTopic = params.get("topic");
+    const topic = queryTopic || localStorage.getItem("careerCompassRoadmapTopic");
+    if (topic && !input.value) input.value = topic;
+    if (queryTopic) window.setTimeout(generateRoadmap, 0);
+  }
+
   function getUser() {
     try {
       const raw = localStorage.getItem(storage.user);
@@ -441,14 +448,15 @@
 
   function updateAuthNav() {
     const user = getUser();
-    const headers = document.querySelectorAll(".site-header, header");
+    const headers = document.querySelectorAll(".site-header, header, .navbar");
     
     headers.forEach(header => {
-      let authContainer = header.querySelector(".cc-header-auth");
+      const container = header.querySelector(".nav-container") || header;
+      let authContainer = container.querySelector(".cc-header-auth");
       if (!authContainer) {
         authContainer = document.createElement("div");
         authContainer.className = "cc-header-auth";
-        header.appendChild(authContainer);
+        container.appendChild(authContainer);
       }
 
       if (user) {
