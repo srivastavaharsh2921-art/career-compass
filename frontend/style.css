@@ -1052,11 +1052,58 @@
 .auth-brand{display:flex!important;align-items:center;justify-content:center;gap:10px}.auth-brand-logo{width:42px;height:42px;border-radius:12px;object-fit:cover;display:block;box-shadow:0 0 20px rgba(59,130,246,.35)}
 .header-brand-logo,.sidebar-brand-logo{width:40px;height:40px;border-radius:11px;object-fit:cover;object-position:center;display:block;flex:0 0 auto;box-shadow:0 0 20px rgba(59,130,246,.3)}.sidebar-brand-logo{width:34px;height:34px;border-radius:9px}
 
-/* Keep the Home brand centered while placing the main links on the right. */
-.home-page header{width:100vw;margin-left:calc(50% - 50vw);display:grid;grid-template-columns:minmax(0,1fr) auto minmax(620px,1fr);align-items:center;position:relative;padding-left:max(70px,calc((100vw - 1440px)/2 + 40px))!important;padding-right:max(70px,calc((100vw - 1440px)/2 + 40px))!important}.home-page header>.logo{grid-column:2;grid-row:1;justify-self:center;white-space:nowrap}.home-page header>nav{grid-column:3;grid-row:1;justify-self:end}.home-page header>.nav-actions{grid-column:3;grid-row:1;justify-self:end}
-@media(max-width:1440px) and (min-width:1201px){.home-page header>nav{gap:20px}.home-page header>nav a{font-size:14px}}
-@media(max-width:1200px) and (min-width:901px){.home-page header{grid-template-columns:minmax(0,1fr) auto minmax(500px,1fr)}.home-page header>nav{gap:12px}.home-page header>nav a{font-size:13px;padding-inline:10px}.home-page header>.nav-actions{gap:10px}.home-page header .btn-login,.home-page header .btn-signup{padding-inline:15px}}
-@media(max-width:900px){.home-page header{grid-template-columns:1fr;padding-left:0!important;padding-right:0!important}.home-page header>.logo{grid-column:1;grid-row:1;justify-self:center}}
+/* Header layout alignment for desktop (>900px) */
+@media (min-width: 901px) {
+  .home-page header {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 16px;
+    position: relative;
+    padding-left: max(136px, calc((100vw - 1440px)/2 + 106px)) !important;
+    padding-right: max(72px, calc((100vw - 1440px)/2 + 42px)) !important;
+  }
+
+  .home-page header > .logo {
+    order: 1;
+    white-space: nowrap;
+    margin-right: 12px;
+    flex: 0 0 auto;
+  }
+
+  .home-page header > nav {
+    order: 2;
+    margin-right: auto;
+    flex: 0 0 auto;
+  }
+
+  .home-page header > .cc-header-auth {
+    order: 3;
+    margin-left: auto;
+    flex: 0 0 auto;
+  }
+
+  .home-page header > .nav-actions {
+    order: 4;
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-page header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .home-page header > .logo {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+}
 
 /* Home polish pass */
 html {
@@ -1164,14 +1211,16 @@ button:focus-visible,
 }
 
 .home-page .sidebar-toggle {
-    top: 50px;
-    left: max(86px, calc((100vw - 1440px)/2 + 56px));
+    position: fixed;
+    top: 31px;
+    left: max(72px, calc((100vw - 1440px)/2 + 42px));
     width: 44px;
     height: 42px;
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    z-index: 1000;
 }
 
 .home-page header>nav {
