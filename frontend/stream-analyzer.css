@@ -752,12 +752,97 @@ body {
 /* --- OUTLOOK CARD (RIGHT COLUMN) --- */
 .side-card.outlook-card {
   background: linear-gradient(135deg, #0d1233 0%, #070919 100%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 20px;
 }
 
 .side-subtext {
   font-size: 12px;
   color: var(--text-dim);
   margin-bottom: 18px;
+}
+
+/* ACCORDION CONTAINER & ITEMS */
+.exam-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accordion-item {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.01);
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-item:hover, .accordion-item.active {
+  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(99, 102, 241, 0.02);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.05);
+}
+
+.accordion-header {
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-title-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.accordion-item:hover .accordion-title-container,
+.accordion-item.active .accordion-title-container {
+  color: #fff;
+}
+
+.category-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--accent-purple);
+  filter: drop-shadow(0 0 4px var(--glow-purple));
+  transition: transform 0.3s ease;
+}
+
+.accordion-item:hover .category-icon {
+  transform: scale(1.1);
+}
+
+.chevron-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--text-dim);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s;
+}
+
+.accordion-item.active .chevron-icon {
+  transform: rotate(180deg);
+  color: #fff;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-content .exam-schedule-list {
+  padding: 0 16px 16px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding-top: 14px;
 }
 
 .exam-schedule-list {
@@ -802,6 +887,8 @@ body {
 .exam-status.bg-green { background: rgba(16, 185, 129, 0.1); color: #10b981; }
 .exam-status.bg-purple { background: rgba(167, 139, 250, 0.1); color: #a78bfa; }
 .exam-status.bg-teal { background: rgba(45, 212, 191, 0.1); color: #2dd4bf; }
+.exam-status.bg-yellow { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+.exam-status.bg-orange { background: rgba(249, 115, 22, 0.1); color: #f97316; }
 
 .exam-item p {
   font-size: 11px;

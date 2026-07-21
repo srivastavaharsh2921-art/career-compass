@@ -280,45 +280,236 @@
           <h3>Entrance Exam Pathways</h3>
           <p class="side-subtext">Primary admission routes for 12th pass students:</p>
           
-          <div class="exam-schedule-list">
-            <div class="exam-item">
-              <div class="exam-meta-row">
-                <span class="exam-title">JEE Main / Advanced</span>
-                <span class="exam-status bg-blue">April & June</span>
+          <div class="exam-accordion">
+            <!-- 1. Engineering & Architecture -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title-container">
+                  <i data-lucide="cpu" class="category-icon"></i>
+                  <span>Engineering & Architecture</span>
+                </div>
+                <i data-lucide="chevron-down" class="chevron-icon"></i>
               </div>
-              <p>For engineering courses (B.Tech) in IITs, NITs, and IIITs. Requires Physics, Chemistry, Maths.</p>
+              <div class="accordion-content">
+                <div class="exam-schedule-list">
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">JEE Main</span>
+                      <span class="exam-status bg-blue">Jan & Apr</span>
+                    </div>
+                    <p>National-level exam for NITs, IIITs, and CFITs. Held in two sessions (usually January and April).</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">JEE Advanced</span>
+                      <span class="exam-status bg-blue">May/June</span>
+                    </div>
+                    <p>Gateway to the IITs; open only to top JEE Main qualifiers. Held in May/June.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">BITSAT</span>
+                      <span class="exam-status bg-blue">May</span>
+                    </div>
+                    <p>For BITS Pilani campuses. Held in multiple sessions across May.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">State CETs</span>
+                      <span class="exam-status bg-blue">Apr/May</span>
+                    </div>
+                    <p>E.g., MHT-CET (Maharashtra), COMEDK (Karnataka), and KCET. Typically held in April/May.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">NATA</span>
+                      <span class="exam-status bg-blue">Apr - Jul</span>
+                    </div>
+                    <p>For B.Arch programs. Held in multiple tests from April to July.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="exam-item">
-              <div class="exam-meta-row">
-                <span class="exam-title">NEET UG</span>
-                <span class="exam-status bg-red">May</span>
+            <!-- 2. Medical, Pharmacy, & Agriculture -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title-container">
+                  <i data-lucide="heart-pulse" class="category-icon"></i>
+                  <span>Medical & Pharmacy</span>
+                </div>
+                <i data-lucide="chevron-down" class="chevron-icon"></i>
               </div>
-              <p>For medical degrees (MBBS, BDS, AYUSH). Requires Physics, Chemistry, Biology.</p>
+              <div class="accordion-content">
+                <div class="exam-schedule-list">
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">NEET UG</span>
+                      <span class="exam-status bg-red">May</span>
+                    </div>
+                    <p>The mandatory single national-level exam for MBBS, BDS, and AYUSH courses. Held in May.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">ICAR AIEEA</span>
+                      <span class="exam-status bg-red">June/July</span>
+                    </div>
+                    <p>For B.Sc. Agriculture and allied courses. Usually held in June/July.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="exam-item">
-              <div class="exam-meta-row">
-                <span class="exam-title">CUET UG</span>
-                <span class="exam-status bg-green">May - June</span>
+            <!-- 3. Law -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title-container">
+                  <i data-lucide="gavel" class="category-icon"></i>
+                  <span>Law Pathways</span>
+                </div>
+                <i data-lucide="chevron-down" class="chevron-icon"></i>
               </div>
-              <p>For standard Honours courses (B.Sc, B.Com, B.A., BCA) in central universities like DU, BHU, JNU.</p>
+              <div class="accordion-content">
+                <div class="exam-schedule-list">
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">CLAT</span>
+                      <span class="exam-status bg-purple">December</span>
+                    </div>
+                    <p>Common Law Admission Test for 25 National Law Universities (NLUs). Held in December.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">AILET</span>
+                      <span class="exam-status bg-purple">December</span>
+                    </div>
+                    <p>For NLU Delhi. Held in December.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">LSAT India</span>
+                      <span class="exam-status bg-purple">January</span>
+                    </div>
+                    <p>Accepted by various top private law schools. Usually held in January.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="exam-item">
-              <div class="exam-meta-row">
-                <span class="exam-title">CLAT</span>
-                <span class="exam-status bg-purple">December</span>
+            <!-- 4. General Degrees (BA, B.Sc, B.Com, BBA) -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title-container">
+                  <i data-lucide="graduation-cap" class="category-icon"></i>
+                  <span>General Degrees</span>
+                </div>
+                <i data-lucide="chevron-down" class="chevron-icon"></i>
               </div>
-              <p>For integrated corporate and civil law courses (BA LLB, BBA LLB) in NLUs.</p>
+              <div class="accordion-content">
+                <div class="exam-schedule-list">
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">CUET UG</span>
+                      <span class="exam-status bg-green">May/June</span>
+                    </div>
+                    <p>Central Universities Entrance Test is the primary gateway for admissions to central universities like Delhi University (DU), BHU, and JNU. Conducted in May/June.</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="exam-item">
-              <div class="exam-meta-row">
-                <span class="exam-title">UCEED / NID</span>
-                <span class="exam-status bg-teal">January</span>
+            <!-- 5. Management -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title-container">
+                  <i data-lucide="trending-up" class="category-icon"></i>
+                  <span>Management</span>
+                </div>
+                <i data-lucide="chevron-down" class="chevron-icon"></i>
               </div>
-              <p>For Design courses (B.Des) in IITs, National Institute of Design. Open to all streams.</p>
+              <div class="accordion-content">
+                <div class="exam-schedule-list">
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">IPMAT</span>
+                      <span class="exam-status bg-yellow">May/June</span>
+                    </div>
+                    <p>Five-Year Integrated Program in Management at IIM Indore and IIM Rohtak. Held in May/June.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">NPAT</span>
+                      <span class="exam-status bg-yellow">Apr - Jun</span>
+                    </div>
+                    <p>Entrance for NMIMS programs (BBA, B.Sc. Finance). Held between April and June.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">SET</span>
+                      <span class="exam-status bg-yellow">May</span>
+                    </div>
+                    <p>Symbiosis Entrance Test for BBA and other undergraduate programs. Held in May.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. Design & Fashion -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title-container">
+                  <i data-lucide="palette" class="category-icon"></i>
+                  <span>Design & Fashion</span>
+                </div>
+                <i data-lucide="chevron-down" class="chevron-icon"></i>
+              </div>
+              <div class="accordion-content">
+                <div class="exam-schedule-list">
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">NIFT Exam</span>
+                      <span class="exam-status bg-teal">February</span>
+                    </div>
+                    <p>For B.Des and B.FTech at NIFT campuses. Held in February.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">UCEED</span>
+                      <span class="exam-status bg-teal">January</span>
+                    </div>
+                    <p>Conducted by IIT Bombay for B.Des. Held in January.</p>
+                  </div>
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">NID DAT</span>
+                      <span class="exam-status bg-teal">Jan/Feb</span>
+                    </div>
+                    <p>Design Aptitude Test for NID. Held in January/February.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. Defense -->
+            <div class="accordion-item">
+              <div class="accordion-header">
+                <div class="accordion-title-container">
+                  <i data-lucide="shield" class="category-icon"></i>
+                  <span>Defense Entry</span>
+                </div>
+                <i data-lucide="chevron-down" class="chevron-icon"></i>
+              </div>
+              <div class="accordion-content">
+                <div class="exam-schedule-list">
+                  <div class="exam-item">
+                    <div class="exam-meta-row">
+                      <span class="exam-title">NDA & NA</span>
+                      <span class="exam-status bg-orange">Apr & Sep</span>
+                    </div>
+                    <p>National Defence Academy entry via UPSC. Exam is conducted twice a year, typically in April and September.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -444,6 +635,43 @@
       // Initialize Lucide Icons
       if (typeof lucide !== "undefined") {
         lucide.createIcons();
+      }
+
+      // Initialize Accordion functionality
+      const accordionHeaders = document.querySelectorAll(".accordion-header");
+      accordionHeaders.forEach(header => {
+        header.addEventListener("click", () => {
+          const item = header.parentElement;
+          const content = item.querySelector(".accordion-content");
+          const isActive = item.classList.contains("active");
+
+          // Collapse all items
+          document.querySelectorAll(".accordion-item").forEach(otherItem => {
+            otherItem.classList.remove("active");
+            const otherContent = otherItem.querySelector(".accordion-content");
+            if (otherContent) {
+              otherContent.style.maxHeight = null;
+            }
+          });
+
+          // If the clicked item was not active, expand it
+          if (!isActive) {
+            item.classList.add("active");
+            if (content) {
+              content.style.maxHeight = content.scrollHeight + "px";
+            }
+          }
+        });
+      });
+
+      // Expand the first accordion item by default
+      const firstAccordion = document.querySelector(".accordion-item");
+      if (firstAccordion) {
+        firstAccordion.classList.add("active");
+        const firstContent = firstAccordion.querySelector(".accordion-content");
+        if (firstContent) {
+          firstContent.style.maxHeight = firstContent.scrollHeight + "px";
+        }
       }
 
       // Stream selection listener
