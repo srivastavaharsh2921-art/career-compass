@@ -173,14 +173,14 @@
     event.stopImmediatePropagation();
 
     const submit = form.querySelector("[type='submit']");
-    const name = form.querySelector("#name")?.value.trim();
-    const email = form.querySelector("#email")?.value.trim();
-    const password = form.querySelector("#password")?.value || "";
-    const confirm = form.querySelector("#confirm")?.value || "";
+    const name = form.querySelector("[name='name']")?.value.trim() || form.querySelector("#name")?.value.trim() || "";
+    const email = form.querySelector("[name='email']")?.value.trim() || form.querySelector("#email")?.value.trim() || "";
+    const password = form.querySelector("[name='password']")?.value || form.querySelector("#password")?.value || "";
+    const confirm = form.querySelector("[name='confirm']")?.value || form.querySelector("#confirm")?.value || "";
 
     if ((isSignup || isResetPassword) && password !== confirm) {
       notice("Passwords do not match", "error");
-      form.querySelector("#confirm")?.focus();
+      (form.querySelector("[name='confirm']") || form.querySelector("#confirm"))?.focus();
       return;
     }
 
@@ -228,19 +228,28 @@
       setButtonLoading(submit, true, isLogin ? "Logging in..." : "Creating...");
       const data = await request(isLogin ? "/auth/login" : "/auth/signup", {
         method: "POST",
-        body: JSON.stringify(isLogin ? { email, password } : { name, email, password })
+        body: JSON.stringify(isLogin ? { email, password } : { name: name || email.split("@")[0], email, password })
       });
 
       setSession(data);
+      updateAuthNav();
       notice(data.message || "Success", "success");
+
+      const modalOverlay = document.querySelector(".cc-auth-modal-overlay");
+      if (modalOverlay) modalOverlay.remove();
+
       const params = new URLSearchParams(location.search);
+      const savedReturn = sessionStorage.getItem("careerCompassReturnTo");
       const destination = safeReturnTo(
-        params.get("returnTo") || sessionStorage.getItem("careerCompassReturnTo")
+        params.get("returnTo") || savedReturn
       );
       sessionStorage.removeItem("careerCompassReturnTo");
-      window.setTimeout(() => {
-        window.location.href = destination;
-      }, 500);
+
+      if (["login.html", "signup.html"].includes(page) || (savedReturn && savedReturn !== "index.html")) {
+        window.setTimeout(() => {
+          window.location.href = destination;
+        }, 400);
+      }
     } catch (error) {
       notice(error.message, "error");
     } finally {
@@ -417,17 +426,127 @@
     const input = document.getElementById("roadmapInput");
     if (!input) return;
 
-    const params = new URLSearchParams(location.search);
-    const queryTopic = params.get("topic");
-    const topic = queryTopic || localStorage.getItem("careerCompassRoadmapTopic");
-    if (topic && !input.value) input.value = topic;
-    if (queryTopic) window.setTimeout(generateRoadmap, 0);
+  function getUser() {
+    try {
+      const raw = localStorage.getItem(storage.user);
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function isUserLoggedIn() {
+    return Boolean(getToken() && getUser());
   }
 
   function updateAuthNav() {
-    document.querySelectorAll(
-      '.nav-actions, .mobile-auth-actions, a[href="login.html"], a[href="signup.html"]'
-    ).forEach(element => element.remove());
+    const user = getUser();
+    const headers = document.querySelectorAll(".site-header, header");
+    
+    headers.forEach(header => {
+      let authContainer = header.querySelector(".cc-header-auth");
+      if (!authContainer) {
+        authContainer = document.createElement("div");
+        authContainer.className = "cc-header-auth";
+        header.appendChild(authContainer);
+      }
+
+      if (user) {
+        const initial = (user.name || user.email || "U").charAt(0).toUpperCase();
+        const displayName = escapeHtml(user.name || user.email || "User");
+        authContainer.innerHTML = `
+          <div class="cc-user-pill">
+            <div class="cc-user-avatar">${initial}</div>
+            <span class="cc-user-name">${displayName}</span>
+            <button type="button" class="cc-logout-btn" data-cc-logout><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+          </div>
+        `;
+      } else {
+        authContainer.innerHTML = `
+          <a href="login.html" class="btn-header-login" data-cc-login><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+          <a href="signup.html" class="btn-header-signup" data-cc-signup><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+        `;
+      }
+    });
+  }
+
+  function openAuthModal(mode = "login", redirectTarget = null) {
+    const existing = document.querySelector(".cc-auth-modal-overlay");
+    if (existing) existing.remove();
+
+    if (redirectTarget) {
+      sessionStorage.setItem("careerCompassReturnTo", redirectTarget);
+    }
+
+    const overlay = document.createElement("div");
+    overlay.className = "cc-auth-modal-overlay";
+
+    overlay.innerHTML = `
+      <div class="cc-auth-modal" role="dialog" aria-modal="true">
+        <button type="button" class="cc-auth-modal-close" aria-label="Close">&times;</button>
+        <div class="cc-auth-modal-header">
+          <img src="careercompass-logo.png" class="cc-auth-brand-logo" alt="Career Compass">
+          <h2>${mode === 'signup' ? 'Create Your Account' : 'Welcome Back'}</h2>
+          <p>${mode === 'signup' ? 'Sign up to unlock personalized career paths, roadmaps & tools.' : 'Log in to access your saved career roadmaps and progress.'}</p>
+        </div>
+        <div class="cc-auth-tabs">
+          <button type="button" class="cc-auth-tab ${mode === 'login' ? 'active' : ''}" data-tab="login">Login</button>
+          <button type="button" class="cc-auth-tab ${mode === 'signup' ? 'active' : ''}" data-tab="signup">Sign Up</button>
+        </div>
+        <div class="cc-auth-modal-body">
+          <form class="modal-auth-form" data-auth="${mode}">
+            ${mode === 'signup' ? `
+            <div class="input-group">
+              <label for="modal-name">Full Name</label>
+              <div class="input-wrapper">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" id="modal-name" name="name" placeholder="Enter your full name" required>
+              </div>
+            </div>
+            ` : ''}
+            <div class="input-group">
+              <label for="modal-email">Email Address</label>
+              <div class="input-wrapper">
+                <i class="fa-regular fa-envelope input-icon"></i>
+                <input type="email" id="modal-email" name="email" placeholder="Enter your email" required>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="modal-password">Password</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="modal-password" name="password" minlength="6" placeholder="Enter password" required>
+              </div>
+            </div>
+            ${mode === 'signup' ? `
+            <div class="input-group">
+              <label for="modal-confirm">Confirm Password</label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="modal-confirm" name="confirm" minlength="6" placeholder="Repeat password" required>
+              </div>
+            </div>
+            ` : ''}
+            <button type="submit" class="btn-submit">
+              ${mode === 'login' ? 'Login to Continue' : 'Create Account'}
+            </button>
+          </form>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    overlay.querySelector(".cc-auth-modal-close").addEventListener("click", () => overlay.remove());
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) overlay.remove();
+    });
+
+    overlay.querySelectorAll(".cc-auth-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        openAuthModal(tab.dataset.tab, redirectTarget);
+      });
+    });
   }
 
   function preserveAuthDestination() {
@@ -439,8 +558,66 @@
       .forEach(link => { link.href = `${link.getAttribute("href")}?returnTo=${encodeURIComponent(destination)}`; });
   }
 
+  const protectedPagesList = new Set([
+    "test.html",
+    "roadmap.html",
+    "courses.html",
+    "mentor.html",
+    "skills-analyzer.html",
+    "stream-analyzer.html",
+    "settings.html",
+    "profile.html",
+    "results.html",
+    "goals.html",
+    "skills.html",
+    "personality.html",
+    "non-tech-roadmaps.html",
+    "non-tech-course.html"
+  ]);
+
   function handleProtectedLink(event) {
-    return;
+    if (isUserLoggedIn()) return;
+
+    // Check if clicked element or parent is header login/signup
+    const loginBtn = event.target.closest("[data-cc-login], a[href='login.html']");
+    const signupBtn = event.target.closest("[data-cc-signup], a[href='signup.html']");
+    if (loginBtn) {
+      if (!["login.html", "signup.html"].includes(currentPage())) {
+        event.preventDefault();
+        openAuthModal("login");
+        return;
+      }
+    }
+    if (signupBtn) {
+      if (!["login.html", "signup.html"].includes(currentPage())) {
+        event.preventDefault();
+        openAuthModal("signup");
+        return;
+      }
+    }
+
+    const link = event.target.closest("a[href], button[onclick], .feature-card, .nav-item, .chat-btn");
+    if (!link) return;
+
+    let targetHref = link.getAttribute("href") || "";
+    if (!targetHref && link.getAttribute("onclick")) {
+      const match = link.getAttribute("onclick").match(/href=['"]([^'"]+)['"]/);
+      if (match) targetHref = match[1];
+    }
+
+    if (!targetHref) {
+      const pageNav = link.querySelector("a[href]");
+      if (pageNav) targetHref = pageNav.getAttribute("href") || "";
+    }
+
+    if (!targetHref) return;
+
+    const targetPage = targetHref.split("/").pop().split("?")[0].split("#")[0];
+    if (protectedPagesList.has(targetPage)) {
+      event.preventDefault();
+      event.stopPropagation();
+      openAuthModal("login", targetHref);
+    }
   }
 
   document.addEventListener("submit", handleAuthSubmit, true);
@@ -451,7 +628,11 @@
     if (event.target.closest("[data-cc-logout]")) {
       event.preventDefault();
       await logout();
-      window.location.replace("index.html");
+      updateAuthNav();
+      notice("Logged out successfully", "info");
+      if (protectedPagesList.has(currentPage())) {
+        window.location.replace("index.html");
+      }
     }
   });
 
@@ -469,8 +650,13 @@
     generateRoadmap,
     selectTopic,
     askMentor,
-    logout
+    logout,
+    openAuthModal,
+    isUserLoggedIn,
+    getUser
   };
   window.generateRoadmap = generateRoadmap;
   window.selectTopic = selectTopic;
+  window.openAuthModal = openAuthModal;
 })();
+
